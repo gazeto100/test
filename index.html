@@ -1,7 +1,7 @@
 <style>
 canvas {
     border: 1px solid #d3d3d3;
-    background-color: #f1f1f1;
+    background-color: #007D41;
     margin: 0px;
 
 }
@@ -11,8 +11,16 @@ canvas {
 
 <script>
 
-var GamePiece;
 
+
+ArrayofCards = [
+
+  "cards/2_of_clubs.png", "cards/3_of_clubs.png", "cards/4_of_clubs.png", "cards/5_of_clubs.png", 
+  "cards/6_of_clubs.png", "cards/7_of_clubs.png", "cards/8_of_clubs.png", "cards/9_of_clubs.png", 
+  "cards/10_of_clubs.png", "cards/ace_of_clubs.png", "cards/jack_of_clubs2.png", 
+  "cards/queen_of_clubs2.png", "cards/king_of_clubs2.png", "cards/back-card.png"
+
+]
 
 var bHeight = window.innerHeight;
 var bWidth = window.innerWidth;
@@ -25,9 +33,10 @@ function startGame() {
     canvas.width = bWidth-20;
     canvas.height = bHeight-20;
     this.context = canvas.getContext("2d");
+    this.context.strokeStyle = "red";
+    this.context.opacity = 0.2;
         
-    GamePiece = new img(224, 224, "gard0002.png", 0, 0);
-    GamePiece1 = new img(224, 224, "0_00000.png", 224, 0);
+   
     GameArea.start();
 
 }
@@ -42,22 +51,50 @@ var GameArea = {
     clear : function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
     },
-    
-    
-    
 }
 
 function doMouseDown(event){
   c_x = event.pageX;
   c_y = event.pageY;
   console.log( "X= " + c_x + " Y= " + c_y);
-  GamePiece.move(c_x+224, c_y);
-  GamePiece1.move(c_x, c_y);
   
 }
 
+function DrawImg(img, x, y) {
+        
+    this.image = new Image();
+    this.image.src = img;   
+    this.x = x;
+    this.y = y;
 
+    ctx = context;
+    ctx.drawImage(this.image, 0, 0, 250, 363,x,y,250,363);
+        
+}
+
+function updateGameArea() {
+    bHeight = window.innerHeight;
+    bWidth = window.innerWidth;
+    
+    if (canvas.width != bWidth-20 || canvas.height != bHeight-20){
+      canvas.width = bWidth-20;
+      canvas.height = bHeight-20;
+    }
+
+    GameArea.clear();
+
+    for (i = 0; i < ArrayofCards.length; i++) {   
+      DrawImg(ArrayofCards[i], i*250, 0);
+    }
+
+}
+
+
+/*
 function img(width, height, img, x, y) {
+
+//    GamePiece = new img(224, 224, "gard0002.png", 0, 0);
+//    GamePiece1 = new img(224, 224, "0_00000.png", 224, 0);
         
     this.image = new Image();
     this.image.src = img;   
@@ -79,23 +116,6 @@ function img(width, height, img, x, y) {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
     
-}
-
-function updateGameArea() {
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
-    
-    if (canvas.width != bWidth-20 || canvas.height != bHeight-20){
-      canvas.width = bWidth-20;
-      canvas.height = bHeight-20;
-    }
-
-    GameArea.clear();
-
-    GamePiece.update();
-    GamePiece1.update();
-
-
-}
+}*/
 
 </script>
