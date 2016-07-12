@@ -18,25 +18,39 @@ ArrayofCards = [
   "cards/2_of_clubs.png", "cards/3_of_clubs.png", "cards/4_of_clubs.png", "cards/5_of_clubs.png", 
   "cards/6_of_clubs.png", "cards/7_of_clubs.png", "cards/8_of_clubs.png", "cards/9_of_clubs.png", 
   "cards/10_of_clubs.png", "cards/ace_of_clubs.png", "cards/jack_of_clubs2.png", 
-  "cards/queen_of_clubs2.png", "cards/king_of_clubs2.png", "cards/back-card.png"
+  "cards/queen_of_clubs2.png", "cards/king_of_clubs2.png",
+  
+  "cards/2_of_diamonds.png", "cards/3_of_diamonds.png", "cards/4_of_diamonds.png", "cards/5_of_diamonds.png", 
+  "cards/6_of_diamonds.png", "cards/7_of_diamonds.png", "cards/8_of_diamonds.png", "cards/9_of_diamonds.png", 
+  "cards/10_of_diamonds.png", "cards/ace_of_diamonds.png", "cards/jack_of_diamonds2.png", 
+  "cards/queen_of_diamonds2.png", "cards/king_of_diamonds2.png",
+  
+  "cards/2_of_hearts.png", "cards/3_of_hearts.png", "cards/4_of_hearts.png", "cards/5_of_hearts.png", 
+  "cards/6_of_hearts.png", "cards/7_of_hearts.png", "cards/8_of_hearts.png", "cards/9_of_hearts.png", 
+  "cards/10_of_hearts.png", "cards/ace_of_hearts.png", "cards/jack_of_hearts2.png", 
+  "cards/queen_of_hearts2.png", "cards/king_of_hearts2.png", 
+
+  
+  "cards/2_of_spades.png", "cards/3_of_spades.png", "cards/4_of_spades.png", "cards/5_of_spades.png", 
+  "cards/6_of_spades.png", "cards/7_of_spades.png", "cards/8_of_spades.png", "cards/9_of_spades.png", 
+  "cards/10_of_spades.png", "cards/ace_of_spades.png", "cards/jack_of_spades2.png", 
+  "cards/queen_of_spades2.png", "cards/king_of_spades2.png", 
+
 
 ]
 
+var BackCard = "cards/back-card.png";
+
 var bHeight = window.innerHeight;
 var bWidth = window.innerWidth;
-
-console.log(bHeight);
-console.log(bWidth);
 
 function startGame() {
     canvas = document.createElement("canvas");
     canvas.width = bWidth-20;
     canvas.height = bHeight-20;
     this.context = canvas.getContext("2d");
-    this.context.strokeStyle = "red";
-    this.context.opacity = 0.2;
-        
-   
+
+
     GameArea.start();
 
 }
@@ -68,7 +82,7 @@ function DrawImg(img, x, y) {
     this.y = y;
 
     ctx = context;
-    ctx.drawImage(this.image, 0, 0, 250, 363,x,y,250,363);
+    ctx.drawImage(this.image, 0, 0, 60, 87,x,y,60,87);
         
 }
 
@@ -83,9 +97,45 @@ function updateGameArea() {
 
     GameArea.clear();
 
-    for (i = 0; i < ArrayofCards.length; i++) {   
-      DrawImg(ArrayofCards[i], i*250, 0);
+//    for (i = 0; i < ArrayofCards.length; i++) {   
+//      DrawImg(ArrayofCards[i], i*60, 87);
+//    }
+
+    DrawText("Hello Worldd rfhd hjrf j", 500, 50, "30px Arial", "right");
+    DrawText("Hello World", 500, 80, "30px Arial", "right");
+}
+
+function DrawText(s_Text, n_x, n_y, font, align){
+    
+    var Text = s_Text;
+
+    ctx = context;
+    ctx.font = font;
+    var getSizeInPixel = ctx.measureText(Text).width;
+    var X = n_x;
+    var Y = n_y;
+    
+    switch (align){
+      case 'left':
+	
+      break;
+      
+      case 'center':
+	X -= (getSizeInPixel/2);
+      break;
+      
+      case 'right':
+	X -= getSizeInPixel;
+      break;
+    
     }
+  
+    return ctx.fillText(Text, X, Y);
+}
+
+function CreateButtons(){
+
+  
 
 }
 
