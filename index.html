@@ -101,8 +101,6 @@ function DrawImg(img, x, y) {
 function updateGameArea() {
     bHeight = window.innerHeight;
     bWidth = window.innerWidth;
-    canvas.width = bWidth;
-    canvas.height = bHeight;
        
      if (canvas.width != bWidth || canvas.height != bHeight){
        canvas.width = bWidth;
@@ -114,11 +112,11 @@ function updateGameArea() {
     //DrawFrame(Frame, 20, 50, 100, 105);
     
     
-    DrawButton(ArrayofButtons[0].img, 200, 200, ArrayofButtons[0].h, ArrayofButtons[0].w);
-    DrawButton(ArrayofButtons[1].img, 400, 200, ArrayofButtons[1].h, ArrayofButtons[1].w);
-    DrawButton(ArrayofButtons[2].img, 600, 200, ArrayofButtons[2].h, ArrayofButtons[2].w);
-    DrawButton(ArrayofButtons[3].img, 800, 200, ArrayofButtons[3].h, ArrayofButtons[3].w);
-    DrawButton(ArrayofButtons[4].img, bWidth-130, bHeight-100, ArrayofButtons[4].h, ArrayofButtons[4].w);
+    DrawButton(ArrayofButtons[0].img, 200, 200);
+    DrawButton(ArrayofButtons[1].img, 400, 200);
+    DrawButton(ArrayofButtons[2].img, 600, 200);
+    DrawButton(ArrayofButtons[3].img, 800, 200);
+    DrawButton(ArrayofButtons[4].img, bWidth-110, bHeight-90);
 //    for (i = 0; i < ArrayofCards.length; i++) {   
 //      DrawImg(ArrayofCards[i], i*60, 87);
 //    }
@@ -149,14 +147,14 @@ function DrawFrame(img, x, y, h, w){
 
 }
 
-function DrawButton(img, x, y, h, w){
+function DrawButton(img, x, y){
 
     this.image = new Image();
     this.image.src = img;   
     this.x = x;
     this.y = y;
     ctx = context;
-    ctx.drawImage(this.image, 0, 0, w, h,x,y,w,h);
+    ctx.drawImage(this.image, x, y);
 
 }
 
