@@ -42,6 +42,10 @@ ArrayofCards = [
 var BackCard = "cards/back-card.png";
 var Bgr = "img/Blackjack2.png";
 var Frame = "img/Frame.png";
+var shoe = "img/shoe.png";
+var minMaxBet = "img/bet.png";
+var rules = "img/rules.png";
+var coins = "img/coins.png";
 
 
 var ArrayofButtons = [
@@ -86,16 +90,36 @@ function doMouseDown(event){
   
 }
 
-function DrawImg(img, x, y) {
+function DrawAllImg(img, x, y, scale_x, scale_y) {
         
     this.image = new Image();
     this.image.src = img;   
     this.x = x;
     this.y = y;
+    if (scale_x == 0 && scale_y == 0){
+      scale_x = this.image.width;
+      scale_y = this.image.height;
+    }
 
     ctx = context;
-    ctx.drawImage(this.image, 0, 0, 60, 87,x,y,60,87);
+    ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height,x,y,scale_x,scale_y);
         
+}
+
+function GetImageW(img){
+
+    this.image = new Image();
+    this.image.src = img;   
+    
+    return this.image.width;
+}
+
+function GetImageH(img){
+
+    this.image = new Image();
+    this.image.src = img;   
+    
+    return this.image.height;
 }
 
 function updateGameArea() {
@@ -106,20 +130,27 @@ function updateGameArea() {
        canvas.width = bWidth;
        canvas.height = bHeight;
      }
+     
+     console.log( "bHeight = " + bHeight + " bWidth = " + bWidth);
     
     GameArea.clear();
     DrawBgr(Bgr, 0, 0, bHeight, bWidth);
     //DrawFrame(Frame, 20, 50, 100, 105);
+
+    DrawAllImg(shoe, bWidth -300, 0, 0, 0);
+    DrawAllImg(minMaxBet, 50, 0, 0, 0);
     
+    DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
+    
+    if (bWidth > 800){
+      DrawAllImg(coins, (bWidth/2)-GetImageW(coins)/2, 0, 0, 0);
+    }
     
     DrawButton(ArrayofButtons[0].img, 200, 200);
     DrawButton(ArrayofButtons[1].img, 400, 200);
     DrawButton(ArrayofButtons[2].img, 600, 200);
     DrawButton(ArrayofButtons[3].img, 800, 200);
     DrawButton(ArrayofButtons[4].img, bWidth-110, bHeight-90);
-//    for (i = 0; i < ArrayofCards.length; i++) {   
-//      DrawImg(ArrayofCards[i], i*60, 87);
-//    }
 
     //DrawText("Hello Worldd rfhd hjrf j", 500, 50, "30px Arial", "right");
    // DrawText("Hello World", 500, 80, "30px Arial", "right");
