@@ -41,6 +41,17 @@ ArrayofCards = [
 
 var BackCard = "cards/back-card.png";
 var Bgr = "img/Blackjack2.png";
+var Frame = "img/Frame.png";
+
+
+var ArrayofButtons = [
+
+{ img: 'img/hit.png', w:'148', h: '109'},
+{ img: 'img/stand.png', w:'148', h: '109'},
+{ img: 'img/surrender.png', w:'238', h: '84'},
+{ img: 'img/double.png',  w:'238', h: '84'},
+{ img: 'img/deal.png', w:'148', h: '109'},
+]
 
 var bHeight = window.innerHeight;
 var bWidth = window.innerWidth;
@@ -98,6 +109,14 @@ function updateGameArea() {
     
     GameArea.clear();
     DrawBgr(Bgr, 0, 0, bHeight, bWidth);
+    //DrawFrame(Frame, 20, 50, 100, 105);
+    
+    
+    DrawButton(ArrayofButtons[0].img, 200, 200, ArrayofButtons[0].h, ArrayofButtons[0].w);
+    DrawButton(ArrayofButtons[1].img, 400, 200, ArrayofButtons[1].h, ArrayofButtons[1].w);
+    DrawButton(ArrayofButtons[2].img, 600, 200, ArrayofButtons[2].h, ArrayofButtons[2].w);
+    DrawButton(ArrayofButtons[3].img, 800, 200, ArrayofButtons[3].h, ArrayofButtons[3].w);
+    DrawButton(ArrayofButtons[4].img, bWidth-200, bHeight-150, ArrayofButtons[4].h, ArrayofButtons[4].w);
 //    for (i = 0; i < ArrayofCards.length; i++) {   
 //      DrawImg(ArrayofCards[i], i*60, 87);
 //    }
@@ -114,6 +133,28 @@ function DrawBgr(img, x, y, h, w){
     this.y = y;
     ctx = context;
     ctx.drawImage(this.image, 0, 0, 1278, 771,x,y,w,h);
+
+}
+
+function DrawFrame(img, x, y, h, w){
+
+    this.image = new Image();
+    this.image.src = img;   
+    this.x = x;
+    this.y = y;
+    ctx = context;
+    ctx.drawImage(this.image, 0, 0, 245, 258,x,y,w,h);
+
+}
+
+function DrawButton(img, x, y, h, w){
+
+    this.image = new Image();
+    this.image.src = img;   
+    this.x = x;
+    this.y = y;
+    ctx = context;
+    ctx.drawImage(this.image, 0, 0, w, h,x,y,w,h);
 
 }
 
