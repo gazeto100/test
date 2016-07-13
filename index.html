@@ -1,7 +1,8 @@
 <style>
 canvas {
-    border: 1px solid #d3d3d3;
-    margin: 0px;
+
+    margin-left: -8px;
+    margin-top: -8px;
 
 }
 </style>
@@ -46,8 +47,8 @@ var bWidth = window.innerWidth;
 
 function startGame() {
     canvas = document.createElement("canvas");
-    canvas.width = bWidth-20;
-    canvas.height = bHeight-20;
+    canvas.width = bWidth;
+    canvas.height = bHeight;
     this.context = canvas.getContext("2d");
 
 
@@ -90,10 +91,10 @@ function updateGameArea() {
     bHeight = window.innerHeight;
     bWidth = window.innerWidth;
     
-    if (canvas.width != bWidth-20 || canvas.height != bHeight-20){
-      canvas.width = bWidth-20;
-      canvas.height = bHeight-20;
-    }
+     if (canvas.width != bWidth || canvas.height != bHeight){
+       canvas.width = bWidth;
+       canvas.height = bHeight;
+     }
     
     GameArea.clear();
     DrawBgr(Bgr, 0, 0, bHeight, bWidth);
