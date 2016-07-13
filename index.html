@@ -1,7 +1,6 @@
 <style>
 canvas {
     border: 1px solid #d3d3d3;
-    background-color: #007D41;
     margin: 0px;
 
 }
@@ -40,6 +39,7 @@ ArrayofCards = [
 ]
 
 var BackCard = "cards/back-card.png";
+var Bgr = "img/Blackjack1.png";
 
 var bHeight = window.innerHeight;
 var bWidth = window.innerWidth;
@@ -94,15 +94,26 @@ function updateGameArea() {
       canvas.width = bWidth-20;
       canvas.height = bHeight-20;
     }
-
+    
     GameArea.clear();
-
+    DrawBgr(Bgr, 0, 0, bHeight, bWidth);
 //    for (i = 0; i < ArrayofCards.length; i++) {   
 //      DrawImg(ArrayofCards[i], i*60, 87);
 //    }
 
-    DrawText("Hello Worldd rfhd hjrf j", 500, 50, "30px Arial", "right");
-    DrawText("Hello World", 500, 80, "30px Arial", "right");
+    //DrawText("Hello Worldd rfhd hjrf j", 500, 50, "30px Arial", "right");
+   // DrawText("Hello World", 500, 80, "30px Arial", "right");
+}
+
+function DrawBgr(img, x, y, h, w){
+
+    this.image = new Image();
+    this.image.src = img;   
+    this.x = x;
+    this.y = y;
+    ctx = context;
+    ctx.drawImage(this.image, 0, 0, 2200, 1200,x,y,w,h);
+
 }
 
 function DrawText(s_Text, n_x, n_y, font, align){
