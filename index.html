@@ -152,8 +152,9 @@ function updateGameArea() {
     DrawButton(ArrayofButtons[3].img, 800, 200);
     DrawButton(ArrayofButtons[4].img, bWidth-110, bHeight-90);
 
-    //DrawText("Hello Worldd rfhd hjrf j", 500, 50, "30px Arial", "right");
-   // DrawText("Hello World", 500, 80, "30px Arial", "right");
+    DrawText("Hello Worldd rfhd hjrf j", 500, 50, "30px Arial", "right");
+    DrawText(GetImageW(ArrayofButtons[4].img), 150, 150, "30px Arial", "right");
+    DrawText(bWidth, 150, 250, "30px Arial", "right");
 }
 
 function DrawBgr(img, x, y, h, w){
@@ -213,7 +214,7 @@ function DrawText(s_Text, n_x, n_y, font, align){
       break;
     
     }
-  
+    ctx.fillStyle = 'white';
     return ctx.fillText(Text, X, Y);
 }
 
