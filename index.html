@@ -57,8 +57,12 @@ var ArrayofButtons = [
 { img: 'img/deal.png', w:'100', h: '74'},
 ]
 
-var bHeight = window.innerHeight;
-var bWidth = window.innerWidth;
+//var bHeight = window.innerHeight;
+var bWidth = window.screen.availWidth;
+
+var bHeight = window.screen.availHeight;
+
+// //console.log(ffffff);
 
 function startGame() {
     canvas = document.createElement("canvas");
@@ -123,12 +127,12 @@ function GetImageH(img){
 }
 
 function updateGameArea() {
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    //bHeight = window.innerHeight;
+    //bWidth = window.innerWidth;
        
      //if (canvas.width != bWidth || canvas.height != bHeight){
-    canvas.width = bWidth;
-    canvas.height = bHeight;
+    //canvas.width = bWidth;
+    //canvas.height = bHeight;
      //}
      
      console.log( "bHeight = " + bHeight + " bWidth = " + bWidth);
