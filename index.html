@@ -5,9 +5,13 @@ canvas {
     margin-top: -8px;
 
 }
+
+body {
+    overflow:hidden;
+}
 </style>
 
-<body onload="startGame()">
+<body onload="startGame()" scroll="no">
 
 <script>
 
@@ -50,11 +54,11 @@ var coins = "img/coins.png";
 
 var ArrayofButtons = [
 
-{ img: 'img/hit.png', w:'100', h: '74'},
-{ img: 'img/stand.png', w:'100', h: '74'},
-{ img: 'img/surrender.png', w:'150', h: '53'},
-{ img: 'img/double.png',  w:'150', h: '53'},
-{ img: 'img/deal.png', w:'100', h: '74'},
+{ img: 'img/hit.png', w:'100', h: '74', x: '0', y: '0'},
+{ img: 'img/stand.png', w:'100', h: '74', x: '0', y: '0'},
+{ img: 'img/surrender.png', w:'150', h: '53', x: '0', y: '0'},
+{ img: 'img/double.png',  w:'150', h: '53', x: '0', y: '0'},
+{ img: 'img/deal.png', w:'100', h: '74', x: '0', y: '0'},
 ]
 
 var bHeight = window.innerHeight;
@@ -88,7 +92,14 @@ function doMouseDown(event){
   c_x = event.pageX;
   c_y = event.pageY;
   console.log( "X= " + c_x + " Y= " + c_y);
-  alert("sdfaergretgrthrh");
+  
+  if ( c_x > ArrayofButtons[4].x && c_x < c_x+ArrayofButtons[4].w && 
+  c_y > ArrayofButtons[4].y && c_y < c_y+ArrayofButtons[4].h  ){
+  
+    alert("DEAL");
+  
+  }
+  
 }
 
 function DrawAllImg(img, x, y, scale_x, scale_y) {
@@ -128,32 +139,46 @@ function updateGameArea() {
     bWidth = window.innerWidth;
        
     if (canvas.width != bWidth || canvas.height != bHeight){
-      canvas.width = bWidth;
-      canvas.height = bHeight;
+    canvas.width = bWidth;
+    canvas.height = bHeight;
     }
      
     GameArea.clear();
+    
+    
+    changeBtnCoords(bWidth, bHeight);
+    
     DrawBgr(Bgr, 0, 0, bHeight, bWidth);
     //DrawFrame(Frame, 20, 50, 100, 105);
 
     DrawAllImg(shoe, bWidth -300, 0, 0, 0);
     DrawAllImg(minMaxBet, 50, 0, 0, 0);
     
-    DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
-    
+    //DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
+   
+    DrawAllImg(Frame, (bWidth/2)-112, bHeight/2+30, 0, 0);
+     
     if (bWidth > 800){
       DrawAllImg(coins, (bWidth/2)-GetImageW(coins)/2, 0, 0, 0);
     }
     
-    DrawButton(ArrayofButtons[0].img, 200, 200);
-    DrawButton(ArrayofButtons[1].img, 400, 200);
-    DrawButton(ArrayofButtons[2].img, 600, 200);
-    DrawButton(ArrayofButtons[3].img, 800, 200);
-    DrawButton(ArrayofButtons[4].img, bWidth-110, bHeight-90);
-
-    DrawText("Hello Worldd rfhd hjrf j", 500, 50, "30px Arial", "right");
-    DrawText(GetImageW(ArrayofButtons[4].img), 150, 150, "30px Arial", "right");
+    
+    DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
+    DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
+    DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
+    DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
+    DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
+//bWidth-110, bHeight-90
+    DrawText("PAYS 3 TO 2", bWidth/2, bHeight/2-112, "30px times new roman", "center");
+    DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, bHeight/2+30-112, "20px times new roman", "center");
     DrawText(bWidth, 150, 250, "30px Arial", "right");
+}
+
+function changeBtnCoords(w, h){
+
+  ArrayofButtons[4].x = w - 110;
+  ArrayofButtons[4].y = h - 90;
+
 }
 
 function DrawBgr(img, x, y, h, w){
@@ -163,7 +188,7 @@ function DrawBgr(img, x, y, h, w){
     this.x = x;
     this.y = y;
     ctx = context;
-    ctx.drawImage(this.image, 0, 0, 1278, 771,x,y,w,h);
+    ctx.drawImage(this.image, 0, 0, 1280, 900,x,y,w,h);
 
 }
 
@@ -182,11 +207,9 @@ function DrawButton(img, x, y){
 
     this.image = new Image();
     this.image.src = img;   
-    this.x = x;
-    this.y = y;
     ctx = context;
     ctx.drawImage(this.image, x, y);
-
+    
 }
 
 function DrawText(s_Text, n_x, n_y, font, align){
