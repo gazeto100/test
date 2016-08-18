@@ -255,7 +255,7 @@ function updateGameArea() {
     DrawBgr(Bgr, 0, 0, bHeight, bWidth);
     //DrawFrame(Frame, 20, 50, 100, 105);
 
-    DrawAllImg(shoe, bWidth -300, 0, 0, 0);
+    //DrawAllImg(shoe, bWidth -300, 0, 0, 0);
     DrawAllImg(minMaxBet, 50, 0, 0, 0);
     
     //DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
@@ -379,10 +379,8 @@ function DrawToolBar(){
 
   ctx.beginPath();
   ctx.lineWidth="2";
-  ctx.fillStyle="#115B11";
-  ctx.fillRect(200,0,bWidth/2,40); 
-  DrawText("Credit: ", 200, 30, "30px arial", "left");
-  DrawText(Credit, 290, 30, "30px arial", "left");
+  DrawText("Credit", bWidth-50, 30, "25px arial", "center");
+  DrawText(Credit, bWidth-50, 60, "25px arial", "center");
 
 }
 
