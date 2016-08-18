@@ -145,9 +145,10 @@ function startGame() {
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
 
-    
+    screen.orientation.lock('landscape');
     GameArea.start();
     loadAll208Cards();
+    
 }
 
 var GameArea = {
@@ -179,7 +180,7 @@ function doMouseDown(event){
 	    }
 	}
   //}
-  screen.orientation === 90
+  
   
   if (STATE == 'deal'){
     if ( c_x > ArrayofButtons[4].x && c_x < c_x+ArrayofButtons[4].w && 
@@ -290,6 +291,9 @@ function updateGameArea() {
     }
     
     DrawText(screen.orientation.type, bWidth/2, 30, "20px times new roman", "center");
+    DrawText(screen.orientation.angle, bWidth/2, 30, "20px times new roman", "center");
+    
+   
     
     for (i = 0; i < ArrayofCoins.length; i++){
     var yCoin = 0;
