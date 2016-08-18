@@ -285,9 +285,11 @@ function updateGameArea() {
     
     if (bWidth < bHeight){
       DrawText("PAYS 3 TO 2", bWidth/2, 180, "20px times new roman", "center");
-      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "15px times new roman", "center");
+      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "20px times new roman", "center");
     //DrawText(bWidth, 150, 250, "30px Arial", "right");
     }
+    
+    DrawText(screen.orientation.type, bWidth/2, 220, "20px times new roman", "center");
     
     for (i = 0; i < ArrayofCoins.length; i++){
     var yCoin = 0;
