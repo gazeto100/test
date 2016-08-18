@@ -98,17 +98,18 @@ var ArrayofButtons = [
 { img: 'img/stand.png', w:'100', h: '74', x: '0', y: '0'},
 { img: 'img/surrender.png', w:'150', h: '53', x: '0', y: '0'},
 { img: 'img/double.png',  w:'150', h: '53', x: '0', y: '0'},
-{ img: 'img/deal.png', w:'100', h: '74', x: '0', y: '0'},
+{ img: 'img/deal.png', img_of: 'img/deal_of.png', w:'100', h: '74', x: '0', y: '0'},
+
 ]
 
 
 var ArrayofCoins = [
 
 { img: 'coin/1.png', w:'55', h: '55', x: '0', y: '0'},
-{ img: 'coin/5.png', w:'55', h: '55', x: '0', y: '0'},
-{ img: 'coin/10.png', w:'55', h: '55', x: '0', y: '0'},
-{ img: 'coin/25.png',  w:'55', h: '55', x: '0', y: '0'},
-{ img: 'coin/100.png', w:'55', h: '55', x: '0', y: '0'},
+{ img: 'coin/5.png', w:'55', h: '55', x: '55', y: '0'},
+{ img: 'coin/10.png', w:'55', h: '55', x: '110', y: '0'},
+{ img: 'coin/25.png',  w:'55', h: '55', x: '165', y: '0'},
+{ img: 'coin/100.png', w:'55', h: '55', x: '220', y: '0'},
 ]
 
 var state = [
@@ -122,6 +123,11 @@ var state = [
 'double',
 ];
 var STATE;
+
+var TotalBet = 0;
+var SelectCoin = -1;
+
+var Credit = 10000;
 
 var bHeight = window.innerHeight;
 var bWidth = window.innerWidth;
@@ -160,12 +166,28 @@ function doMouseDown(event){
   c_x = event.pageX;
   c_y = event.pageY;
   console.log( "X= " + c_x + " Y= " + c_y);
+  //if (STATE == 'bet'){
+ 
+	for (i = 0; i < ArrayofCoins.length; i++){
+
+	    if ( c_x > ArrayofCoins[i].x && c_x < parseInt(ArrayofCoins[i].x)+55 && 
+	    c_y > (bHeight-55) && c_y < (bHeight)  ){
+	      SelectCoin = -1;
+	      SelectCoin = i;
+	      //STATE = 'deal';
+	      console.log(i);    
+	    }
+	}
+  //}
   
-  if ( c_x > ArrayofButtons[4].x && c_x < c_x+ArrayofButtons[4].w && 
-  c_y > ArrayofButtons[4].y && c_y < c_y+ArrayofButtons[4].h  ){
   
-    Deal();
-  
+  if (STATE == 'deal'){
+    if ( c_x > ArrayofButtons[4].x && c_x < c_x+ArrayofButtons[4].w && 
+    c_y > ArrayofButtons[4].y && c_y < c_y+ArrayofButtons[4].h  ){
+    
+      Deal();
+    
+    }
   }
   
 }
@@ -240,29 +262,45 @@ function updateGameArea() {
    
     DrawAllImg(Frame, (bWidth/2)-112, bHeight/2-GetImageH(Frame)/2, 0, 0);
      
-    if (bWidth > 800){
-      DrawAllImg(coins, (bWidth/2)-GetImageW(coins)/2, 0, 0, 0);
+//    if (bWidth > 800){
+//      DrawAllImg(coins, (bWidth/2)-GetImageW(coins)/2, 0, 0, 0);
+//    }
+    
+    DrawToolBar();  
+
+    if (STATE == 'bet'){
+      DrawButton(ArrayofButtons[4].img_of, ArrayofButtons[4].x, ArrayofButtons[4].y);
+      if (SelectCoin != -1){
+	DrawText("Clic to bet", bWidth/2, bHeight/2, "20px times new roman", "center");
+      }else {
+	DrawText("Select coin", bWidth/2, bHeight/2, "20px times new roman", "center");
+      }
+    }else{
+        DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
+	DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
+	DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
+	DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
+	DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y)
     }
-    
-    
-    DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
-    DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
-    DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
-    DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
-    DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
-    DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px times new roman", "center");
-    DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 130, "15px times new roman", "center");
+    DrawText("PAYS 3 TO 2", bWidth/2, 180, "20px times new roman", "center");
+    DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "15px times new roman", "center");
     //DrawText(bWidth, 150, 250, "30px Arial", "right");
     
     for (i = 0; i < ArrayofCoins.length; i++){
-      DrawAllImg(ArrayofCoins[i].img, (55*i), (bHeight)-55, 0, 0);
+    var yCoin = 0;
+    if(SelectCoin == i){
+	yCoin = 55;
+    }else{
+	yCoin = 0;
+    }
+      DrawAllImg(ArrayofCoins[i].img, 55*i, (bHeight-55)-yCoin, 0, 0);
     }
     
     for (i = 0; i < DealerCards.length; i++){
-      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (100*i), (bHeight/2)-200, 100, 145);
+      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)-200, 100, 145);
     }
     for (i = 0; i < PlayerCards.length; i++){
-      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (100*i), (bHeight/2)+50, 100, 145);
+      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)+50, 100, 145);
     }
 }
 
@@ -273,6 +311,7 @@ function changeBtnCoords(w, h){
 
   ArrayofButtons[1].x = w - 110;
   ArrayofButtons[1].y = ArrayofButtons[4].y - 80;
+  
 }
 
 function DrawBgr(img, x, y, h, w){
@@ -334,6 +373,17 @@ function Deal(){
     DealerCards[i] = gameCards[IndexDealCard];
     IndexDealCard++;
   }
+}
+
+function DrawToolBar(){
+
+  ctx.beginPath();
+  ctx.lineWidth="2";
+  ctx.fillStyle="#115B11";
+  ctx.fillRect(200,0,bWidth/2,40); 
+  DrawText("Credit: ", 200, 30, "30px arial", "left");
+  DrawText(Credit, 290, 30, "30px arial", "left");
+
 }
 
 
