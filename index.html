@@ -282,9 +282,12 @@ function updateGameArea() {
 	DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
 	DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y)
     }
-    DrawText("PAYS 3 TO 2", bWidth/2, 180, "20px times new roman", "center");
-    DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "15px times new roman", "center");
+    
+    if (bWidth < bHeight){
+      DrawText("PAYS 3 TO 2", bWidth/2, 180, "20px times new roman", "center");
+      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "15px times new roman", "center");
     //DrawText(bWidth, 150, 250, "30px Arial", "right");
+    }
     
     for (i = 0; i < ArrayofCoins.length; i++){
     var yCoin = 0;
