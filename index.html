@@ -1,21 +1,3 @@
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script>
-$(document).on("pagecreate",function(event){
-  $(window).on("orientationchange",function(){
-    alert("The orientation has changed!");
-  });
-});
-</script>
-</head>
-<body>
-</body>
-</html>
-
 <style>
 canvas {
 
@@ -123,11 +105,11 @@ var ArrayofButtons = [
 
 var ArrayofCoins = [
 
-{ img: 'coin/1.png', w:'55', h: '55', x: '0', y: '0'},
-{ img: 'coin/5.png', w:'55', h: '55', x: '55', y: '0'},
-{ img: 'coin/10.png', w:'55', h: '55', x: '110', y: '0'},
-{ img: 'coin/25.png',  w:'55', h: '55', x: '165', y: '0'},
-{ img: 'coin/100.png', w:'55', h: '55', x: '220', y: '0'},
+{ img: 'coin/1.png', w:'55', h: '55', x: '0', y: '0', sum: '1'},
+{ img: 'coin/5.png', w:'55', h: '55', x: '55', y: '0', sum: '5'},
+{ img: 'coin/10.png', w:'55', h: '55', x: '110', y: '0', sum: '10'},
+{ img: 'coin/25.png',  w:'55', h: '55', x: '165', y: '0', sum: '25'},
+{ img: 'coin/100.png', w:'55', h: '55', x: '220', y: '0', sum: '100'},
 ]
 
 var state = [
@@ -163,10 +145,9 @@ function startGame() {
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
 
-    screen.orientation.lock('landscape');
+    
     GameArea.start();
     loadAll208Cards();
-    
 }
 
 var GameArea = {
@@ -209,6 +190,14 @@ function doMouseDown(event){
     }
   }
   
+  if (c_x > (bWidth/2)-112 && c_x < ((bWidth/2)-112)+GetImageH(Frame) && 
+    c_y > bHeight/2-GetImageH(Frame)/2 && c_y < (bHeight/2-GetImageH(Frame)/2) + GetImageH(Frame) && SelectCoin != -1 )
+  {
+    STATE = 'deal';
+    
+    TotalBet += parseInt(ArrayofCoins[SelectCoin].sum);
+    Credit = Credit - parseInt(ArrayofCoins[SelectCoin].sum);
+  }
 }
 
 function loadAll208Cards(){
@@ -308,15 +297,10 @@ function updateGameArea() {
     //DrawText(bWidth, 150, 250, "30px Arial", "right");
     }
     
-    DrawText(screen.orientation.type, bWidth/2, 30, "20px times new roman", "center");
-    DrawText(screen.orientation.angle, bWidth/2, 30, "20px times new roman", "center");
-    
-   
-    
     for (i = 0; i < ArrayofCoins.length; i++){
     var yCoin = 0;
     if(SelectCoin == i){
-	yCoin = 55;
+	yCoin = 10;
     }else{
 	yCoin = 0;
     }
@@ -328,6 +312,9 @@ function updateGameArea() {
     }
     for (i = 0; i < PlayerCards.length; i++){
       DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)+50, 100, 145);
+    }
+    if (STATE == "deal"){
+      DrawText("Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
     }
 }
 
