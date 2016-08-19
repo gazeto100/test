@@ -166,7 +166,7 @@ function doMouseDown(event){
   c_x = event.pageX;
   c_y = event.pageY;
   console.log( "X= " + c_x + " Y= " + c_y);
-  //if (STATE == 'bet'){
+  if (STATE == 'bet'){
  
 	for (i = 0; i < ArrayofCoins.length; i++){
 
@@ -178,7 +178,7 @@ function doMouseDown(event){
 	      console.log(i);    
 	    }
 	}
-  //}
+  }
   
   
   if (STATE == 'deal'){
@@ -193,10 +193,11 @@ function doMouseDown(event){
   if (c_x > (bWidth/2)-112 && c_x < ((bWidth/2)-112)+GetImageH(Frame) && 
     c_y > bHeight/2-GetImageH(Frame)/2 && c_y < (bHeight/2-GetImageH(Frame)/2) + GetImageH(Frame) && SelectCoin != -1 )
   {
-    STATE = 'deal';
-    
-    TotalBet += parseInt(ArrayofCoins[SelectCoin].sum);
-    Credit = Credit - parseInt(ArrayofCoins[SelectCoin].sum);
+      if (STATE != "stand"){
+	STATE = 'deal';
+	TotalBet += parseInt(ArrayofCoins[SelectCoin].sum);
+	Credit = Credit - parseInt(ArrayofCoins[SelectCoin].sum);
+      }
   }
 }
 
@@ -206,10 +207,10 @@ function loadAll208Cards(){
   
   var randum = Math.floor((Math.random() * 52) + 1);
       gameCards[i] = ArrayofCards[randum];
-  
+      console.log(randum);
   }
   
-  console.log(gameCards[i]);
+  
   
   
 }
@@ -288,7 +289,11 @@ function updateGameArea() {
 	DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
 	DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
 	DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
-	DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y)
+	if (STATE == "stand"){
+	  DrawButton(ArrayofButtons[4].img_of, ArrayofButtons[4].x, ArrayofButtons[4].y);
+	}else {
+	  DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
+	}
     }
     
     if (bWidth < bHeight){
@@ -313,7 +318,7 @@ function updateGameArea() {
     for (i = 0; i < PlayerCards.length; i++){
       DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)+50, 100, 145);
     }
-    if (STATE == "deal"){
+    if (STATE == "deal" || STATE == "stand"){
       DrawText("Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
     }
 }
@@ -387,6 +392,7 @@ function Deal(){
     DealerCards[i] = gameCards[IndexDealCard];
     IndexDealCard++;
   }
+  STATE = "stand";
 }
 
 function DrawToolBar(){
