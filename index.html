@@ -159,12 +159,14 @@ function startGame() {
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
 
-    
-    GameArea.start();
+    if(window.innerHeight > window.innerWidth){
+      GameArea.start();
+    }
     loadAll208Cards();
 }
 
 var GameArea = {
+    
     
     start : function() {
 	canvas.addEventListener("click", doMouseDown, false);
@@ -262,6 +264,12 @@ function GetImageH(img){
 }
 
 function updateGameArea() {
+
+
+if(window.innerHeight > window.innerWidth){ 
+  document.getElementsByTagName("body")[0].style.transform = "none"; 
+}
+
     bHeight = window.innerHeight;
     bWidth = window.innerWidth;
        
