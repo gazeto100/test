@@ -25,6 +25,7 @@ body {
 		}
 </style>
 <html>
+<meta http-equiv="ScreenOrientation" content="autoRotate:disable"> 
 <body onload="startGame()" scroll="no">
 
 <script>
@@ -159,9 +160,8 @@ function startGame() {
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
 
-    if(window.innerHeight > window.innerWidth){
-      GameArea.start();
-    }
+    GameArea.start();
+
     loadAll208Cards();
 }
 
@@ -264,11 +264,6 @@ function GetImageH(img){
 }
 
 function updateGameArea() {
-
-
-if(window.innerHeight > window.innerWidth){ 
-  document.getElementsByTagName("body")[0].style.transform = "block"; 
-}
 
     bHeight = window.innerHeight;
     bWidth = window.innerWidth;
