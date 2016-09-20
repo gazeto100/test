@@ -1,14 +1,28 @@
 <style>
 canvas {
 
-    margin-left: -8px;
-    margin-top: -8px;
+   			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+			-webkit-transform: translateZ(0);
+			-moz-transform: translateZ(0);
+			-ms-transform: translateZ(0);
+			-o-transform: translateZ(0);
+			transform: translateZ(0);
 
 }
 
 body {
     overflow:hidden;
 }
+
+		html, body {
+			background: #000;
+			color: #fff;
+			overflow: hidden;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
 </style>
 
 <body onload="startGame()" scroll="no">
@@ -130,7 +144,7 @@ var SelectCoin = -1;
 var Credit = 10000;
 
 var bHeight = window.innerHeight;
-var bWidth = window.innerWidth;
+var bWidth = 500;
 
 
 var IndexDealCard = 0;
@@ -139,7 +153,7 @@ function startGame() {
 
     STATE = state[0];
     bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    bWidth = 500;
     canvas = document.createElement("canvas");
     canvas.width = bWidth;
     canvas.height = bHeight;
@@ -286,14 +300,14 @@ function updateGameArea() {
       }
     }else{
         DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
-	DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
-	DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
-	DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
-	if (STATE == "stand"){
-	  DrawButton(ArrayofButtons[4].img_of, ArrayofButtons[4].x, ArrayofButtons[4].y);
-	}else {
-	  DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
-	}
+	    DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
+	    DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
+	    DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
+        if (STATE == "stand"){
+            DrawButton(ArrayofButtons[4].img_of, ArrayofButtons[4].x, ArrayofButtons[4].y);
+        }else {
+            DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
+        }
     }
     
     if (bWidth < bHeight){
