@@ -95,11 +95,13 @@ var shoe = "img/shoe.png";
 var minMaxBet = "img/bet.png";
 var rules = "img/rules.png";
 var coins = "img/coins.png";
-
+var bar = "img/bar.png";
 
 var gameCards = [];
 var DealerCards = [];
 var PlayerCards = [];
+
+var m_cards = [];
   
 var ArrayofButtons = [
 
@@ -154,9 +156,9 @@ function startGame() {
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
 
+    loadAll208Cards();
     GameArea.start();
 
-    loadAll208Cards();
 }
 
 var GameArea = {
@@ -205,6 +207,11 @@ function doMouseDown(event){
   {
       if (STATE != "stand"){
 	STATE = 'deal';
+	
+	if (TotalBet >= 100){
+	  
+	  return;
+	}
 	TotalBet += parseInt(ArrayofCoins[SelectCoin].sum);
 	Credit = Credit - parseInt(ArrayofCoins[SelectCoin].sum);
       }
@@ -217,7 +224,7 @@ function loadAll208Cards(){
   
   var randum = Math.floor((Math.random() * 52) + 1);
       gameCards[i] = ArrayofCards[randum];
-      console.log(randum);
+      //console.log(randum);
   }
   
   
@@ -275,8 +282,9 @@ function updateGameArea() {
     DrawBgr(Bgr, 0, 0, bHeight, bWidth);
     //DrawFrame(Frame, 20, 50, 100, 105);
 
-    //DrawAllImg(shoe, bWidth -300, 0, 0, 0);
+    DrawAllImg(shoe, bWidth -300, 0, 0, 0);
     DrawAllImg(minMaxBet, 0, 0, 0, 0);
+    //DrawAllImg(bar, bWidth/2, 0, 0, 0);
     
     //DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
    
@@ -296,42 +304,57 @@ function updateGameArea() {
 	DrawText("Select coin", bWidth/2, bHeight/2, "20px times new roman", "center");
       }
     }else{
-	    DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
-	    DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
-	    DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
-	    DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
+	    //DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
+	    //DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
+	    //DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
+	    //DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
         if (STATE == "stand"){
-            DrawButton(ArrayofButtons[4].img_of, ArrayofButtons[4].x, ArrayofButtons[4].y);
+            DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
+            DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
         }else {
             DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
         }
     }
     
-    if (bWidth < bHeight){
       DrawText("PAYS 3 TO 2", bWidth/2, 180, "20px times new roman", "center");
-      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "15px times new roman", "center");
-    //DrawText(bWidth, 150, 250, "30px Arial", "right");
-    }
+      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 200, "12px times new roman", "center");
+
     
     for (i = 0; i < ArrayofCoins.length; i++){
     var yCoin = 0;
     if(SelectCoin == i){
-	yCoin = 10;
+	yCoin = 20;
     }else{
 	yCoin = 0;
     }
       DrawAllImg(ArrayofCoins[i].img, 40*i, (bHeight-40)-yCoin, 0, 0);
     }
-    
+    var nPointDealer = 0;
     for (i = 0; i < DealerCards.length; i++){
-      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)-200, 80, 125);
+      nPointDealer += parseInt(DealerCards[i].s);
+      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (81*i), (bHeight/2)-200, 80, 125);
     }
+    if (nPointDealer > 0)
+    DrawText(nPointDealer, bWidth/2-100, (bHeight/2)-60, "25px arial", "center");
+
+    var nPointPlayer = 0;
     for (i = 0; i < PlayerCards.length; i++){
-      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)+50, 80, 125);
+      nPointPlayer += parseInt(PlayerCards[i].s);
+      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (81*i), (bHeight/2)+50, 80, 125);
     }
+    if (nPointPlayer > 0)
+    DrawText(nPointPlayer, bWidth/2-100, (bHeight/2)+50, "25px arial", "center");
+
+    
     if (STATE == "deal" || STATE == "stand"){
-      DrawText("Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
+      if (TotalBet == 100){
+	DrawText("Max Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
+      }else{
+	DrawText("Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
+      }
     }
+    
+    //DrawAllImg(m_cards[0], 0, 0, 0, 0);
 }
 
 function changeBtnCoords(w, h){
@@ -339,6 +362,9 @@ function changeBtnCoords(w, h){
   ArrayofButtons[4].x = w - 90;
   ArrayofButtons[4].y = h - 65;
 
+  ArrayofButtons[0].x = w - 90;
+  ArrayofButtons[0].y = h - 65;
+  
   ArrayofButtons[1].x = w - 90;
   ArrayofButtons[1].y = ArrayofButtons[4].y - 60;
   
@@ -410,8 +436,8 @@ function DrawToolBar(){
 
   ctx.beginPath();
   ctx.lineWidth="2";
-  DrawText("Credit", bWidth-50, 30, "25px arial", "center");
-  DrawText(Credit, bWidth-50, 60, "25px arial", "center");
+  DrawText("Credit:", bWidth/2-50, 30, "25px arial", "center");
+  DrawText(Credit, bWidth/2+30, 30, "25px arial", "center");
 
 }
 
