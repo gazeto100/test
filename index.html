@@ -9,17 +9,9 @@ canvas {
 			-ms-transform: translateZ(0);
 			-o-transform: translateZ(0);
 			transform: translateZ(0);
-			-webkit-transform: rotate(0deg);    
-			transform: rotate(0deg);
-
-}
-
-body {
-    overflow:hidden;
 }
 
 		html, body {
-			background: #000;
 			color: #fff;
 			overflow: hidden;
 			touch-action: none;
@@ -111,21 +103,21 @@ var PlayerCards = [];
 var ArrayofButtons = [
 
 { img: 'img/hit.png', w:'100', h: '74', x: '0', y: '0'},
-{ img: 'img/stand.png', w:'100', h: '74', x: '0', y: '0'},
+{ img: 'img/stand.png', w:'70', h: '52', x: '0', y: '0'},
 { img: 'img/surrender.png', w:'150', h: '53', x: '0', y: '0'},
 { img: 'img/double.png',  w:'150', h: '53', x: '0', y: '0'},
-{ img: 'img/deal.png', img_of: 'img/deal_of.png', w:'100', h: '74', x: '0', y: '0'},
+{ img: 'img/deal.png', img_of: 'img/deal_of.png', w:'70', h: '52', x: '0', y: '0'},
 
 ]
 
 
 var ArrayofCoins = [
 
-{ img: 'coin/1.png', w:'55', h: '55', x: '0', y: '0', sum: '1'},
-{ img: 'coin/5.png', w:'55', h: '55', x: '55', y: '0', sum: '5'},
-{ img: 'coin/10.png', w:'55', h: '55', x: '110', y: '0', sum: '10'},
-{ img: 'coin/25.png',  w:'55', h: '55', x: '165', y: '0', sum: '25'},
-{ img: 'coin/100.png', w:'55', h: '55', x: '220', y: '0', sum: '100'},
+{ img: 'coin/1.png', w:'40', h: '40', x: '0', y: '0', sum: '1'},
+{ img: 'coin/5.png', w:'40', h: '40', x: '40', y: '0', sum: '5'},
+{ img: 'coin/10.png', w:'40', h: '40', x: '80', y: '0', sum: '10'},
+{ img: 'coin/25.png',  w:'40', h: '40', x: '120', y: '0', sum: '25'},
+{ img: 'coin/100.png', w:'40', h: '40', x: '160', y: '0', sum: '100'},
 ]
 
 var state = [
@@ -146,7 +138,7 @@ var SelectCoin = -1;
 var Credit = 10000;
 
 var bHeight = window.innerHeight;
-var bWidth = 500;
+var bWidth = window.innerWidth;
 
 
 var IndexDealCard = 0;
@@ -155,7 +147,7 @@ function startGame() {
 
     STATE = state[0];
     bHeight = window.innerHeight;
-    bWidth = 500;
+    bWidth = window.innerWidth;
     canvas = document.createElement("canvas");
     canvas.width = bWidth;
     canvas.height = bHeight;
@@ -303,7 +295,7 @@ function updateGameArea() {
 	DrawText("Select coin", bWidth/2, bHeight/2, "20px times new roman", "center");
       }
     }else{
-        DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
+	    DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
 	    DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
 	    DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
 	    DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
@@ -327,7 +319,7 @@ function updateGameArea() {
     }else{
 	yCoin = 0;
     }
-      DrawAllImg(ArrayofCoins[i].img, 55*i, (bHeight-55)-yCoin, 0, 0);
+      DrawAllImg(ArrayofCoins[i].img, 40*i, (bHeight-40)-yCoin, 0, 0);
     }
     
     for (i = 0; i < DealerCards.length; i++){
@@ -343,11 +335,11 @@ function updateGameArea() {
 
 function changeBtnCoords(w, h){
 
-  ArrayofButtons[4].x = w - 110;
-  ArrayofButtons[4].y = h - 90;
+  ArrayofButtons[4].x = w - 90;
+  ArrayofButtons[4].y = h - 65;
 
-  ArrayofButtons[1].x = w - 110;
-  ArrayofButtons[1].y = ArrayofButtons[4].y - 80;
+  ArrayofButtons[1].x = w - 90;
+  ArrayofButtons[1].y = ArrayofButtons[4].y - 60;
   
 }
 
