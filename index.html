@@ -12,6 +12,7 @@ canvas {
 }
 
 		html, body {
+			background: #000;
 			color: #fff;
 			overflow: hidden;
 			touch-action: none;
@@ -275,7 +276,7 @@ function updateGameArea() {
     //DrawFrame(Frame, 20, 50, 100, 105);
 
     //DrawAllImg(shoe, bWidth -300, 0, 0, 0);
-    DrawAllImg(minMaxBet, 50, 0, 0, 0);
+    DrawAllImg(minMaxBet, 0, 0, 0, 0);
     
     //DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
    
@@ -308,7 +309,7 @@ function updateGameArea() {
     
     if (bWidth < bHeight){
       DrawText("PAYS 3 TO 2", bWidth/2, 180, "20px times new roman", "center");
-      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "20px times new roman", "center");
+      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 220, "15px times new roman", "center");
     //DrawText(bWidth, 150, 250, "30px Arial", "right");
     }
     
@@ -323,10 +324,10 @@ function updateGameArea() {
     }
     
     for (i = 0; i < DealerCards.length; i++){
-      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)-200, 100, 145);
+      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)-200, 80, 125);
     }
     for (i = 0; i < PlayerCards.length; i++){
-      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)+50, 100, 145);
+      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (60*i), (bHeight/2)+50, 80, 125);
     }
     if (STATE == "deal" || STATE == "stand"){
       DrawText("Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
