@@ -332,15 +332,15 @@ function updateGameArea() {
     var nPointDealer = 0;
     for (i = 0; i < DealerCards.length; i++){
       nPointDealer += parseInt(DealerCards[i].s);
-      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (81*i), (bHeight/2)-200, 80, 125);
+      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (51*i), (bHeight/2)-120, 50, 73);
     }
     if (nPointDealer > 0)
-    DrawText(nPointDealer, bWidth/2-100, (bHeight/2)-60, "25px arial", "center");
+    DrawText(nPointDealer, bWidth/2-100, (bHeight/2)-40, "25px arial", "center");
 
     var nPointPlayer = 0;
     for (i = 0; i < PlayerCards.length; i++){
       nPointPlayer += parseInt(PlayerCards[i].s);
-      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (81*i), (bHeight/2)+50, 80, 125);
+      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (51*i), (bHeight/2)+50, 50, 73);
     }
     if (nPointPlayer > 0)
     DrawText(nPointPlayer, bWidth/2-100, (bHeight/2)+50, "25px arial", "center");
