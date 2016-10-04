@@ -88,7 +88,7 @@ ArrayofCards = [
 
 ]
 
-var BackCard = "cards/back-card.png";
+var BackCard = {img: "cards/back-card.png", s: '0'};
 var Bgr = "img/Blackjack2.png";
 var Frame = "img/Frame.png";
 var shoe = "img/shoe.png";
@@ -100,6 +100,7 @@ var bar = "img/bar.png";
 var gameCards = [];
 var DealerCards = [];
 var PlayerCards = [];
+var TableCards = [];
 
 var m_cards = [];
   
@@ -127,6 +128,7 @@ var state = [
 'bet', 
 'deal', 
 'stand', 
+'StandorHit',
 'win', 
 'lost',
 'hit',
@@ -202,13 +204,29 @@ function doMouseDown(event){
     }
   }
   
+    if (STATE == 'StandorHit'){
+      if ( c_x > ArrayofButtons[4].x && c_x < c_x+ArrayofButtons[4].w && 
+	c_y > ArrayofButtons[4].y && c_y < c_y+ArrayofButtons[4].h  ){
+    
+	Hit();
+    
+      }
+      
+      if ( c_x > ArrayofButtons[1].x && c_x < c_x+ArrayofButtons[1].w && 
+	c_y > ArrayofButtons[1].y && c_y < c_y+ArrayofButtons[1].h  ){
+    
+	Stand();
+    
+      }
+    }
+  
   if (c_x > (bWidth/2)-112 && c_x < ((bWidth/2)-112)+GetImageH(Frame) && 
     c_y > bHeight/2-GetImageH(Frame)/2 && c_y < (bHeight/2-GetImageH(Frame)/2) + GetImageH(Frame) && SelectCoin != -1 )
   {
-      if (STATE != "stand"){
+      if (STATE != "StandorHit"){
 	STATE = 'deal';
 	
-	if (TotalBet >= 100){
+	if (TotalBet >= 1000){
 	  
 	  return;
 	}
@@ -218,18 +236,40 @@ function doMouseDown(event){
   }
 }
 
+
+function Hit(){
+
+
+      var randum = Math.floor((Math.random() * 208) + 1);
+      
+      var num = 0;
+      
+      for (i = 0; i < TableCards.length; i++){
+	if (TableCards[i] == gameCards[randum]){
+	  num++
+	  if (num > 4){
+	    Hit();
+	    return;
+	  }
+	}
+      }
+      
+      PlayerCards[PlayerCards.length] = gameCards[randum];
+      IndexDealCard++
+}
+
 function loadAll208Cards(){
-  
-  for (i = 0; i < 208; i++){
-  
-  var randum = Math.floor((Math.random() * 52) + 1);
-      gameCards[i] = ArrayofCards[randum];
+
+  var nAddCards = 0;
+  for (i = 0; i < 4; i++){
+    for (j = 0; j < 52; j++){
+      gameCards[nAddCards] = ArrayofCards[j];
       //console.log(randum);
+      nAddCards++;
+    }
   }
-  
-  
-  
-  
+ 
+ console.log(nAddCards);
 }
 
 function DrawAllImg(img, x, y, scale_x, scale_y) {
@@ -308,7 +348,7 @@ function updateGameArea() {
 	    //DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
 	    //DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
 	    //DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
-        if (STATE == "stand"){
+        if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
             DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
         }else {
@@ -332,7 +372,7 @@ function updateGameArea() {
     var nPointDealer = 0;
     for (i = 0; i < DealerCards.length; i++){
       nPointDealer += parseInt(DealerCards[i].s);
-      DrawAllImg(DealerCards[i].img, ((bWidth))/2 - (51*i)-20, (bHeight/2)-120, 50, 73);
+      DrawAllImg(DealerCards[i].img, ((bWidth))/2 + (51*i)-20, (bHeight/2)-120, 50, 73);
     }
     if (nPointDealer > 0)
     DrawText(nPointDealer, bWidth/2-100, (bHeight/2)-40, "25px arial", "center");
@@ -340,14 +380,14 @@ function updateGameArea() {
     var nPointPlayer = 0;
     for (i = 0; i < PlayerCards.length; i++){
       nPointPlayer += parseInt(PlayerCards[i].s);
-      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 - (51*i)-20, (bHeight/2)+50, 50, 73);
+      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 + (51*i)-20, (bHeight/2)+50, 50, 73);
     }
     if (nPointPlayer > 0)
     DrawText(nPointPlayer, bWidth/2-100, (bHeight/2)+50, "25px arial", "center");
 
     
-    if (STATE == "deal" || STATE == "stand"){
-      if (TotalBet == 100){
+    if (STATE == "deal" || STATE == "StandorHit"){
+      if (TotalBet == 1000){
 	DrawText("Max Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
       }else{
 	DrawText("Bet: "+TotalBet, bWidth/2, bHeight/2, "25px arial", "center");
@@ -420,16 +460,23 @@ function DrawText(s_Text, n_x, n_y, font, align){
 
 function Deal(){
 
+  var randum = Math.floor((Math.random() * 208) + 1);
   
   for (j = 0; j < 2; j++){
-      PlayerCards[j] = gameCards[IndexDealCard];
+      randum = Math.floor((Math.random() * 208) + 1);
+      PlayerCards[j] = gameCards[randum];
       IndexDealCard++
+      TableCards[j] = gameCards[randum];
   }
-  for (i = 0; i < 2; i++){
-    DealerCards[i] = gameCards[IndexDealCard];
+  
+  
+    randum = Math.floor((Math.random() * 208) + 1);
+    DealerCards[0] = gameCards[randum];
+    TableCards[TableCards.length] = gameCards[randum];
     IndexDealCard++;
-  }
-  STATE = "stand";
+    DealerCards[1] = BackCard;
+  
+  STATE = "StandorHit";
 }
 
 function DrawToolBar(){
