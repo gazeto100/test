@@ -149,6 +149,8 @@ var nPointPlayer = 0;
 var bHeight = window.innerHeight;
 var bWidth = window.innerWidth;
 var isStand = false;
+var m_CoinAnimY = 0;
+var m_CoinAnim;
 
 var IndexDealCard = 0;
 
@@ -193,16 +195,19 @@ function doMouseDown(event){
 	      SelectCoin = -1;
 	      SelectCoin = i;
 	      //STATE = 'deal';
-	      BetCoins[BetCoins.length] = SelectCoin;
+	      BetCoins[BetCoins.length] = ArrayofCoins[SelectCoin].img;
 	      if (STATE != "StandorHit" && SelectCoin != -1){
 		STATE = 'deal';
 		
-		if (TotalBet >= 1000){
+		if (TotalBet+parseInt(ArrayofCoins[SelectCoin].sum) > 1000){
 		  
 		  return;
 		}
 		TotalBet += parseInt(ArrayofCoins[SelectCoin].sum);
 		Credit = Credit - parseInt(ArrayofCoins[SelectCoin].sum);
+		m_CoinAnimY = 0;
+		clearTimeout(m_CoinAnim);
+		m_CoinAnim = setInterval(moveCoin, 10);
 	      }
       
 	      return;    
@@ -259,6 +264,7 @@ function doMouseDown(event){
       STATE = 'bet';
       TotalBet = 0;
       Credit = 10000;
+      BetCoins = [];
     }
     
 }
@@ -329,6 +335,18 @@ function loadAll208Cards(){
   }
  
  console.log(nAddCards);
+}
+
+function moveCoin(){
+
+    if ((bHeight/2) <= m_CoinAnimY){
+    
+      clearTimeout(m_CoinAnim);
+      m_CoinAnimY = 0;
+      return;
+    }
+    m_CoinAnimY += 10;
+
 }
 
 function DrawAllImg(img, x, y, scale_x, scale_y) {
@@ -439,7 +457,7 @@ function updateGameArea() {
 	DrawAllImg(BackCard.img, ((bWidth))/2 + (25*1)-20, 70, 73, 97);
     }
     if (nPointDealer > 0)
-    DrawText(nPointDealer, bWidth/2-40, 80+GetImageH(DealerCards[0].img), "25px arial", "center");
+    DrawText(nPointDealer, bWidth/2, 95+GetImageH(DealerCards[0].img), "25px arial", "center");
 
     nPointPlayer = 0;
     for (i = 0; i < PlayerCards.length; i++){
@@ -447,7 +465,7 @@ function updateGameArea() {
       DrawAllImg(PlayerCards[i].img, ((bWidth))/2 + (25*i)-20, (bHeight/2)+50, 73, 97);
     }
     if (nPointPlayer > 0)
-    DrawText(nPointPlayer, bWidth/2-40, (bHeight/2)+50, "25px arial", "center");
+    DrawText(nPointPlayer, bWidth/2, (bHeight/2)+40, "25px arial", "center");
 
     
     if (STATE == "deal" || STATE == "StandorHit"){
@@ -460,7 +478,9 @@ function updateGameArea() {
 	DrawAllImg(canselBet,  ((bWidth)/2)-GetImageW(canselBet)/2, (bHeight)/3, 30, 30);
       }
     }
-    
+    if (SelectCoin != -1){
+      DrawAllImg(ArrayofCoins[SelectCoin].img, (bWidth)/2 , bHeight-m_CoinAnimY, 0, 0);
+    }
 }
 
 function changeBtnCoords(w, h){
