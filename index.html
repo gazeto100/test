@@ -154,6 +154,11 @@ var isStand = false;
 var m_CoinAnimY = 0;
 var m_CoinAnim;
 
+var dealerWin = false;
+var playerWin = false;
+var dealer21 = false;
+var player21 = false;
+
 var IndexDealCard = 0;
 
 function startGame() {
@@ -208,14 +213,31 @@ function doMouseDown(event){
 		TotalBet += parseInt(ArrayofCoins[SelectCoin].sum);
 		Credit = Credit - parseInt(ArrayofCoins[SelectCoin].sum);
 		m_CoinAnimY = 0;
+		
+		BetCoins[BetCoins.length] = ArrayofCoins[SelectCoin].img;
+		
+		
+		
 		StopInterval = false;
-		clearTimeout(m_CoinAnim);
-		m_CoinAnim = setInterval(moveCoin, 10);
+		//clearTimeout(m_CoinAnim);
+		//m_CoinAnim = setInterval(moveCoin, 10);
 	      }
       
 	      return;    
 	    }
 	}
+  }
+  
+  function checkCoins(){
+  
+  var nNum = 0;
+  var NewArray = [];
+  for (i = 0; i < BetCoins.length; i++){
+    if (BetCoins[i] == ArrayofCoins[SelectCoin].img){
+      nNum++
+    }
+  }
+  
   }
   
   
@@ -241,6 +263,14 @@ function doMouseDown(event){
     
 	while ( nPointDealer < 17 ){
 	  Stand();
+	}
+	dealerWin = false;
+	playerWin = false;
+	if (nPointDealer > nPointPlayer && nPointDealer < 21){
+	  dealerWin = true;
+	}
+	if (nPointPlayer > nPointDealer && nPointPlayer < 21 || nPointDealer > 21){
+	  playerWin = true
 	}
 	
 	return;
@@ -487,12 +517,19 @@ function updateGameArea() {
 	DrawAllImg(canselBet,  ((bWidth)/2)-GetImageW(canselBet)/2, (bHeight)/3, 30, 30);
       }
     }
-    if (SelectCoin != -1){
-      DrawAllImg(ArrayofCoins[SelectCoin].img, (bWidth)/2 , bHeight-m_CoinAnimY, 0, 0);
+    //if (SelectCoin != -1){
+      //DrawAllImg(ArrayofCoins[SelectCoin].img, (bWidth)/2 , bHeight-m_CoinAnimY, 0, 0);
       for (i = 0; i < BetCoins.length; i++){
-	  DrawAllImg(BetCoins[i], (bWidth)/2+GetImageW(BetCoins[i])/2*i-50 , bHeight/2, 0, 0);
+	  DrawAllImg(BetCoins[i], (bWidth)/2+GetImageW(BetCoins[i])/4*i , bHeight/3+50, 0, 0);
       }
-    }
+      
+      if (dealerWin){
+	DrawText("You Lost", bWidth/2, (bHeight/2), "25px arial", "center", "red");
+      }
+      if (playerWin){
+	DrawText("Player WIN", bWidth/2, (bHeight/2), "25px arial", "center");
+      }
+    //}
 }
 
 function changeBtnCoords(w, h){
