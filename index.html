@@ -548,16 +548,16 @@ function updateGameArea() {
       }
       
       if (dealerWin){
-	DrawText("You Lost!", bWidth/2, (bHeight/2), "25px arial", "center", "red");
+	DrawText("You Lost!", 5, (bHeight/2), "25px arial", "left", "red");
       }
       if (playerWin){
-	DrawText("Player WIN!", bWidth/2, (bHeight/2), "25px arial", "center");
+	DrawText("You WIN!", bWidth/2, (bHeight/2), "25px arial", "left");
       }
       if (player21){
-	DrawText("BLACKJACK!", bWidth/2, (bHeight/2), "25px arial", "center");
+	DrawText("BLACKJACK!", 5, (bHeight/2), "25px arial", "left");
       }
       if (playerBust){
-	DrawText("BUSTED!", bWidth/2, (bHeight/2), "25px arial", "center", "red");
+	DrawText("BUSTED!", 5, (bHeight/2), "25px arial", "left", "red");
       }
     //}
 }
