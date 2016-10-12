@@ -9,13 +9,12 @@ canvas {
 			-ms-transform: translateZ(0);
 			-o-transform: translateZ(0);
 			transform: translateZ(0);
+			  -webkit-transform: rotate(0deg);    
+  transform: rotate(0deg);  
 			
 			
 }
-@media screen and (orientation: landscape) {
-   .main-content { display: none; }
-   .use-portrait { display: block; }
-}
+
 
 		html, body {
 			background: #000;
@@ -24,6 +23,11 @@ canvas {
 			touch-action: none;
 			-ms-touch-action: none;
 		}
+		
+.use-portrait {
+  -webkit-transform: rotate(0deg);    
+  transform: rotate(0deg);  
+}
 </style>
 <html>
 <body onload="startGame()" scroll="no">
@@ -557,7 +561,7 @@ function updateGameArea() {
 	DrawText("You Lost!", 5, (bHeight/2), "25px arial", "left", "red");
       }
       if (playerWin){
-	DrawText("You WIN!", bWidth/2, (bHeight/2), "25px arial", "left");
+	DrawText("You WIN!", 5, (bHeight/2), "25px arial", "left");
       }
       if (player21){
 	DrawText("BLACKJACK!", 5, (bHeight/2), "25px arial", "left");
