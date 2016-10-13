@@ -29,6 +29,7 @@ canvas {
 </style>
 <html>
 <body onload="startGame()" scroll="no">
+<icon src="img/3850.png" />
 
 <script>
 
@@ -277,12 +278,22 @@ function doMouseDown(event){
 	dealerWin = false;
 	playerWin = false;
 	playerBust = false;
+	player21 = false;
 	var chackPlayerPoints = 0;
 	for (i = 0; i < PlayerCards.length; i++){
 	  chackPlayerPoints += parseInt(PlayerCards[i].s);
 	}
 	if (chackPlayerPoints > 21){
 	  playerBust = true;
+	}
+	
+	if (chackPlayerPoints == 21){
+	  while ( nPointDealer < 17 ){
+	    Stand();
+	  }
+	  if (nPointDealer < 21 || nPointDealer > 21){
+	    player21 = true;
+	  }
 	}
 	
 	
