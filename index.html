@@ -173,6 +173,7 @@ var playerWin = false;
 var dealer21 = false;
 var player21 = false;
 var playerBust = false;
+var pas = false;
 var IndexDealCard = 0;
 
 function startGame() {
@@ -262,13 +263,21 @@ function doMouseDown(event){
       Deal();
       	dealerWin = false;
 	player21 = false;
-	
+	pas = false;
 	var chackPlayer21 = 0;
 	for (i = 0; i < PlayerCards.length; i++){
 	  chackPlayer21 += parseInt(PlayerCards[i].s);
 	}
 	if (chackPlayer21 == 21){
-	  player21 = true;
+	  
+	  while ( nPointDealer < 17 ){
+	    Stand();
+	  }
+	  if (nPointDealer < 21 || nPointDealer > 21){ 
+	    player21 = true;
+	  }else if (nPointDealer == 21){
+	    pas = true;
+	  }
 	}
 	
       return;
@@ -572,16 +581,19 @@ function updateGameArea() {
       }
       
       if (dealerWin){
-	DrawText("You Lost!", 5, (bHeight/2), "25px arial", "left", "red");
+	DrawText("YOU Lost!", 5, (bHeight/2), "25px arial", "left", "red");
       }
       if (playerWin){
-	DrawText("You WIN!", 5, (bHeight/2), "25px arial", "left");
+	DrawText("YOU WIN!", 5, (bHeight/2), "25px arial", "left");
       }
       if (player21){
 	DrawText("BLACKJACK!", 5, (bHeight/2), "25px arial", "left");
       }
       if (playerBust){
 	DrawText("BUSTED!", 5, (bHeight/2), "25px arial", "left", "red");
+      }
+      if (pas){
+	DrawText("PASS!", 5, (bHeight/2), "25px arial", "left", "red");
       }
     //}
 }
