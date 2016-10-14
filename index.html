@@ -108,7 +108,7 @@ var rules = "img/rules.png";
 var coins = "img/coins.png";
 var bar = "img/bar.png";
 var canselBet = "img/x.png";
-
+var topBar = "img/topBar.png";
 
 var gameCards = [];
 var DealerCards = [];
@@ -512,7 +512,7 @@ function updateGameArea() {
     //DrawFrame(Frame, 20, 50, 100, 105);
 
     //DrawAllImg(shoe, bWidth -300, 0, 0, 0);
-    DrawAllImg(minMaxBet, 0, 0, 0, 0);
+    //DrawAllImg(minMaxBet, 0, 0, 0, 0);
     //DrawAllImg(bar, bWidth/2, 0, 0, 0);
     
     //DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
@@ -545,8 +545,8 @@ function updateGameArea() {
         }
     }
     
-      DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px times new roman", "center");
-      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px times new roman", "center");
+      DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px arial", "center");
+      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
 
  
     for (i = 0; i < ArrayofCoins.length; i++){
@@ -582,9 +582,9 @@ function updateGameArea() {
     
     if (STATE == "deal" || STATE == "StandorHit"){
       if (TotalBet == 1000){
-	DrawText("Max Bet: "+TotalBet, 00, bHeight-60, "25px arial", "left");
+	DrawText("Max Bet: "+TotalBet, ((bWidth)/2), 25, "20px arial", "center");
       }else{
-	DrawText("Bet: "+TotalBet, 5, bHeight-60, "25px arial", "left");
+	DrawText("Bet: "+TotalBet, ((bWidth)/2), 25, "20px arial", "center");
       }
       if (STATE == "deal"){
 	DrawAllImg(canselBet,  ((bWidth)/2)-GetImageW(canselBet)/2, (bHeight)/3, 30, 30);
@@ -635,6 +635,17 @@ function DrawBgr(img, x, y, h, w){
     this.y = y;
     ctx = context;
     ctx.drawImage(this.image, 0, 0, 1080, 1920,x,y,w,h);
+
+}
+
+function DrawBgrToolBar(img, x, y, h, w){
+
+    this.image = new Image();
+    this.image.src = img;   
+    this.x = x;
+    this.y = y;
+    ctx = context;
+    ctx.drawImage(this.image, 0, 0, 1080, 30,x,y,w,h);
 
 }
 
@@ -701,10 +712,11 @@ function Deal(){
 
 function DrawToolBar(){
 
+  DrawBgrToolBar(topBar, 0, 0, 30, bHeight);
   ctx.beginPath();
   ctx.lineWidth="2";
-  DrawText("CREDIT", bWidth-50, 30, "25px arial", "right");
-  DrawText(Credit, bWidth-60, 60, "25px arial", "right");
+  DrawText("CREDIT", 50, 15, "20px arial", "center");
+  DrawText(Credit, 50, 35, "20px arial", "center");
 
 }
 
