@@ -32,8 +32,8 @@ canvas {
 </head>
 <body onload="startGame()" scroll="no">
 
-
 <script>
+
 
 
 
@@ -100,7 +100,7 @@ ArrayofCards = [
 ]
 
 var BackCard = {img: "cards/back-card.png", s: '0'};
-var Bgr = "img/Blackjack2.png";
+var Bgr = "img/Blackjack1.png";
 var Frame = "img/Frame.png";
 var shoe = "img/shoe.png";
 var minMaxBet = "img/bet.png";
@@ -173,7 +173,9 @@ var playerBust = false;
 var pas = false;
 var IndexDealCard = 0;
 
+
 function startGame() {
+
 
     STATE = state[0];
     bHeight = window.innerHeight;
@@ -182,9 +184,26 @@ function startGame() {
     canvas.width = bWidth;
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
-
     loadAll208Cards();
     GameArea.start();
+
+}
+
+function StartNewGame(){
+
+  if (playerWin){
+      STATE = 'bet';
+      Credit += TotalBet*2;
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+  }
 
 }
 
@@ -615,7 +634,7 @@ function DrawBgr(img, x, y, h, w){
     this.x = x;
     this.y = y;
     ctx = context;
-    ctx.drawImage(this.image, 0, 0, 1280, 900,x,y,w,h);
+    ctx.drawImage(this.image, 0, 0, 1080, 1920,x,y,w,h);
 
 }
 
