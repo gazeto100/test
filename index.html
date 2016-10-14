@@ -207,8 +207,85 @@ function StartNewGame(setResult){
       IndexDealCard = 0;
       BetCoins = [];
       newGame = false;
+      playerWin = false;
   }
-
+  
+   if (dealerWin){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      dealerWin = false;
+  }
+  
+  if (player21){
+      STATE = 'bet';
+      BetCoins = [];
+      var bet = TotalBet/2;
+      Credit += TotalBet*2+bet;
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      player21 = false;
+  }
+  
+  if (pas){
+      STATE = 'bet';
+      BetCoins = [];
+      Credit += TotalBet;
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      pas = false;
+  }
+  
+  if (dealer21){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      dealer21 = false;
+  }
+  if (playerBust){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      playerBust = false;
+  }
 }
 
 var GameArea = {
@@ -229,11 +306,29 @@ function doMouseDown(event){
   c_y = event.pageY;
   
   
-  if (dealerWin || playerWin || dealer21 || player21 || playerBust || pas ){
-  console.log( "X= " + c_x + " Y= " + c_y);
-
+  if (dealerWin){
+    StartNewGame(dealerWin);
     return;
-  
+  }
+  if (playerWin){
+    StartNewGame(playerWin);
+    return;
+  }
+  if (dealer21){
+    StartNewGame(dealer21);
+    return;
+  }
+  if (player21){
+    StartNewGame(player21);
+    return;
+  }
+  if (playerBust){
+    StartNewGame(playerBust);
+    return;
+  }
+  if ( pas ){
+    StartNewGame(pas);
+    return;
   }
   
   
