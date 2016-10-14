@@ -470,8 +470,13 @@ function doMouseDown(event){
 	  playerWin = true
 	  newGame = true;
 	}
-	if (nPointPlayer == nPointDealer){
+	var chackPlayerPoints = 0;
+	for (i = 0; i < PlayerCards.length; i++){
+	  chackPlayerPoints += parseInt(PlayerCards[i].s);
+	}
+	if (chackPlayerPoints == nPointDealer){
 	  pas = true;
+	  newGame = true;
 	}
 	
 	return;
