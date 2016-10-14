@@ -486,8 +486,9 @@ function doMouseDown(event){
       c_y > bHeight/3 && c_y < (bHeight/3) + GetImageH(canselBet)+10 && SelectCoin != -1 )
     {
       STATE = 'bet';
+      Credit = Credit+TotalBet;
       TotalBet = 0;
-      Credit = 10000;
+
       BetCoins = [];
     }
     
