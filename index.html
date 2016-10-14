@@ -171,6 +171,9 @@ var dealer21 = false;
 var player21 = false;
 var playerBust = false;
 var pas = false;
+
+var newGame = false;
+
 var IndexDealCard = 0;
 
 
@@ -189,7 +192,7 @@ function startGame() {
 
 }
 
-function StartNewGame(){
+function StartNewGame(setResult){
 
   if (playerWin){
       STATE = 'bet';
@@ -203,6 +206,7 @@ function StartNewGame(){
       TotalBet = 0;
       IndexDealCard = 0;
       BetCoins = [];
+      newGame = false;
   }
 
 }
@@ -223,7 +227,16 @@ var GameArea = {
 function doMouseDown(event){
   c_x = event.pageX;
   c_y = event.pageY;
+  
+  
+  if (dealerWin || playerWin || dealer21 || player21 || playerBust || pas ){
   console.log( "X= " + c_x + " Y= " + c_y);
+
+    return;
+  
+  }
+  
+  
   if (STATE == 'bet' || STATE == 'deal'){
  
 	for (i = 0; i < ArrayofCoins.length; i++){
@@ -291,9 +304,12 @@ function doMouseDown(event){
 	  }
 	  if (nPointDealer < 21 || nPointDealer > 21){ 
 	    player21 = true;
+	    newGame = true;
 	  }else if (nPointDealer == 21){
 	    pas = true;
+	    newGame = true;
 	  }
+	  
 	}
 	
       return;
@@ -315,6 +331,7 @@ function doMouseDown(event){
 	}
 	if (chackPlayerPoints > 21){
 	  playerBust = true;
+	  newGame = true;
 	}
 	
 	if (chackPlayerPoints == 21){
@@ -323,6 +340,7 @@ function doMouseDown(event){
 	  }
 	  if (nPointDealer < 21 || nPointDealer > 21){
 	    player21 = true;
+	    newGame = true;
 	  }
 	}
 	
@@ -340,9 +358,15 @@ function doMouseDown(event){
 	playerWin = false;
 	if (nPointDealer > nPointPlayer && nPointDealer < 21){
 	  dealerWin = true;
+	  newGame = true;
+	}
+	if (nPointDealer == 21 && nPointPlayer < 21){
+	  dealerWin = true;
+	  newGame = true;
 	}
 	if (nPointPlayer > nPointDealer && nPointPlayer < 21 || nPointDealer > 21){
 	  playerWin = true
+	  newGame = true;
 	}
 	
 	return;
@@ -610,6 +634,11 @@ function updateGameArea() {
       }
       if (pas){
 	DrawText("PASS!", 5, (bHeight/2), "25px arial", "left", "red");
+      }
+      
+      
+      if (newGame){
+	DrawText("Touch For new game", bWidth/2, bHeight-50, "20px times new roman", "center");
       }
     //}
 }
