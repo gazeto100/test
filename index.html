@@ -435,9 +435,13 @@ function doMouseDown(event){
 	if (chackPlayerPoints > 21){
 	  for (i = 0; i < PlayerCards.length; i++){
 	    if (PlayerCards[i].s == "11"){
-	      nPointPlayer -= 10;
+	      chackPlayerPoints -= 10;
 	    }
 	  } 
+	    //var chackPlayerPoints = 0;
+	    //for (i = 0; i < PlayerCards.length; i++){
+	    //  chackPlayerPoints += parseInt(PlayerCards[i].s);
+	    //}
 	}
 	
 	if (chackPlayerPoints > 21){
@@ -453,6 +457,10 @@ function doMouseDown(event){
 	    player21 = true;
 	    newGame = true;
 	  }
+	}
+	if (chackPlayerPoints == nPointDealer){
+	  pas = true;
+	  newGame = true;
 	}
 	
 	
@@ -538,6 +546,22 @@ function Hit(){
       }
       
       PlayerCards[PlayerCards.length] = gameCards[randum];
+      
+      nPointPlayer = 0;
+      for (i = 0; i < PlayerCards.length; i++){
+	nPointPlayer += parseInt(PlayerCards[i].s);
+	
+	if (nPointPlayer > 21){
+	  for (i = 0; i < PlayerCards.length; i++){
+	    if (PlayerCards[i].s == "11"){
+	      nPointPlayer -= 10;
+	    }
+	  } 
+	}
+      }
+
+
+     
       TableCards[TableCards.length]  = gameCards[randum];
       
       IndexDealCard++
