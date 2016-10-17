@@ -118,6 +118,9 @@ var BetCoins = [];
 
 var m_cards = [];
 
+
+var m_cardsX = 0;
+
 StopInterval = false;
   
 var ArrayofButtons = [
@@ -741,20 +744,22 @@ function updateGameArea() {
       DrawAllImg(ArrayofCoins[i].img, 40*i, (bHeight-40)-yCoin, 0, 0);
     }
     
-        
+    SetCardsX(DealerCards.length);
     for (i = 0; i < DealerCards.length; i++){
-      DrawAllImg(DealerCards[i].img, ((bWidth))/2 + (25*i)-20, 70, 73, 97);
+      DrawAllImg(DealerCards[i].img, ((bWidth))/2 + (25*i)-m_cardsX, 70, 73, 97);
     }
     if (DealerCards.length == 1){
-	DrawAllImg(BackCard.img, ((bWidth))/2 + (25*1)-20, 70, 73, 97);
+	DrawAllImg(BackCard.img, ((bWidth))/2 + (25*1)-m_cardsX, 70, 73, 97);
     }
     if (nPointDealer > 0)
     DrawText(nPointDealer, bWidth/2, 95+GetImageH(DealerCards[0].img), "25px arial", "center");
 
     //nPointPlayer = 0;
+    
+    SetCardsX(PlayerCards.length);
     for (i = 0; i < PlayerCards.length; i++){
       //nPointPlayer += parseInt(PlayerCards[i].s);
-      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 + (25*i)-20, (bHeight/2)+50, 73, 97);
+      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 + (25*i)-m_cardsX, (bHeight/2)+50, 73, 97);
     }
 
     if (nPointPlayer > 0)
@@ -798,6 +803,31 @@ function updateGameArea() {
 	DrawText("Touch For new game", bWidth/2, bHeight-50, "20px times new roman", "center");
       }
     //}
+}
+
+function SetCardsX(cardsX){
+
+  switch(cardsX){
+     case 1:
+      m_cardsX = 50;
+    break;
+    case 2:
+      m_cardsX = 50;
+    break;
+    case 3:
+      m_cardsX = 60;
+    break;
+    case 4:
+      m_cardsX = 70;
+    break;
+    case 5:
+      m_cardsX = 80;
+    break; 
+    case 6:
+      m_cardsX = 90;
+    break; 
+  }
+
 }
 
 function changeBtnCoords(w, h){
