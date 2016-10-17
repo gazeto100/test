@@ -31,5 +31,5 @@
      </platform>
      
      <preference name="Fullscreen" value="true" />
-     <preference name="Orientation" value="landscape" />
+     <preference name="Orientation" value="Portrait" />
 </widget> 
