@@ -28,10 +28,7 @@ canvas {
 
 </style>
 <html><head>
-<icon src="icons/drawable-hdpi-v4/icon.png" platform="android" qualifier="ldpi" />
-<icon src="icons/drawable-ldpi-v4/icon.png" platform="android" qualifier="mdpi" />
-<icon src="icons/drawable-mdpi-v4/icon.png" platform="android" qualifier="hdpi" />
-<icon src="icons/drawable-xhdpi-v4/icon.png" platform="android" qualifier="xhdpi" />
+
 </head>
 <body onload="startGame()" scroll="no">
 
@@ -417,6 +414,12 @@ function doMouseDown(event){
 	    newGame = true;
 	  }
 	  
+	}
+	
+	if (chackPlayer21 > 21){
+	    if (PlayerCards[1].s == "11"){
+	      nPointPlayer -= 10;
+	    }
 	}
 	
       return;
