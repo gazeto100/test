@@ -62,7 +62,7 @@ ArrayofCards = [
   {img: "cards/8d.gif", s: '8' },
   {img: "cards/9d.gif", s: '9' },
   {img: "cards/td.gif", s: '10' },
-  {img: "cards/ad.gif", s: '11', s1: '1' },
+  {img: "cards/ad.gif", s: '11' },
   {img: "cards/jd.gif", s: '10' }, 
   {img: "cards/qd.gif", s: '10' },
   {img: "cards/kd.gif", s: '10' },
@@ -76,7 +76,7 @@ ArrayofCards = [
   {img: "cards/8h.gif", s: '8' },
   {img: "cards/9h.gif", s: '9' },
   {img: "cards/th.gif", s: '10' },
-  {img: "cards/ah.gif", s: '11', s1: '1' },
+  {img: "cards/ah.gif", s: '11' },
   {img: "cards/jh.gif",s: '10' }, 
   {img: "cards/qh.gif", s: '10' },
   {img: "cards/kh.gif", s: '10' },
@@ -91,7 +91,7 @@ ArrayofCards = [
   {img: "cards/8s.gif", s: '8' },
   {img: "cards/9s.gif", s: '9' },
   {img: "cards/ts.gif", s: '10' },
-  {img: "cards/as.gif", s: '11', s1: '1' },
+  {img: "cards/as.gif", s: '11' },
   {img: "cards/js.gif", s: '10' },
   {img: "cards/qs.gif", s: '10' },
   {img: "cards/ks.gif", s: '10' },
@@ -117,7 +117,7 @@ var TableCards = [];
 var BetCoins = [];
 
 var m_cards = [];
-
+var m_changePoint = [0, 0, 0, 0, 0, 0, 0, 0];
 
 var m_cardsX = 0;
 
@@ -212,6 +212,7 @@ function StartNewGame(setResult){
       newGame = false;
       playerWin = false;
       SelectCoin = -1;
+      m_changePoint = [0, 0, 0, 0, 0, 0, 0, 0];
   }
   
    if (dealerWin){
@@ -228,6 +229,7 @@ function StartNewGame(setResult){
       newGame = false;
       dealerWin = false;
       SelectCoin = -1;
+      m_changePoint = [0, 0, 0, 0, 0, 0, 0, 0];
   }
   
   if (player21){
@@ -246,6 +248,7 @@ function StartNewGame(setResult){
       newGame = false;
       player21 = false;
       SelectCoin = -1;
+      m_changePoint = [0, 0, 0, 0, 0, 0, 0, 0];
   }
   
   if (pas){
@@ -263,6 +266,7 @@ function StartNewGame(setResult){
       newGame = false;
       pas = false;
       SelectCoin = -1;
+      m_changePoint = [0, 0, 0, 0, 0, 0, 0, 0];
   }
   
   if (dealer21){
@@ -279,6 +283,7 @@ function StartNewGame(setResult){
       newGame = false;
       dealer21 = false;
       SelectCoin = -1;
+      m_changePoint = [0, 0, 0, 0, 0, 0, 0, 0];
   }
   if (playerBust){
       STATE = 'bet';
@@ -294,6 +299,7 @@ function StartNewGame(setResult){
       newGame = false;
       playerBust = false;
       SelectCoin = -1;
+      m_changePoint = [0, 0, 0, 0, 0, 0, 0, 0];
   }
 }
 
@@ -417,8 +423,9 @@ function doMouseDown(event){
 	}
 	
 	if (chackPlayer21 > 21){
-	    if (PlayerCards[1].s == "11"){
+	    if (PlayerCards[0].s == "11"){
 	      nPointPlayer -= 10;
+	      m_changePoint[0] = 1;
 	    }
 	}
 	
@@ -435,19 +442,6 @@ function doMouseDown(event){
 	playerWin = false;
 	playerBust = false;
 	player21 = false;
-	
-	nPointPlayer = 0;
-	for (i = 0; i < PlayerCards.length; i++){
-	  nPointPlayer += parseInt(PlayerCards[i].s);
-	}
-
-	if (nPointPlayer > 21){
-	  for (i = 0; i < PlayerCards.length; i++){
-	    if (PlayerCards[i].s == "11"){
-	      nPointPlayer -= 10;
-	    }
-	  } 
-	}
 	
 	if (nPointPlayer > 21){
 	  playerBust = true;
@@ -486,6 +480,7 @@ function doMouseDown(event){
 	  for (i = 0; i < PlayerCards.length; i++){
 	    if (PlayerCards[i].s == "11"){
 	      nPointPlayer -= 10;
+	      
 	    }
 	  } 
 	}
@@ -545,7 +540,9 @@ function doMouseDown(event){
 function Hit(){
 
 
-      var randum = Math.floor((Math.random() * 208) + 1);
+      var randum = 0;
+      randum = Math.floor((Math.random() * 208) + 1);
+  
       
       var num = 0;
       
@@ -561,29 +558,28 @@ function Hit(){
       
       PlayerCards[PlayerCards.length] = gameCards[randum];
       
-      nPointPlayer = 0;
-      for (i = 0; i < PlayerCards.length; i++){
-	nPointPlayer += parseInt(PlayerCards[i].s);
-      }
-
+      nPointPlayer += parseInt(gameCards[randum].s);
+      
+      TableCards[TableCards.length]  = gameCards[randum];
+      IndexDealCard++;
+      
       if (nPointPlayer > 21){
 	for (i = 0; i < PlayerCards.length; i++){
-	   if (PlayerCards[i].s == "11"){
+	   if (PlayerCards[i].s == "11" && m_changePoint[i] != 1){
 	     nPointPlayer -= 10;
+	     m_changePoint[i] = 1;
 	   }
 	 } 
       }
 
      
-      TableCards[TableCards.length]  = gameCards[randum];
-      
-      IndexDealCard++
+
       
 }
 
 function Stand(){
-
-      var randum = Math.floor((Math.random() * 208) + 1);
+      var randum = 0;
+      randum = Math.floor((Math.random() * 208) + 1);
       
       var num = 0;
       
@@ -630,8 +626,6 @@ function loadAll208Cards(){
       nAddCards++;
     }
   }
- 
- console.log(nAddCards);
 }
 
 function moveCoin(){
@@ -806,9 +800,10 @@ function updateGameArea() {
       
       
       if (newGame){
-	DrawText("Touch for new game", 5, bHeight-80, "20px times new roman", "center");
+	DrawText("Touch for new game", 5, bHeight-80, "20px times new roman", "left");
       }
     //}
+    
 }
 
 function SetCardsX(cardsX){
@@ -914,13 +909,14 @@ function DrawText(s_Text, n_x, n_y, font, align, color){
 
 function Deal(){
 
-  var randum = Math.floor((Math.random() * 208) + 1);
+  var randum = 0;
   
   for (j = 0; j < 2; j++){
       randum = Math.floor((Math.random() * 208) + 1);
       PlayerCards[j] = gameCards[randum];
       IndexDealCard++
       TableCards[j] = gameCards[randum];
+      //console.log(PlayerCards[j]);
   }
   
   
@@ -928,7 +924,7 @@ function Deal(){
     DealerCards[0] = gameCards[randum];
     TableCards[TableCards.length] = gameCards[randum];
     IndexDealCard++;
-    
+    console.log(DealerCards[0]);
     nPointDealer = 0;
     for (i = 0; i < DealerCards.length; i++){
       nPointDealer += parseInt(DealerCards[i].s);
