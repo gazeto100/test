@@ -486,9 +486,9 @@ function doMouseDown(event){
 	}
 	if (nPointPlayer > 21){
 	  for (i = 0; i < PlayerCards.length; i++){
-	    if (PlayerCards[i].s == "11"){
+	    if (PlayerCards[i].s == "11" && m_changePoint[i] != 1){
 	      nPointPlayer -= 10;
-	      
+	      m_changePoint[i] = 1;
 	    }
 	  } 
 	}
@@ -791,10 +791,10 @@ function updateGameArea() {
       }
       
       if (dealerWin){
-	DrawText("YOU Lost!", 5, (bHeight/2), "25px arial", "left", "red");
+	DrawText("YOU LOST!", 5, (bHeight/2), "25px arial", "left", "red");
       }
       if (playerWin){
-	DrawText("YOU WIN!", 5, (bHeight/2), "25px arial", "left");
+	DrawText("YOU WON!", 5, (bHeight/2), "25px arial", "left");
       }
       if (player21){
 	DrawText("BLACKJACK!", 5, (bHeight/2), "25px arial", "left");
@@ -803,7 +803,7 @@ function updateGameArea() {
 	DrawText("BUSTED!", 5, (bHeight/2), "25px arial", "left", "red");
       }
       if (pas){
-	DrawText("PASS!", 5, (bHeight/2), "25px arial", "left", "red");
+	DrawText("PUSHED!", 5, (bHeight/2), "25px arial", "left", "red");
       }
       
       
@@ -921,7 +921,7 @@ function Deal(){
   
   for (j = 0; j < 2; j++){
       randum = Math.floor((Math.random() * 208) + 1);
-      PlayerCards[j] = gameCards[randum];
+      PlayerCards[j] = gameCards[9];
       IndexDealCard++
       TableCards[j] = gameCards[randum];
       //console.log(PlayerCards[j]);
