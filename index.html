@@ -32,6 +32,7 @@ canvas {
 </head>
 <body onload="startGame()" scroll="no">
 <audio id="myAudioTagID" type="audio/mpeg" src="sounds/coins.wav"></audio>
+<audio id="myAudioTagDeal" type="audio/mpeg" src="sounds/distrib.wav"></audio>
 <script>
 
 
@@ -197,6 +198,7 @@ function startGame() {
     this.context = canvas.getContext("2d");
     loadAll208Cards();
     CoinSound = document.getElementById("myAudioTagID");
+    CardsSound = document.getElementById("myAudioTagDeal");
     GameArea.start();
 
 }
@@ -579,7 +581,7 @@ function Hit(){
       }
 
      
-
+      CardsSound.play();
       
 }
 
@@ -737,7 +739,7 @@ function updateGameArea() {
     }
     
       DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px arial", "center");
-      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
+      DrawText("DEALER MUST DRAW TO 17 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
 
  
     for (i = 0; i < ArrayofCoins.length; i++){
@@ -940,7 +942,7 @@ function Deal(){
     for (i = 0; i < PlayerCards.length; i++){
       nPointPlayer += parseInt(PlayerCards[i].s);
     }
-  
+  CardsSound.play();
   STATE = "StandorHit";
 }
 
