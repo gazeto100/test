@@ -31,7 +31,7 @@ canvas {
 
 </head>
 <body onload="startGame()" scroll="no">
-
+<audio id="myAudioTagID" type="audio/mpeg" src="sounds/coins.wav"></audio>
 <script>
 
 
@@ -123,6 +123,7 @@ var m_cardsX = 0;
 
 StopInterval = false;
   
+
 var ArrayofButtons = [
 
 { img: 'img/hit.png', w:'100', h: '74', x: '0', y: '0'},
@@ -179,7 +180,11 @@ var newGame = false;
 
 var IndexDealCard = 0;
 
+var CoinSound;
 
+
+//CoinSound.pause();
+//CoinSound.stop();
 function startGame() {
 
 
@@ -191,6 +196,7 @@ function startGame() {
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
     loadAll208Cards();
+    CoinSound = document.getElementById("myAudioTagID");
     GameArea.start();
 
 }
@@ -359,7 +365,7 @@ function doMouseDown(event){
 	      
 	      if (STATE != "StandorHit" && SelectCoin != -1){
 		STATE = 'deal';
-		
+		CoinSound.play();
 		if (TotalBet+parseInt(ArrayofCoins[SelectCoin].sum) > 1000){
 		  
 		  return;
