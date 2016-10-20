@@ -35,72 +35,71 @@ canvas {
 <audio id="myAudioTagDeal" type="audio/mpeg" src="sounds/distrib.wav"></audio>
 <script>
 
-
+PointsArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 
+	       2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10,]
 
 
 ArrayofCards = [
 
-  {img: "cards/c2.png", s: '2' }, 
-  {img: "cards/c3.png", s: '3' }, 
-  {img: "cards/c4.png", s: '4' }, 
-  {img: "cards/c5.png", s: '5' },
-  {img: "cards/c6.png", s: '6' }, 
-  {img: "cards/c7.png", s: '7' }, 
-  {img: "cards/c8.png", s: '8' }, 
-  {img: "cards/c9.png", s: '9' }, 
-  {img: "cards/c10.png", s: '10' }, 
-  {img: "cards/c1.png", s: '11', s1: '1' }, 
-  {img: "cards/c11.png", s: '10' }, 
-  {img: "cards/c12.png", s: '10' },
-  {img: "cards/c13.png", s: '10' },
+  "cards/c2.png",
+  "cards/c3.png", 
+  "cards/c4.png", 
+  "cards/c5.png",
+  "cards/c6.png", 
+  "cards/c7.png",
+  "cards/c8.png",
+  "cards/c9.png",
+  "cards/c10.png",
+  "cards/c1.png",
+  "cards/c11.png",
+  "cards/c12.png",
+  "cards/c13.png",
   
-  {img: "cards/d2.png", s: '2' },
-  {img: "cards/d3.png", s: '3' },
-  {img: "cards/d4.png", s: '4' },
-  {img: "cards/d5.png", s: '5' },
-  {img: "cards/d6.png", s: '6' },
-  {img: "cards/d7.png", s: '7' },
-  {img: "cards/d8.png", s: '8' },
-  {img: "cards/d9.png", s: '9' },
-  {img: "cards/d10.png", s: '10' },
-  {img: "cards/d1.png", s: '11' },
-  {img: "cards/d11.png", s: '10' }, 
-  {img: "cards/d12.png", s: '10' },
-  {img: "cards/d13.png", s: '10' },
+  "cards/d2.png",
+  "cards/d3.png",
+  "cards/d4.png",
+  "cards/d5.png",
+  "cards/d6.png",
+  "cards/d7.png",
+  "cards/d8.png",
+  "cards/d9.png",
+  "cards/d10.png",
+  "cards/d1.png",
+  "cards/d11.png",
+  "cards/d12.png",
+  "cards/d13.png",
   
-  {img: "cards/h2.png", s: '2' },
-  {img: "cards/h3.png", s: '3' },
-  {img: "cards/h4.png", s: '4' },
-  {img: "cards/h5.png", s: '5' },
-  {img: "cards/h6.png", s: '6' },
-  {img: "cards/h7.png", s: '7' },
-  {img: "cards/h8.png", s: '8' },
-  {img: "cards/h9.png", s: '9' },
-  {img: "cards/h10.png", s: '10' },
-  {img: "cards/h1.png", s: '11' },
-  {img: "cards/h11.png",s: '10' }, 
-  {img: "cards/h12.png", s: '10' },
-  {img: "cards/h13.png", s: '10' },
+  "cards/h2.png",
+  "cards/h3.png",
+  "cards/h4.png",
+  "cards/h5.png",
+  "cards/h6.png",
+  "cards/h7.png",
+  "cards/h8.png",
+  "cards/h9.png",
+  "cards/h10.png",
+  "cards/h1.png",
+  "cards/h11.png",
+  "cards/h12.png",
+  "cards/h13.png",
 
   
-  {img: "cards/s2.png", s: '2' },
-  {img: "cards/s3.png", s: '3' },
-  {img: "cards/s4.png", s: '4' },
-  {img: "cards/s5.png", s: '5' },
-  {img: "cards/s6.png", s: '6' },
-  {img: "cards/s7.png", s: '7' },
-  {img: "cards/s8.png", s: '8' },
-  {img: "cards/s9.png", s: '9' },
-  {img: "cards/s10.png", s: '10' },
-  {img: "cards/s1.png", s: '11' },
-  {img: "cards/s11.png", s: '10' },
-  {img: "cards/s12.png", s: '10' },
-  {img: "cards/s13.png", s: '10' },
-
-
+  "cards/s2.png",
+  "cards/s3.png",
+  "cards/s4.png",
+  "cards/s5.png",
+  "cards/s6.png",
+  "cards/s7.png",
+  "cards/s8.png",
+  "cards/s9.png",
+  "cards/s10.png",
+  "cards/s1.png",
+  "cards/s11.png",
+  "cards/s12.png",
+  "cards/s13.png"
 ]
 
-var BackCard = {img: "cards/back-card.png", s: '0'};
+var BackCard = "cards/back-card.png";
 var Bgr = "img/Blackjack1.png";
 var Frame = "img/Frame.png";
 var shoe = "img/shoe.png";
@@ -116,6 +115,11 @@ var DealerCards = [];
 var PlayerCards = [];
 var TableCards = [];
 var BetCoins = [];
+
+var DealerPoints = [];
+var PlayerPoints = [];
+
+var cardsPoint = [];
 
 var m_cards = [];
 var m_changePoint = 0;
@@ -183,6 +187,7 @@ var IndexDealCard = 0;
 
 var CoinSound;
 
+var randum = 0;
 
 //CoinSound.pause();
 //CoinSound.stop();
@@ -214,6 +219,8 @@ function StartNewGame(setResult){
       PlayerCards = [];
       DealerCards = [];
       TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
       TotalBet = 0;
       IndexDealCard = 0;
       BetCoins = [];
@@ -221,6 +228,7 @@ function StartNewGame(setResult){
       playerWin = false;
       SelectCoin = -1;
       m_changePoint = 0;
+      loadAll52Cards();
   }
   
    if (dealerWin){
@@ -231,6 +239,8 @@ function StartNewGame(setResult){
       PlayerCards = [];
       DealerCards = [];
       TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
       TotalBet = 0;
       IndexDealCard = 0;
       BetCoins = [];
@@ -238,6 +248,7 @@ function StartNewGame(setResult){
       dealerWin = false;
       SelectCoin = -1;
       m_changePoint = 0;
+      loadAll52Cards();
   }
   
   if (player21){
@@ -250,6 +261,8 @@ function StartNewGame(setResult){
       PlayerCards = [];
       DealerCards = [];
       TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
       TotalBet = 0;
       IndexDealCard = 0;
       BetCoins = [];
@@ -257,6 +270,7 @@ function StartNewGame(setResult){
       player21 = false;
       SelectCoin = -1;
       m_changePoint = 0;
+      loadAll52Cards();
   }
   
   if (pas){
@@ -268,6 +282,8 @@ function StartNewGame(setResult){
       PlayerCards = [];
       DealerCards = [];
       TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
       TotalBet = 0;
       IndexDealCard = 0;
       BetCoins = [];
@@ -275,6 +291,7 @@ function StartNewGame(setResult){
       pas = false;
       SelectCoin = -1;
       m_changePoint = 0;
+      loadAll52Cards();
   }
   
   if (dealer21){
@@ -285,6 +302,8 @@ function StartNewGame(setResult){
       PlayerCards = [];
       DealerCards = [];
       TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
       TotalBet = 0;
       IndexDealCard = 0;
       BetCoins = [];
@@ -292,6 +311,7 @@ function StartNewGame(setResult){
       dealer21 = false;
       SelectCoin = -1;
       m_changePoint = 0;
+      loadAll52Cards();
   }
   if (playerBust){
       STATE = 'bet';
@@ -301,6 +321,8 @@ function StartNewGame(setResult){
       PlayerCards = [];
       DealerCards = [];
       TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
       TotalBet = 0;
       IndexDealCard = 0;
       BetCoins = [];
@@ -308,6 +330,7 @@ function StartNewGame(setResult){
       playerBust = false;
       SelectCoin = -1;
       m_changePoint = 0;
+      loadAll52Cards();
   }
 }
 
@@ -411,14 +434,14 @@ function doMouseDown(event){
       
 	nPointPlayer = 0;
 	for (i = 0; i < PlayerCards.length; i++){
-	  nPointPlayer += parseInt(PlayerCards[i].s);
+	  nPointPlayer += PlayerPoints[i];
 	}
       	dealerWin = false;
 	player21 = false;
 	pas = false;
 	var chackPlayer21 = 0;
 	for (i = 0; i < PlayerCards.length; i++){
-	  chackPlayer21 += parseInt(PlayerCards[i].s);
+	  chackPlayer21 += PlayerPoints[i];
 	}
 	if (chackPlayer21 == 21){
 	  
@@ -446,8 +469,8 @@ function doMouseDown(event){
 	Hit();
 	
 	nPointPlayer = 0;
-	for (i = 0; i < PlayerCards.length; i++){
-	  nPointPlayer += parseInt(PlayerCards[i].s);
+	for (i = 0; i < PlayerPoints.length; i++){
+	  nPointPlayer += PlayerPoints[i];
 	}
 	
 	dealerWin = false;
@@ -483,6 +506,11 @@ function doMouseDown(event){
     
 	while ( nPointDealer < 17 ){
 	  Stand();
+	}
+	
+	nPointDealer = 0;
+	for (i = 0; i < DealerCards.length; i++){
+	  nPointDealer += DealerPoints[i];
 	}
 	
 	dealerWin = false;
@@ -540,15 +568,14 @@ function doMouseDown(event){
 function Hit(){
 
 
-      var randum = 0;
+      randum = 0;
       randum = Math.floor((Math.random() * 52) + 1);
-  
       var num = 0;
       
       for (i = 0; i < TableCards.length; i++){
 	if (TableCards[i] == gameCards[randum]){
 	  num++
-	  if (num > 1){
+	  if (num > 0){
 	    Hit();
 	    return;
 	  }
@@ -557,16 +584,21 @@ function Hit(){
       
       PlayerCards[PlayerCards.length] = gameCards[randum];
       
-      nPointPlayer += parseInt(gameCards[randum].s);
+      PlayerPoints[PlayerPoints.length] = cardsPoint[randum];
       
+      
+      nPointPlayer = 0;
+	for (i = 0; i < PlayerPoints.length; i++){
+	nPointPlayer += PlayerPoints[i];
+      }
       
       TableCards[TableCards.length]  = gameCards[randum];
       IndexDealCard++;
       
       if (nPointPlayer > 21){
-	for (i = 0; i < PlayerCards.length; i++){
-	    if (PlayerCards[i].s == "11"){
-		  PlayerCards[i].s = "1";
+	for (i = 0; i < PlayerPoints.length; i++){
+	    if (PlayerPoints[i] == 11){
+		  PlayerPoints[i] = 1;
 	    }
 	} 
       }
@@ -574,12 +606,12 @@ function Hit(){
 
       
       
-      CardsSound.play();
+     // CardsSound.play();
       
 }
 
 function Stand(){
-      var randum = 0;
+      randum = 0;
       randum = Math.floor((Math.random() * 52) + 1);
       
       var num = 0;
@@ -587,7 +619,7 @@ function Stand(){
       for (i = 0; i < TableCards.length; i++){
 	if (TableCards[i] == gameCards[randum]){
 	  num++
-	  if (num > 1){
+	  if (num > 0){
 	    Stand();
 	    return;
 	  }
@@ -596,18 +628,36 @@ function Stand(){
       
       
       DealerCards[DealerCards.length] = gameCards[randum];
+      DealerPoints[DealerPoints.length] = cardsPoint[randum];
+      
       TableCards[TableCards.length]  = gameCards[randum];
       nPointDealer = 0;
       for (i = 0; i < DealerCards.length; i++){
-	nPointDealer += parseInt(DealerCards[i].s);
+	nPointDealer += DealerPoints[i];
+      }
+      
+      if (nPointDealer > 21){
+	if (cardsPoint[randum] == 11){
+	  DealerPoints[DealerPoints.length-1] = 1;
+	}
+      }
+      
+      nPointDealer = 0;
+      for (i = 0; i < DealerCards.length; i++){
+	nPointDealer += DealerPoints[i];
       }
 
       if (nPointDealer > 21){
 	for (i = 0; i < DealerCards.length; i++){
-	  if (DealerCards[i].s == "11"){
-	    nPointDealer -= 10;
+	  if (DealerPoints[i] == 11){
+	    DealerPoints[i] = 1;
 	  }
 	} 
+      }
+      
+      nPointDealer = 0;
+      for (i = 0; i < DealerCards.length; i++){
+	nPointDealer += DealerPoints[i];
       }
       
       IndexDealCard++
@@ -622,6 +672,7 @@ function loadAll52Cards(){
   var nAddCards = 0;
   for (i = 0; i < 52; i++){
       gameCards[nAddCards] = ArrayofCards[i];
+      cardsPoint[nAddCards] = PointsArray[i];
       //console.log(randum);
       nAddCards++;
   }
@@ -745,20 +796,22 @@ function updateGameArea() {
     
     SetCardsX(DealerCards.length);
     for (i = 0; i < DealerCards.length; i++){
-      DrawAllImg(DealerCards[i].img, ((bWidth))/2 + (35*i)-m_cardsX, 70, 73, 97);
+      DrawAllImg(DealerCards[i], ((bWidth))/2 + (35*i)-m_cardsX, 70, 73, 97);
+     // console.log(DealerCards[i])
     }
     if (DealerCards.length == 1){
-	DrawAllImg(BackCard.img, ((bWidth))/2 + (65*1)-m_cardsX, 75, 64, 86);
+	DrawAllImg(BackCard, ((bWidth))/2 + (65*1)-m_cardsX, 75, 64, 86);
     }
     if (nPointDealer > 0)
-    DrawText(nPointDealer, bWidth/2, 10+GetImageH(DealerCards[0].img), "25px arial", "center");
+    DrawText(nPointDealer, bWidth/2, 10+GetImageH(DealerCards[0]), "25px arial", "center");
 
     //nPointPlayer = 0;
     
     SetCardsX(PlayerCards.length);
     for (i = 0; i < PlayerCards.length; i++){
       //nPointPlayer += parseInt(PlayerCards[i].s);
-      DrawAllImg(PlayerCards[i].img, ((bWidth))/2 + (35*i)-m_cardsX, (bHeight/2)+50, 73, 97);
+      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (35*i)-m_cardsX, (bHeight/2)+50, 73, 97);
+     // console.log(PlayerCards[i]);
     }
 
     if (nPointPlayer > 0)
@@ -907,11 +960,12 @@ function DrawText(s_Text, n_x, n_y, font, align, color){
 
 function Deal(){
 
-  var randum = 0;
+  randum = 0;
   
   for (j = 0; j < 2; j++){
       randum = Math.floor((Math.random() * 52) + 1);      
       PlayerCards[j] = gameCards[randum];
+      PlayerPoints[j] = cardsPoint[randum]
       IndexDealCard++
       TableCards[j] = gameCards[randum];
       //console.log(PlayerCards[j]);
@@ -920,21 +974,21 @@ function Deal(){
   
     randum = Math.floor((Math.random() * 52) + 1);
     DealerCards[0] = gameCards[randum];
+    DealerPoints[0] = cardsPoint[randum];
     TableCards[TableCards.length] = gameCards[randum];
     IndexDealCard++;
-    console.log(DealerCards[0]);
+    //console.log(DealerCards[0]);
     nPointDealer = 0;
     for (i = 0; i < DealerCards.length; i++){
-      nPointDealer += parseInt(DealerCards[i].s);
+      nPointDealer += DealerPoints[i];
     }
     
     nPointPlayer = 0;
-    m_changePoint = 0;
     for (i = 0; i < PlayerCards.length; i++){
-      nPointPlayer += parseInt(PlayerCards[i].s);
+      nPointPlayer += PlayerPoints[i];
     }
     if (nPointPlayer > 21){
-      PlayerCards[0].s = "1";
+      PlayerPoints[0] = 1;
     }
     
     
