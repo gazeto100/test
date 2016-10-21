@@ -2,7 +2,7 @@
 <widget id="com.andy.blackjack" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>BlackJack</name>
   <description>
-      A sample Apache Cordova application that responds to the deviceready event.
+      BlackJack free Game.
   </description>
   <author email="andrei_terziev@abv.bg" href="http://cordova.io">
       Andrei Terziev
