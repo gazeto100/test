@@ -126,17 +126,19 @@ var m_cards = [];
 var m_changePoint = 0;
 
 var m_cardsX = 0;
+var m_cardsY = 0;
 
 StopInterval = false;
-  
+var m_CaredAnim;
 
 var ArrayofButtons = [
 
 { img: 'img/hit.png', w:'100', h: '74', x: '0', y: '0'},
 { img: 'img/stand.png', w:'70', h: '52', x: '0', y: '0'},
-{ img: 'img/surrender.png', w:'150', h: '53', x: '0', y: '0'},
+{ img: 'img/surrender.png', w:'100', h: '35', x: '0', y: '0'},
 { img: 'img/double.png',  w:'100', h: '35', x: '0', y: '0'},
 { img: 'img/deal.png', img_of: 'img/deal_of.png', w:'70', h: '52', x: '0', y: '0'},
+{ img: 'img/split.png', w:'59', h: '59', x: '0', y: '0'},
 
 ]
 
@@ -181,7 +183,7 @@ var dealer21 = false;
 var player21 = false;
 var playerBust = false;
 var pas = false;
-
+var surrender = false;
 var newGame = false;
 
 var IndexDealCard = 0;
@@ -227,6 +229,7 @@ function StartNewGame(setResult){
       BetCoins = [];
       newGame = false;
       playerWin = false;
+      surrender = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -247,6 +250,7 @@ function StartNewGame(setResult){
       BetCoins = [];
       newGame = false;
       dealerWin = false;
+      surrender = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -269,6 +273,7 @@ function StartNewGame(setResult){
       BetCoins = [];
       newGame = false;
       player21 = false;
+      surrender = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -290,6 +295,7 @@ function StartNewGame(setResult){
       BetCoins = [];
       newGame = false;
       pas = false;
+      surrender = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -310,6 +316,7 @@ function StartNewGame(setResult){
       BetCoins = [];
       newGame = false;
       dealer21 = false;
+      surrender = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -329,6 +336,27 @@ function StartNewGame(setResult){
       BetCoins = [];
       newGame = false;
       playerBust = false;
+      surrender = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      loadAll52Cards();
+  }
+  if (surrender){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      playerBust = false;
+      surrender = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -377,7 +405,10 @@ function doMouseDown(event){
     StartNewGame(pas);
     return;
   }
-  
+  if ( surrender ){
+    StartNewGame(surrender);
+    return;
+  }
   
   if (STATE == 'bet' || STATE == 'deal'){
  
@@ -428,8 +459,8 @@ function doMouseDown(event){
   
   
   if (STATE == 'deal'){
-    if ( c_x > ArrayofButtons[4].x && c_x < c_x+ArrayofButtons[4].w && 
-    c_y > ArrayofButtons[4].y && c_y < c_y+ArrayofButtons[4].h  ){
+    if ( c_x > parseInt(ArrayofButtons[4].x) && c_x < c_x+parseInt(ArrayofButtons[4].w) && 
+    c_y > parseInt(ArrayofButtons[4].y) && c_y < c_y+parseInt(ArrayofButtons[4].h)  ){
     
       Deal();
       
@@ -458,14 +489,14 @@ function doMouseDown(event){
 	  }
 	  
 	}
-	
+	//m_CaredAnim = setInterval(CardsAnim, 30);
       return;
     }
   }
   
     if (STATE == 'StandorHit'){
-      if ( c_x > ArrayofButtons[4].x && c_x < c_x+ArrayofButtons[4].w && 
-	c_y > ArrayofButtons[4].y && c_y < c_y+ArrayofButtons[4].h  ){
+      if ( c_x > parseInt(ArrayofButtons[4].x) && c_x < c_x+parseInt(ArrayofButtons[4].w) && 
+	c_y > parseInt(ArrayofButtons[4].y) && c_y < c_y+parseInt(ArrayofButtons[4].h)  ){
     
 	Hit();
 	
@@ -502,8 +533,8 @@ function doMouseDown(event){
 	return;
       }
       
-      if ( c_x > ArrayofButtons[1].x && c_x < c_x+ArrayofButtons[1].w && 
-	c_y > ArrayofButtons[1].y && c_y < c_y+ArrayofButtons[1].h  ){
+      if ( c_x > parseInt(ArrayofButtons[1].x) && c_x < c_x+parseInt(ArrayofButtons[1].w) && 
+	c_y > parseInt(ArrayofButtons[1].y) && c_y < c_y+parseInt(ArrayofButtons[1].h)  ){
     
 	while ( nPointDealer < 17 ){
 	  Stand();
@@ -565,8 +596,8 @@ function doMouseDown(event){
     
     
     if (STATE == 'StandorHit'){
-      if ( c_x > ArrayofButtons[3].x && c_x < c_x+ArrayofButtons[3].w && 
-	c_y > ArrayofButtons[3].y && c_y < c_y+ArrayofButtons[3].h  ){
+      if ( c_x > parseInt(ArrayofButtons[3].x) && c_x < parseInt(ArrayofButtons[3].x)+parseInt(ArrayofButtons[3].w) && 
+	c_y > parseInt(ArrayofButtons[3].y) && c_y < parseInt(ArrayofButtons[3].y)+parseInt(ArrayofButtons[3].h)  ){
     
 	Hit();
 	
@@ -626,8 +657,35 @@ function doMouseDown(event){
 	  
 	return;
       }
+      
+      
+      
+      if ( c_x > parseInt(ArrayofButtons[2].x) && c_x < parseInt(ArrayofButtons[2].x)+parseInt(ArrayofButtons[2].w) && 
+	c_y > parseInt(ArrayofButtons[2].y) && c_y < parseInt(ArrayofButtons[2].y)+parseInt(ArrayofButtons[2].h)  ){
+	
+	  var surr = 0;
+	  surrender = true;
+	  sur = TotalBet/2
+	  Credit += sur;
+	  TotalBet = 0;
+	  newGame = true;
+	  return;
+	}
+    
+    
+          if ( c_x > parseInt(ArrayofButtons[5].x) && c_x < parseInt(ArrayofButtons[5].x)+parseInt(ArrayofButtons[5].w) && 
+	c_y > parseInt(ArrayofButtons[5].y) && c_y < parseInt(ArrayofButtons[5].y)+parseInt(ArrayofButtons[5].h)  ){
+	
+	    console.log("sdeg edrgesr ghesr h");
+	
+	}
+    
+    
 
     }
+    
+    
+    
     
     
 }
@@ -843,7 +901,9 @@ function updateGameArea() {
         if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
             DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
+            DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
             DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
+            DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y);
         }else {
             DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
         }
@@ -870,7 +930,7 @@ function updateGameArea() {
      // console.log(DealerCards[i])
     }
     if (DealerCards.length == 1){
-	DrawAllImg(BackCard, ((bWidth))/2 + (65*1)-m_cardsX, 75, 64, 86);
+	DrawAllImg(BackCard, ((bWidth))/2 + (60*1)-m_cardsX, 70, 73, 97);
     }
     if (nPointDealer > 0)
     DrawText(nPointDealer, bWidth/2, 10+GetImageH(DealerCards[0]), "25px arial", "center");
@@ -966,7 +1026,14 @@ function changeBtnCoords(w, h){
   ArrayofButtons[1].x = w - 90;
   ArrayofButtons[1].y = ArrayofButtons[4].y - 60;
   
+  ArrayofButtons[2].x = 0;
+  ArrayofButtons[2].y = h - 80;
+  
+  
   ArrayofButtons[3].y = h - 40;
+  
+  ArrayofButtons[5].x = (w/2);
+  ArrayofButtons[5].y = h - 70;
   
 }
 
@@ -1112,6 +1179,19 @@ function img(width, height, img, x, y) {
     
 }*/
 
+
+function CardsAnim(){
+
+  if (m_cardsY < (bHeight/2)-50){
+    m_cardsY += 10;
+    return;
+  }else{
+    m_cardsY = (bHeight/2)-50;
+    clearInterval(m_CaredAnim);
+    m_cardsY = 0;
+    
+  }
+}
 </script>
 
 </body></html>
