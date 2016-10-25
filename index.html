@@ -160,7 +160,6 @@ var state = [
 'win', 
 'lost',
 'hit',
-'superender',
 'double',
 ];
 var STATE;
@@ -185,6 +184,8 @@ var playerBust = false;
 var pas = false;
 var surrender = false;
 var newGame = false;
+
+var split = false;
 
 var IndexDealCard = 0;
 
@@ -230,6 +231,7 @@ function StartNewGame(setResult){
       newGame = false;
       playerWin = false;
       surrender = false;
+      split = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -251,6 +253,7 @@ function StartNewGame(setResult){
       newGame = false;
       dealerWin = false;
       surrender = false;
+      split = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -274,6 +277,7 @@ function StartNewGame(setResult){
       newGame = false;
       player21 = false;
       surrender = false;
+      split = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -296,6 +300,7 @@ function StartNewGame(setResult){
       newGame = false;
       pas = false;
       surrender = false;
+      split = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -317,6 +322,7 @@ function StartNewGame(setResult){
       newGame = false;
       dealer21 = false;
       surrender = false;
+      split = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -337,6 +343,7 @@ function StartNewGame(setResult){
       newGame = false;
       playerBust = false;
       surrender = false;
+      split = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -357,6 +364,7 @@ function StartNewGame(setResult){
       newGame = false;
       playerBust = false;
       surrender = false;
+      split = false;
       SelectCoin = -1;
       m_changePoint = 0;
       loadAll52Cards();
@@ -672,12 +680,13 @@ function doMouseDown(event){
 	  return;
 	}
     
-    
-          if ( c_x > parseInt(ArrayofButtons[5].x) && c_x < parseInt(ArrayofButtons[5].x)+parseInt(ArrayofButtons[5].w) && 
-	c_y > parseInt(ArrayofButtons[5].y) && c_y < parseInt(ArrayofButtons[5].y)+parseInt(ArrayofButtons[5].h)  ){
-	
-	    console.log("sdeg edrgesr ghesr h");
-	
+	if(split){
+	  if ( c_x > parseInt(ArrayofButtons[5].x) && c_x < parseInt(ArrayofButtons[5].x)+parseInt(ArrayofButtons[5].w) && 
+	    c_y > parseInt(ArrayofButtons[5].y) && c_y < parseInt(ArrayofButtons[5].y)+parseInt(ArrayofButtons[5].h)  ){
+	    
+		console.log("sdeg edrgesr ghesr h");
+	    
+	    }
 	}
     
     
@@ -903,7 +912,10 @@ function updateGameArea() {
             DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
             DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
             DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
-            DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y);
+            
+            if (split){
+	      DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y);
+            }
         }else {
             DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
         }
@@ -1125,15 +1137,21 @@ function Deal(){
       nPointDealer += DealerPoints[i];
     }
     
+    
     nPointPlayer = 0;
     for (i = 0; i < PlayerCards.length; i++){
       nPointPlayer += PlayerPoints[i];
     }
+    
+    if (PlayerPoints[0] == PlayerPoints[1]){
+	split = true;
+    }
+    
     if (nPointPlayer > 21){
       PlayerPoints[0] = 1;
     }
     
-    
+
     
     
   CardsSound.play();
