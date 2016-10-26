@@ -1035,9 +1035,11 @@ function updateGameArea() {
         if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
             DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
-            DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
-            DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
             
+	    if (!isSplit){
+	      DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
+	      DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
+            }
             if (split && !isSplit){
 	      DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y);
             }
@@ -1091,21 +1093,22 @@ function updateGameArea() {
   
 	    for (i = 0; i < PlayerCardsSplit1.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCardsSplit1[i], 10 + (35*i), (bHeight/2)+50, 73, 97);
+	      DrawAllImg(PlayerCardsSplit1[i], 10 + (20*i), (bHeight/2)+50, 73, 97);
 	    // console.log(PlayerCards[i]);
 	    }
 	    DrawText(nPointPlayerSplit1, 15, (bHeight/2)+40, "25px arial", "center");
 	    
 	    for (i = 0; i < PlayerCardsSplit2.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCardsSplit2[i], bWidth/2 + (35*i), (bHeight/2)+50, 73, 97);
+	      DrawAllImg(PlayerCardsSplit2[i], bWidth/2 + (20*i), (bHeight/2)+50, 73, 97);
 	    // console.log(PlayerCards[i]);
 	    }
 
 	    DrawText(nPointPlayerSplit2, bWidth/2, (bHeight/2)+40, "25px arial", "center");
 	    
-	    DrawAllImg("img/alpha.png", bWidth/2, (bHeight/2)+50, 116, 100);
-	
+	    DrawAllImg("img/alpha.png", bWidth/2, (bHeight/2)+50, 100, 100);
+	    DrawText("Bet: "+TotalBet/2, 50, (bHeight/2)+GetImageH(PlayerCardsSplit2[0]), "20px arial", "center");
+	    DrawText("Bet: "+TotalBet/2, bWidth/2, (bHeight/2)+GetImageH(PlayerCardsSplit2[0]), "20px arial", "left");
 	  }
 
     
