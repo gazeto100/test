@@ -20,7 +20,9 @@
   <platform name="android">
       <allow-intent href="market:*" />
   </platform>
-
+     <gap:plugin name="phonegap-admob" source="npm" version="~1"/>
+     <plugin name="phonegap-admob" version="~1" />
+     <plugin name="phonegap-admob" spec="~1" />
   <platform name="android">
       <allow-intent href="itms:*" />
       <allow-intent href="itms-apps:*" />
@@ -31,6 +33,5 @@
               <icon src="icons/hdpi.png" density="hdpi" />
               <icon src="icons/xhdpi.png" density="xhdpi" />
      </platform>
-     <gap:plugin name="phonegap-admob" source="npm"/>
 
 </widget> 
