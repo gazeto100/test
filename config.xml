@@ -20,9 +20,8 @@
   <platform name="android">
       <allow-intent href="market:*" />
   </platform>
-     <gap:plugin name="phonegap-admob" source="npm"/>
-     <plugin name="phonegap-admob" version="~1" />
-     <plugin name="phonegap-admob" spec="~1" />
+     <plugin name="phonegap-admob" source="npm"/>
+
   <platform name="android">
       <allow-intent href="itms:*" />
       <allow-intent href="itms-apps:*" />
