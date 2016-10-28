@@ -137,6 +137,21 @@ var m_cardsY = 0;
 StopInterval = false;
 var m_CaredAnim;
 
+var PleyarSplitWin1 = false;
+var PleyarSplitWin2 = false;
+
+var PleyarSplitLost1 = false;
+var PleyarSplitLost2 = false;
+  
+var PleyarSplitBust1 = false;
+var PleyarSplitBust2 = false;
+
+var PleyarSplitBJ1 = false;
+var PleyarSplitBJ2 = false;
+
+var PleyarSpitPush1 = false;
+var PleyarSpitPush2 = false;
+
 var ArrayofButtons = [
 
 { img: 'img/hit.png', w:'100', h: '74', x: '0', y: '0'},
@@ -459,6 +474,9 @@ function doMouseDown(event){
     return;
   }
   
+
+  
+  
   
   if (STATE == 'bet' || STATE == 'deal'){
  
@@ -494,91 +512,6 @@ function doMouseDown(event){
 	    }
 	}
   }
-  
-  
-  function CheckSplitPoints(){
-  
-  var PleyarSplitWin1 = false;
-  var PleyarSplitWin2 = false;
- 
-  var PleyarSplitLost1 = false;
-  var PleyarSplitLost2 = false;
-  
-  var PleyarSplitBust1 = false;
-  var PleyarSplitBust2 = false;
-
-  var PleyarSplitBJ1 = false;
-  var PleyarSplitBJ2 = false;
-
-  var PleyarSpitPush1 = false;
-  var PleyarSpitPush2 = false;
-
-  
-  if (nPointDealer > nPointPlayerSplit1 && nPointDealer < 21){
-    PleyarSplitLost1 = true;
-    newGame = true;
-  }
-
-  if (nPointDealer > nPointPlayerSplit2 && nPointDealer < 21){
-    PleyarSplitLost2 = true;
-    newGame = true;
-  }
-  
-  if (nPointDealer < nPointPlayerSplit1 && nPointPlayerSplit1 < 21){
-    PleyarSplitWin1 = true;
-    newGame = true;
-  }
-  
-  if (nPointDealer < nPointPlayerSplit2 && nPointPlayerSplit2 < 21){
-    PleyarSplitWin2 = true;
-    newGame = true;
-  }
-  
-  
-  if (nPointPlayerSplit1 > 21){
-    PleyarSplitBust1 = true;
-    newGame = true;
-  }
-  
-  if (nPointPlayerSplit2 > 21){
-    PleyarSplitBust2 = true;
-    newGame = true;
-  }
-  
-  if (nPointPlayerSplit1 == nPointDealer){
-    PleyarSplitPush1 = true;
-    newGame = true;
-  }
-  
-  if (nPointPlayerSplit2 == nPointDealer){
-    PleyarSplitPush2 = true;
-    newGame = true;
-  }
-  
-  
-  if (21 == nPointPlayerSplit1 && nPointDealer < 21){
-    PleyarSplitBJ1 = true;
-    newGame = true;
-  }
-  
-  if (21 == nPointPlayerSplit2 && nPointDealer < 21){
-    PleyarSplitBJ2 = true;
-    newGame = true;
-  }
-  
-  
-  if ( nPointPlayerSplit1 < 21 && nPointDealer > 21){
-    PleyarSplitWin1 = true;
-    newGame = true;
-  }
-  
-  if (nPointPlayerSplit2 < 21 && nPointDealer > 21){
-    PleyarSplitWin2 = true;
-    newGame = true;
-  }
-  
-}
-  
   
   
   function checkCoins(){
@@ -824,11 +757,98 @@ function doMouseDown(event){
     
 
     }
-    
-    
-    
-    
-    
+}
+
+
+
+  function CheckSplitPoints(){
+  
+  PleyarSplitWin1 = false;
+  PleyarSplitWin2 = false;
+ 
+  PleyarSplitLost1 = false;
+  PleyarSplitLost2 = false;
+  
+  PleyarSplitBust1 = false;
+  PleyarSplitBust2 = false;
+  
+  PleyarSplitBJ1 = false;
+  PleyarSplitBJ2 = false;
+
+  PleyarSpitPush1 = false;
+  PleyarSpitPush2 = false;
+
+  
+  if (nPointDealer > nPointPlayerSplit1 && nPointDealer < 21){
+    PleyarSplitLost1 = true;
+    newGame = true;
+  }
+
+  if (nPointDealer > nPointPlayerSplit2 && nPointDealer < 21){
+    PleyarSplitLost2 = true;
+    newGame = true;
+  }
+  
+  if (nPointDealer < nPointPlayerSplit1 && nPointPlayerSplit1 < 21){
+    PleyarSplitWin1 = true;
+    newGame = true;
+  }
+  
+  if (nPointDealer < nPointPlayerSplit2 && nPointPlayerSplit2 < 21){
+    PleyarSplitWin2 = true;
+    newGame = true;
+  }
+  
+  
+  if (nPointPlayerSplit1 > 21){
+    PleyarSplitBust1 = true;
+    newGame = true;
+  }
+  
+  if (nPointPlayerSplit2 > 21){
+    PleyarSplitBust2 = true;
+    newGame = true;
+  }
+  
+  if (nPointPlayerSplit1 == nPointDealer){
+    PleyarSplitPush1 = true;
+    newGame = true;
+  }
+  
+  if (nPointPlayerSplit2 == nPointDealer){
+    PleyarSplitPush2 = true;
+    newGame = true;
+  }
+  
+  
+  if (21 == nPointPlayerSplit1 && nPointDealer < 21){
+    PleyarSplitBJ1 = true;
+    newGame = true;
+  }
+  
+  if (21 == nPointPlayerSplit2 && nPointDealer < 21){
+    PleyarSplitBJ2 = true;
+    newGame = true;
+  }
+  
+  
+  if ( nPointPlayerSplit1 < 21 && nPointDealer > 21){
+    PleyarSplitWin1 = true;
+    newGame = true;
+  }
+  
+  if (nPointPlayerSplit2 < 21 && nPointDealer > 21){
+    PleyarSplitWin2 = true;
+    newGame = true;
+  }
+  
+  if (nPointDealer == 21 && nPointPlayerSplit1 < 21){
+    PleyarSplitLost1 = true;
+  }
+  if (nPointDealer == 21 && nPointPlayerSplit2 < 21){
+    PleyarSplitLost1 = true;
+  }
+  
 }
 
 
@@ -978,7 +998,7 @@ function SplitHit(){
 	  if (TableCards[i] == gameCards[randum]){
 	    num++
 	    if (num > 0){
-	      Hit();
+	      SplitHit();
 	      return;
 	    }
 	  }
@@ -1332,7 +1352,9 @@ function updateGameArea() {
 	  }
       }else {
       
-      
+      	  if (newGame){
+	    DrawText("Touch for new game", 5, bHeight-80, "20px times new roman", "left");
+	  }
       
       }
     
