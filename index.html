@@ -529,7 +529,7 @@ function doMouseDown(event){
   
   if (STATE == 'deal'){
     if ( c_x > parseInt(ArrayofButtons[4].x) && c_x < c_x+parseInt(ArrayofButtons[4].w) && 
-    c_y > parseInt(ArrayofButtons[4].y) && c_y < c_y+parseInt(ArrayofButtons[4].h)  ){
+    c_y > parseInt(ArrayofButtons[4].y) && c_y < parseInt(ArrayofButtons[4].y)+parseInt(ArrayofButtons[4].h)  ){
     
       Deal();
       
@@ -565,7 +565,7 @@ function doMouseDown(event){
   
     if (STATE == 'StandorHit'){
       if ( c_x > parseInt(ArrayofButtons[4].x) && c_x < c_x+parseInt(ArrayofButtons[4].w) && 
-	c_y > parseInt(ArrayofButtons[4].y) && c_y < c_y+parseInt(ArrayofButtons[4].h)  ){
+	c_y > parseInt(ArrayofButtons[4].y) && c_y < parseInt(ArrayofButtons[4].y)+parseInt(ArrayofButtons[4].h)  ){
     
 	Hit();
 	
@@ -603,7 +603,7 @@ function doMouseDown(event){
       }
       
       if ( c_x > parseInt(ArrayofButtons[1].x) && c_x < c_x+parseInt(ArrayofButtons[1].w) && 
-	c_y > parseInt(ArrayofButtons[1].y) && c_y < c_y+parseInt(ArrayofButtons[1].h)  ){
+	c_y > parseInt(ArrayofButtons[1].y) && c_y < parseInt(ArrayofButtons[1].y)+parseInt(ArrayofButtons[1].h)  ){
     
 	if (isSplit){
 
@@ -1355,9 +1355,60 @@ function updateGameArea() {
       	  if (newGame){
 	    DrawText("Touch for new game", 5, bHeight-80, "20px times new roman", "left");
 	  }
-      
+	  
+      	  if (PleyarSplitWin1){
+      	  
+	    DrawText("Win", 20, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+	  
+	  if (PleyarSplitWin2){
+      	  
+	    DrawText("Win", bWidth/2+50, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+	  
+	  
+      	  if (PleyarSplitLost1){
+      	  
+	    DrawText("Lost", 20, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+	  
+	  if (PleyarSplitLost2){
+      	  
+	    DrawText("Lost", bWidth/2+50, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+
+	  
+      	  if (PleyarSplitBust1){
+      	  
+	    DrawText("BUSTED", 20, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+	  
+	  if (PleyarSplitBust2){
+      	  
+	    DrawText("BUSTED", bWidth/2+50, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+  
+      	  if (PleyarSplitBJ1){
+      	  
+	    DrawText("BLACKJACK", 20, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+	  
+	  if (PleyarSplitBJ2){
+      	  
+	    DrawText("BLACKJACK", bWidth/2+50, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+	  
+      	  if (PleyarSpitPush1){
+      	  
+	    DrawText("PUSHED", 20, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+	  
+	  if (PleyarSpitPush2){
+      	  
+	    DrawText("PUSHED", bWidth/2+50, (bHeight/2)+100, "20px times new roman", "left", "black");
+	  }
+
       }
-    
 }
 
 function SetAlphaScale(cards){
