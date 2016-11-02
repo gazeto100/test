@@ -462,7 +462,7 @@ var GameArea = {
     start : function() {
 	canvas.addEventListener("click", doMouseDown, false);
         document.body.insertBefore(canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 1);
+        this.interval = setInterval(updateGameArea, 10);
     },
     clear : function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -639,8 +639,13 @@ function doMouseDown(event){
 	    Stand();
 	  }
 	  if (nPointDealer < 21 || nPointDealer > 21){
-	    player21 = true;
-	    newGame = true;
+	    if (PlayerPoints.length > 2){
+	      playerWin = true;
+	      newGame = true;
+	    }else{
+	      player21 = true;
+	      newGame = true;
+	    }
 	  }
 	}
 	if (nPointPlayer == nPointDealer){
@@ -1287,34 +1292,10 @@ function updateGameArea() {
     changeBtnCoords(bWidth, bHeight);
     
     DrawBgr(Bgr, 0, 0, bHeight, bWidth);
-    //DrawFrame(Frame, 20, 50, 100, 105);
-
-    //DrawAllImg(shoe, bWidth -300, 0, 0, 0);
-    //DrawAllImg(minMaxBet, 0, 0, 0, 0);
-    //DrawAllImg(bar, bWidth/2, 0, 0, 0);
-    
-    //DrawAllImg(rules, (bWidth/2)-GetImageW(rules)/2, 200, 0, 0);
    
-//    DrawAllImg(Frame, (bWidth/2)-112, bHeight/2-GetImageH(Frame)/2, 0, 0);
-     
-//    if (bWidth > 800){
-//      DrawAllImg(coins, (bWidth/2)-GetImageW(coins)/2, 0, 0, 0);
-//    }
-    
     DrawToolBar();  
 
-    if (STATE == 'bet'){
-      //DrawButton(ArrayofButtons[4].img_of, ArrayofButtons[4].x, ArrayofButtons[4].y);
-      //if (SelectCoin != -1){
-	//DrawText("Clic to bet", bWidth/2, bHeight/2, "20px times new roman", "center");
-      //}else {
-	//DrawText("Select coin", bWidth/2, bHeight/2, "20px times new roman", "center");
-     // }
-    }else{
-	    //DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
-	    //DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
-	    //DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
-	    //DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
+    if (STATE != 'bet'){
         if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
             DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
@@ -1418,17 +1399,15 @@ function updateGameArea() {
       if (!isSplit){
 	  if (dealerWin){
 	    DrawText("YOU LOST!", 5, (bHeight/2), "25px arial", "left", "red");
-	  }
-	  if (playerWin){
+	  }else if (playerWin){
 	    DrawText("YOU WON!", 5, (bHeight/2), "25px arial", "left");
-	  }
-	  if (player21){
+	  }else if (player21){
 	    DrawText("BLACKJACK!", 5, (bHeight/2), "25px arial", "left");
 	  }
-	  if (playerBust){
+	  else if (playerBust){
 	    DrawText("BUSTED!", 5, (bHeight/2), "25px arial", "left", "red");
 	  }
-	  if (pas){
+	  else if (pas){
 	    DrawText("PUSHED!", 5, (bHeight/2), "25px arial", "left", "red");
 	  }
 	  
