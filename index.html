@@ -462,7 +462,7 @@ var GameArea = {
     start : function() {
 	canvas.addEventListener("click", doMouseDown, false);
         document.body.insertBefore(canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 10);
+        this.interval = setInterval(updateGameArea, 50);
     },
     clear : function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -797,7 +797,7 @@ function doMouseDown(event){
 	  return;
 	}
     
-	if(split){
+	if(split && !isSplit ){
 	  if ( c_x > parseInt(ArrayofButtons[5].x) && c_x < parseInt(ArrayofButtons[5].x)+parseInt(ArrayofButtons[5].w) && 
 	    c_y > parseInt(ArrayofButtons[5].y) && c_y < parseInt(ArrayofButtons[5].y)+parseInt(ArrayofButtons[5].h)  ){
 	    
@@ -1278,6 +1278,8 @@ function GetImageH(img){
 
 function updateGameArea() {
 
+
+    GameArea.clear();
     bHeight = window.innerHeight;
     bWidth = window.innerWidth;
        
@@ -1286,7 +1288,7 @@ function updateGameArea() {
     canvas.height = bHeight;
     }
      
-    GameArea.clear();
+    
 
     
     changeBtnCoords(bWidth, bHeight);
@@ -1304,16 +1306,16 @@ function updateGameArea() {
 	      DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
 	      DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
             }
-            if (split && !isSplit){
+            if (split && !isSplit ){
 	      DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y);
-            }
+	    }
         }else {
             DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
         }
     }
     
       DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px arial", "center");
-      DrawText("DEALER MUST DRAW TO 17 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
+      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
 
  
     if (STATE != "StandorHit"){
@@ -1339,7 +1341,7 @@ function updateGameArea() {
 	      DrawAllImg(BackCard, ((bWidth))/2 + (35*1)-m_cardsX, 70, 73, 97);
 	  }
 	  if (nPointDealer > 0)
-	  DrawText(nPointDealer, bWidth/2, 10+GetImageH(DealerCards[0]), "25px arial", "center");
+	  DrawText(nPointDealer, bWidth/2, 200, "25px arial", "center");
 
 	  if (!isSplit){
 	    
