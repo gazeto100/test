@@ -154,10 +154,10 @@ var PleyarSpitPush2 = false;
 
 var ArrayofButtons = [
 
-{ img: 'img/hit.png', w:'100', h: '74', x: '0', y: '0'},
-{ img: 'img/stand.png', w:'70', h: '52', x: '0', y: '0'},
-{ img: 'img/surrender.png', w:'100', h: '35', x: '0', y: '0'},
-{ img: 'img/double.png',  w:'100', h: '35', x: '0', y: '0'},
+{ img: 'img/hit.png', w:'84', h: '36', x: '0', y: '0'},
+{ img: 'img/stand.png', w:'84', h: '36', x: '0', y: '0'},
+{ img: 'img/surrender.png', w:'137', h: '28', x: '0', y: '0'},
+{ img: 'img/double.png',  w:'104', h: '34', x: '0', y: '0'},
 { img: 'img/deal.png', img_of: 'img/deal_of.png', w:'70', h: '52', x: '0', y: '0'},
 { img: 'img/split.png', w:'59', h: '59', x: '0', y: '0'},
 
@@ -614,8 +614,8 @@ function doMouseDown(event){
   }
   
     if (STATE == 'StandorHit'){
-      if ( c_x > parseInt(ArrayofButtons[4].x) && c_x < c_x+parseInt(ArrayofButtons[4].w) && 
-	c_y > parseInt(ArrayofButtons[4].y) && c_y < parseInt(ArrayofButtons[4].y)+parseInt(ArrayofButtons[4].h)  ){
+      if ( c_x > parseInt(ArrayofButtons[0].x) && c_x < c_x+parseInt(ArrayofButtons[0].w) && 
+	c_y > parseInt(ArrayofButtons[0].y) && c_y < parseInt(ArrayofButtons[0].y)+parseInt(ArrayofButtons[4].h)  ){
     
 	Hit();
 	
@@ -1538,17 +1538,17 @@ function changeBtnCoords(w, h){
   ArrayofButtons[4].x = w - 90;
   ArrayofButtons[4].y = h - 65;
 
-  ArrayofButtons[0].x = w - 90;
-  ArrayofButtons[0].y = h - 65;
+  ArrayofButtons[0].x = w - 100;
+  ArrayofButtons[0].y = h - 50;
   
-  ArrayofButtons[1].x = w - 90;
-  ArrayofButtons[1].y = ArrayofButtons[4].y - 60;
+  ArrayofButtons[1].x = w - 100;
+  ArrayofButtons[1].y = ArrayofButtons[4].y - 50;
   
   ArrayofButtons[2].x = 0;
-  ArrayofButtons[2].y = h - 80;
+  ArrayofButtons[2].y = h - 110;
   
   
-  ArrayofButtons[3].y = h - 40;
+  ArrayofButtons[3].y = h - 45;
   
   ArrayofButtons[5].x = (w/2);
   ArrayofButtons[5].y = h - 70;
