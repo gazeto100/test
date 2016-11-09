@@ -237,224 +237,11 @@ function startGame() {
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
     CardsSound = document.getElementById("myAudioTagDeal");
+    
     GameArea.start();
-
 }
 
-function StartNewGame(setResult){
 
-  if (playerWin){
-      STATE = 'bet';
-      Credit += TotalBet*2;
-      BetCoins = [];
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      TotalBet = 0;
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      playerWin = false;
-      surrender = false;
-      split = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      loadAll52Cards();
-  }
-  
-   if (dealerWin){
-      STATE = 'bet';
-      BetCoins = [];
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      TotalBet = 0;
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      dealerWin = false;
-      surrender = false;
-      split = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      loadAll52Cards();
-  }
-  
-  if (player21){
-      STATE = 'bet';
-      BetCoins = [];
-      var bet = TotalBet/2;
-      Credit += TotalBet*2+bet;
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      TotalBet = 0;
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      player21 = false;
-      surrender = false;
-      split = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      loadAll52Cards();
-  }
-  
-  if (pas){
-      STATE = 'bet';
-      BetCoins = [];
-      Credit += TotalBet;
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      TotalBet = 0;
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      pas = false;
-      surrender = false;
-      split = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      loadAll52Cards();
-  }
-  
-  if (dealer21){
-      STATE = 'bet';
-      BetCoins = [];
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      TotalBet = 0;
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      dealer21 = false;
-      surrender = false;
-      split = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      loadAll52Cards();
-  }
-  if (playerBust){
-      STATE = 'bet';
-      BetCoins = [];
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      TotalBet = 0;
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      playerBust = false;
-      surrender = false;
-      split = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      loadAll52Cards();
-  }
-  if (surrender){
-      STATE = 'bet';
-      BetCoins = [];
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      TotalBet = 0;
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      playerBust = false;
-      surrender = false;
-      split = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      loadAll52Cards();
-  }
-  
-  if (isSplit){
-      STATE = 'bet';
-      BetCoins = [];
-      nPointPlayer = 0;
-      nPointDealer = 0;
-      PlayerCards = [];
-      DealerCards = [];
-      TableCards = [];
-      PlayerPoints = [];
-      DealerPoints = [];
-      IndexDealCard = 0;
-      BetCoins = [];
-      newGame = false;
-      playerBust = false;
-      surrender = false;
-      split = false;
-      isFirst = false;
-      SelectCoin = -1;
-      m_changePoint = 0;
-      PlayerCardsSplit1 = [];
-      PlayerCardsSplit2 = [];
-      PlayerSplitPoints1 = [];
-      PlayerSplitPoints2 = [];
-      isSplit = false;
-      loadAll52Cards();
-  }
-
-}
 
 var GameArea = {
     
@@ -468,6 +255,8 @@ var GameArea = {
         context.clearRect(0, 0, canvas.width, canvas.height);
     },
 }
+
+
 
 function doMouseDown(event){
   c_x = event.pageX;
@@ -806,6 +595,7 @@ function doMouseDown(event){
 		Credit -= TotalBet;
 		TotalBet += TotalBet;
 		isFirst = true;
+		CheckSplitPoints();
 	    }
 	}
     
@@ -1278,8 +1068,6 @@ function GetImageH(img){
 
 function updateGameArea() {
 
-
-    GameArea.clear();
     bHeight = window.innerHeight;
     bWidth = window.innerWidth;
        
@@ -1620,22 +1408,43 @@ function DrawText(s_Text, n_x, n_y, font, align, color){
 
 function Deal(){
 
-  randum = 0;
-  
-  for (j = 0; j < 2; j++){
-      randum = randum = Math.floor((Math.random() * 52));      
-      PlayerCards[j] = gameCards[randum];
-      PlayerPoints[j] = cardsPoint[randum]
-      IndexDealCard++
-      TableCards[j] = gameCards[randum];
-      //console.log(PlayerCards[j]);
-  }
-  
+    randum = 0;
+    
+    if (PlayerCards.length < 2){
+      for (j = 0; j < 2; j++){
+	  randum = randum = Math.floor((Math.random() * 52));      
+	  PlayerCards[j] = gameCards[randum];
+	  PlayerPoints[j] = cardsPoint[randum]
+	  IndexDealCard++
+	  TableCards[j] = gameCards[randum];
+      }
+    
+
+      if (TableCards[0] == PlayerCards[1]){
+	Deal();
+	return;
+      }
+      
+    }
   
     randum = Math.floor((Math.random() * 52));
     DealerCards[0] = gameCards[randum];
     DealerPoints[0] = cardsPoint[randum];
+    
+    
+    
+    for (i = 0; i < TableCards.length; i++){
+    
+      if (TableCards[i] == DealerCards[0]){
+	DealerCards = [];
+	DealerPoints = [];
+	Deal();
+	return;
+      }
+    
+    }
     TableCards[TableCards.length] = gameCards[randum];
+    
     IndexDealCard++;
     //console.log(DealerCards[0]);
     nPointDealer = 0;
@@ -1677,7 +1486,6 @@ function Deal(){
 
 function DrawToolBar(){
 
-  DrawBgrToolBar(topBar, 0, 0, 30, bHeight);
   ctx.beginPath();
   ctx.lineWidth="2";
   DrawText("CREDIT", 50, 15, "20px arial", "center");
@@ -1727,6 +1535,222 @@ function CardsAnim(){
     
   }
 }
+
+function StartNewGame(setResult){
+
+  if (playerWin){
+      STATE = 'bet';
+      Credit += TotalBet*2;
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      playerWin = false;
+      surrender = false;
+      split = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      loadAll52Cards();
+  }
+  
+   if (dealerWin){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      dealerWin = false;
+      surrender = false;
+      split = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      loadAll52Cards();
+  }
+  
+  if (player21){
+      STATE = 'bet';
+      BetCoins = [];
+      var bet = TotalBet/2;
+      Credit += TotalBet*2+bet;
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      player21 = false;
+      surrender = false;
+      split = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      loadAll52Cards();
+  }
+  
+  if (pas){
+      STATE = 'bet';
+      BetCoins = [];
+      Credit += TotalBet;
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      pas = false;
+      surrender = false;
+      split = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      loadAll52Cards();
+  }
+  
+  if (dealer21){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      dealer21 = false;
+      surrender = false;
+      split = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      loadAll52Cards();
+  }
+  if (playerBust){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      playerBust = false;
+      surrender = false;
+      split = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      loadAll52Cards();
+  }
+  if (surrender){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      TotalBet = 0;
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      playerBust = false;
+      surrender = false;
+      split = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      loadAll52Cards();
+  }
+  
+  if (isSplit){
+      STATE = 'bet';
+      BetCoins = [];
+      nPointPlayer = 0;
+      nPointDealer = 0;
+      PlayerCards = [];
+      DealerCards = [];
+      TableCards = [];
+      PlayerPoints = [];
+      DealerPoints = [];
+      IndexDealCard = 0;
+      BetCoins = [];
+      newGame = false;
+      playerBust = false;
+      surrender = false;
+      split = false;
+      isFirst = false;
+      SelectCoin = -1;
+      m_changePoint = 0;
+      PlayerCardsSplit1 = [];
+      PlayerCardsSplit2 = [];
+      PlayerSplitPoints1 = [];
+      PlayerSplitPoints2 = [];
+      isSplit = false;
+      loadAll52Cards();
+  }
+
+}
+
 </script>
 
 </body></html>
