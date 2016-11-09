@@ -166,11 +166,11 @@ var ArrayofButtons = [
 
 var ArrayofCoins = [
 
-{ img: 'coin/1.png', w:'40', h: '40', x: '0', y: '0', sum: '1'},
-{ img: 'coin/5.png', w:'40', h: '40', x: '40', y: '0', sum: '5'},
-{ img: 'coin/10.png', w:'40', h: '40', x: '80', y: '0', sum: '10'},
-{ img: 'coin/25.png',  w:'40', h: '40', x: '120', y: '0', sum: '25'},
-{ img: 'coin/100.png', w:'40', h: '40', x: '160', y: '0', sum: '100'},
+{ img: 'coin/1.png', w:'193', h: '202', x: '0', y: '0', sum: '1'},
+{ img: 'coin/5.png', w:'193', h: '202', x: '40', y: '0', sum: '5'},
+{ img: 'coin/10.png', w:'193', h: '202', x: '80', y: '0', sum: '10'},
+{ img: 'coin/25.png',  w:'193', h: '202', x: '120', y: '0', sum: '25'},
+{ img: 'coin/100.png', w:'193', h: '202', x: '160', y: '0', sum: '100'},
 ]
 
 
@@ -249,7 +249,7 @@ var GameArea = {
     start : function() {
 	canvas.addEventListener("click", doMouseDown, false);
         document.body.insertBefore(canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 50);
+        this.interval = setInterval(updateGameArea, 0);
     },
     clear : function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -1114,7 +1114,7 @@ function updateGameArea() {
       }else{
 	  yCoin = 0;
       }
-	DrawAllImg(ArrayofCoins[i].img, 40*i, (bHeight-40)-yCoin, 0, 0);
+	DrawAllImg(ArrayofCoins[i].img, 200*i, (bHeight-200)-yCoin, 0, 0);
       }
     }
     
