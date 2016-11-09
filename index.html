@@ -192,8 +192,8 @@ var SelectCoin = -1;
 var Credit = 10000;
 var nPointDealer = 0;
 var nPointPlayer = 0;
-var bHeight = window.innerHeight;
-var bWidth = window.innerWidth;
+var bHeight = 0;
+var bWidth = 0;//window.innerWidth;
 var isStand = false;
 var m_CoinAnimY = 0;
 var m_CoinAnim;
@@ -228,11 +228,11 @@ function startGame() {
 
 
     STATE = state[0];
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    bHeight = 1920;
+    bWidth = 1080;
     canvas = document.createElement("canvas");
-    canvas.width = bWidth;
-    canvas.height = bHeight;
+    canvas.width = 1080;
+    canvas.height = 1920;
     this.context = canvas.getContext("2d");
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
@@ -249,7 +249,7 @@ var GameArea = {
     start : function() {
 	canvas.addEventListener("click", doMouseDown, false);
         document.body.insertBefore(canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 0);
+        this.interval = setInterval(updateGameArea, 2);
     },
     clear : function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -1068,20 +1068,20 @@ function GetImageH(img){
 
 function updateGameArea() {
 
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    //bHeight = window.innerHeight;
+    //bWidth = window.innerWidth;
        
-    if (canvas.width != bWidth || canvas.height != bHeight){
-    canvas.width = bWidth;
-    canvas.height = bHeight;
-    }
+//    if (canvas.width != bWidth || canvas.height != bHeight){
+//    canvas.width = bWidth;
+//    canvas.height = bHeight;
+//    }
      
     
 
     
     changeBtnCoords(bWidth, bHeight);
     
-    DrawBgr(Bgr, 0, 0, bHeight, bWidth);
+    DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
    
     DrawToolBar();  
 
