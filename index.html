@@ -229,11 +229,11 @@ function startGame() {
 
 
     STATE = state[0];
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    bHeight = 1920;
+    bWidth = 1080;
     canvas = document.createElement("canvas");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = 1080;
+    canvas.height = 1920;
     this.context = canvas.getContext("2d");
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
