@@ -249,7 +249,7 @@ var GameArea = {
     start : function() {
 	canvas.addEventListener("click", doMouseDown, false);
         document.body.insertBefore(canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 50);
+        this.interval = setInterval(updateGameArea, 0);
     },
     clear : function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
