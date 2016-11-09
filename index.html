@@ -193,8 +193,8 @@ var SelectCoin = -1;
 var Credit = 10000;
 var nPointDealer = 0;
 var nPointPlayer = 0;
-var bHeight = 0;
-var bWidth = 0;//window.innerWidth;
+var bHeight = window.innerHeight;
+var bWidth = window.innerWidth;
 var isStand = false;
 var m_CoinAnimY = 0;
 var m_CoinAnim;
@@ -229,16 +229,16 @@ function startGame() {
 
 
     STATE = state[0];
-    bHeight = 1920;
-    bWidth = 1080;
+    bHeight = window.innerHeight;
+    bWidth = window.innerWidth;
     canvas = document.createElement("canvas");
-    canvas.width = 1080;
-    canvas.height = 1920;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     this.context = canvas.getContext("2d");
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
     CardsSound = document.getElementById("myAudioTagDeal");
-    
+ 
     GameArea.start();
 }
 
@@ -1078,14 +1078,15 @@ function updateGameArea() {
 //    }
      
     
-
+    
+   
     
     changeBtnCoords(bWidth, bHeight);
     
     DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
    
     DrawToolBar();  
-
+ DrawText(bWidth, bWidth/2, bHeight/2, "12px arial", "center");
     if (STATE != 'bet'){
         if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
