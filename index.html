@@ -167,11 +167,11 @@ var ArrayofButtons = [
 
 var ArrayofCoins = [
 
-{ img: 'coin/1.png', w:'193', h: '202', x: '0', y: '0', sum: '1'},
-{ img: 'coin/5.png', w:'193', h: '202', x: '40', y: '0', sum: '5'},
-{ img: 'coin/10.png', w:'193', h: '202', x: '80', y: '0', sum: '10'},
-{ img: 'coin/25.png',  w:'193', h: '202', x: '120', y: '0', sum: '25'},
-{ img: 'coin/100.png', w:'193', h: '202', x: '160', y: '0', sum: '100'},
+{ img: 'coin/1.png', w:'200', h: '202', x: '50', y: '420', sum: '1'},
+{ img: 'coin/5.png', w:'200', h: '202', x: '250', y: '420', sum: '5'},
+{ img: 'coin/10.png', w:'200', h: '202', x: '450', y: '420', sum: '10'},
+{ img: 'coin/25.png',  w:'200', h: '202', x: '650', y: '420', sum: '25'},
+{ img: 'coin/100.png', w:'200', h: '202', x: '850', y: '420', sum: '100'},
 ]
 
 
@@ -263,7 +263,8 @@ function doMouseDown(event){
   c_x = event.pageX;
   c_y = event.pageY;
   
-  
+  console.log(c_x);
+  console.log(c_y);
   
   if (isSplit && newGame == true){
     StartNewGame(isSplit);
@@ -322,8 +323,8 @@ function doMouseDown(event){
  
 	for (i = 0; i < ArrayofCoins.length; i++){
 
-	    if ( c_x > ArrayofCoins[i].x && c_x < parseInt(ArrayofCoins[i].x)+40 && 
-	    c_y > (bHeight-55) && c_y < (bHeight)  ){
+	    if ( c_x > ArrayofCoins[i].x && c_x < parseInt(ArrayofCoins[i].x)+parseInt(ArrayofCoins[i].w) && 
+	    c_y > (bHeight-ArrayofCoins[i].y) && c_y < (bHeight-ArrayofCoins[i].y)+(bHeight-ArrayofCoins[i].h)  ){
 	      SelectCoin = -1;
 	      SelectCoin = i;
 	      //STATE = 'deal';
@@ -1116,7 +1117,7 @@ function updateGameArea() {
       }else{
 	  yCoin = 0;
       }
-	DrawAllImg(ArrayofCoins[i].img, 200*i, (bHeight-200)-yCoin, 0, 0);
+	DrawAllImg(ArrayofCoins[i].img, ArrayofCoins[i].x, (bHeight-ArrayofCoins[i].y)-yCoin, 0, 0);
       }
     }
     
