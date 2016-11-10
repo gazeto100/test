@@ -10,8 +10,7 @@ canvas {
 			-ms-transform: translateZ(0);
 			-o-transform: translateZ(0);
 			transform: translateZ(0);
-			height: 100%;
-			width: 100%;
+
 			
 }
 
@@ -39,7 +38,8 @@ canvas {
 
 
 <script>
-
+			//height: 100%;
+			//width: 100%;
 PointsArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 
 	       2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10,]
 
@@ -232,11 +232,11 @@ function startGame() {
 
 
     STATE = state[0];
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    bHeight = 1920;
+    bWidth = 1080;
     canvas = document.createElement("canvas");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = 1080;
+    canvas.height = 1920;
     this.context = canvas.getContext("2d");
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
@@ -1091,8 +1091,8 @@ function updateGameArea() {
    
     DrawToolBar();  
  
-    if (STATE != 'bet'){
-        if (STATE == "StandorHit"){
+    //if (STATE != 'bet'){
+    //    if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
             DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
             
@@ -1100,13 +1100,13 @@ function updateGameArea() {
 	      DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
 	      DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
             }
-            if (split && !isSplit ){
+            //if (split && !isSplit ){
 	      DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y);
-	    }
-        }else {
+	    //}
+       // }else {
             DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
-        }
-    }
+       // }
+   // }
     
       DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px arial", "center");
       DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
@@ -1330,22 +1330,23 @@ function SetCardsX(cardsX){
 function changeBtnCoords(w, h){
 
   ArrayofButtons[4].x = w / 2 - GetImageW(ArrayofButtons[4].img)/2;
-  ArrayofButtons[4].y = h - 130;
+  ArrayofButtons[4].y = h - 180;
 
-  ArrayofButtons[0].x = w - 100;
-  ArrayofButtons[0].y = h - 50;
+  ArrayofButtons[0].x = w / 2 + 150;
+  ArrayofButtons[0].y = h - 160;
   
-  ArrayofButtons[1].x = w - 100;
-  ArrayofButtons[1].y = ArrayofButtons[4].y - 50;
+  ArrayofButtons[1].x = w - 180;
+  ArrayofButtons[1].y = h - 140;
   
-  ArrayofButtons[2].x = 0;
-  ArrayofButtons[2].y = h - 110;
+  ArrayofButtons[2].x = 40;
+  ArrayofButtons[2].y = h - 140;
   
   
-  ArrayofButtons[3].y = h - 45;
+  ArrayofButtons[3].x = w / 2 - 150 - GetImageW(ArrayofButtons[3].img);
+  ArrayofButtons[3].y = h - 160;
   
-  ArrayofButtons[5].x = (w/2);
-  ArrayofButtons[5].y = h - 70;
+  ArrayofButtons[5].x = w / 2 - GetImageW(ArrayofButtons[5].img)/2;
+  ArrayofButtons[5].y = h - 180;
   
 }
 
