@@ -170,11 +170,11 @@ var ArrayofButtons = [
 
 var ArrayofCoins = [
 
-{ img: 'coin/1.png', w:'200', h: '202', x: '50', y: '420', sum: '1'},
-{ img: 'coin/5.png', w:'200', h: '202', x: '250', y: '420', sum: '5'},
-{ img: 'coin/10.png', w:'200', h: '202', x: '450', y: '420', sum: '10'},
-{ img: 'coin/25.png',  w:'200', h: '202', x: '650', y: '420', sum: '25'},
-{ img: 'coin/100.png', w:'200', h: '202', x: '850', y: '420', sum: '100'},
+{ img: 'coin/1.png', w:'220', h: '220', x: '50', y: '420', sum: '1'},
+{ img: 'coin/5.png', w:'220', h: '220', x: '250', y: '420', sum: '5'},
+{ img: 'coin/10.png', w:'220', h: '220', x: '450', y: '420', sum: '10'},
+{ img: 'coin/25.png',  w:'220', h: '220', x: '650', y: '420', sum: '25'},
+{ img: 'coin/100.png', w:'220', h: '220', x: '850', y: '420', sum: '100'},
 ]
 
 
@@ -1329,8 +1329,8 @@ function SetCardsX(cardsX){
 
 function changeBtnCoords(w, h){
 
-  ArrayofButtons[4].x = w / 2;
-  ArrayofButtons[4].y = h - 120;
+  ArrayofButtons[4].x = w / 2 - GetImageW(ArrayofButtons[4].img)/2;
+  ArrayofButtons[4].y = h - 130;
 
   ArrayofButtons[0].x = w - 100;
   ArrayofButtons[0].y = h - 50;
