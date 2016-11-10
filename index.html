@@ -158,12 +158,12 @@ var PleyarSpitPush2 = false;
 
 var ArrayofButtons = [
 
-{ img: 'img/hit.png', w:'84', h: '36', x: '0', y: '0'},
-{ img: 'img/stand.png', w:'84', h: '36', x: '0', y: '0'},
-{ img: 'img/surrender.png', w:'137', h: '28', x: '0', y: '0'},
-{ img: 'img/double.png',  w:'104', h: '34', x: '0', y: '0'},
-{ img: 'img/deal.png', img_of: 'img/deal_of.png', w:'70', h: '52', x: '0', y: '0'},
-{ img: 'img/split.png', w:'59', h: '59', x: '0', y: '0'},
+{ img: 'img/hit.png', w:'144', h: '114', x: '0', y: '0'},
+{ img: 'img/stand.png', w:'144', h: '114', x: '0', y: '0'},
+{ img: 'img/surrender.png', w:'144', h: '114', x: '0', y: '0'},
+{ img: 'img/double.png',  w:'144', h: '114', x: '0', y: '0'},
+{ img: 'img/deal.png', img_of: 'img/deal_of.png', w:'144', h: '114', x: '0', y: '0'},
+{ img: 'img/split.png', w:'144', h: '114', x: '0', y: '0'},
 
 ]
 
@@ -1090,7 +1090,7 @@ function updateGameArea() {
     DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
    
     DrawToolBar();  
- DrawText(bWidth, bWidth/2, bHeight/2, "12px arial", "center");
+ 
     if (STATE != 'bet'){
         if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
@@ -1329,8 +1329,8 @@ function SetCardsX(cardsX){
 
 function changeBtnCoords(w, h){
 
-  ArrayofButtons[4].x = w - 90;
-  ArrayofButtons[4].y = h - 65;
+  ArrayofButtons[4].x = w / 2;
+  ArrayofButtons[4].y = h - 120;
 
   ArrayofButtons[0].x = w - 100;
   ArrayofButtons[0].y = h - 50;
