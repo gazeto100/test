@@ -326,8 +326,8 @@ function doMouseDown(event){
  
 	for (i = 0; i < ArrayofCoins.length; i++){
 
-	    if ( c_x > ArrayofCoins[i].x && c_x < parseInt(ArrayofCoins[i].x)+parseInt(ArrayofCoins[i].w) && 
-	    c_y > (ArrayofCoins[i].y) && c_y < (ArrayofCoins[i].y)+(ArrayofCoins[i].h)  ){
+	    if ( c_x > parseInt(ArrayofCoins[i].x) && c_x < parseInt(ArrayofCoins[i].x)+parseInt(ArrayofCoins[i].w) && 
+	    c_y > bHeight-(ArrayofCoins[i].y) && c_y < bHeight-parseInt(ArrayofCoins[i].y)+parseInt(ArrayofCoins[i].h)  ){
 	      SelectCoin = -1;
 	      SelectCoin = i;
 	      //STATE = 'deal';
@@ -1120,7 +1120,7 @@ function updateGameArea() {
       }else{
 	  yCoin = 0;
       }
-	DrawAllImg(ArrayofCoins[i].img, ArrayofCoins[i].x, (bHeight-ArrayofCoins[i].y)-yCoin, 0, 0);
+	DrawAllImg(ArrayofCoins[i].img, ArrayofCoins[i].x, (bHeight-parseInt(ArrayofCoins[i].y))-yCoin, 0, 0);
       }
     }
     
