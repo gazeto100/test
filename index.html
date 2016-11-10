@@ -11,6 +11,8 @@ canvas {
 			-o-transform: translateZ(0);
 			transform: translateZ(0);
 
+			height: 100%;
+			width: 100%;
 			
 }
 
@@ -229,14 +231,15 @@ var randum = 0;
 //CoinSound.pause();
 //CoinSound.stop();
 function startGame() {
-
+bHeight = window.innerHeight;
+var bWidth = window.innerWidth;
 
     STATE = state[0];
-    bHeight = 1920;
-    bWidth = 1080;
+    bHeight = window.innerHeight;
+    bWidth = window.innerWidth;
     canvas = document.createElement("canvas");
-    canvas.width = 1080;
-    canvas.height = 1920;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     this.context = canvas.getContext("2d");
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
