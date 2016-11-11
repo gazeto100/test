@@ -1076,8 +1076,8 @@ function GetImageH(img){
 
 function updateGameArea() {
 
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    bHeight = 1920;//window.innerHeight;
+    bWidth = 1080;//window.innerWidth;
        
 //    if (canvas.width != bWidth || canvas.height != bHeight){
 //    canvas.width = bWidth;
@@ -1113,8 +1113,8 @@ function updateGameArea() {
        // }
    // }
     
-      DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px arial", "center");
-      DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
+     // DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px arial", "center");
+     // DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
 
  
     if (STATE != "StandorHit"){
@@ -1500,8 +1500,7 @@ function DrawToolBar(){
 
   ctx.beginPath();
   ctx.lineWidth="2";
-  DrawText("CREDIT", 50, 15, "20px arial", "center");
-  DrawText(Credit, 50, 35, "20px arial", "center");
+  DrawText(Credit, 280, 150, "80px arial", "center");
 
 }
 
