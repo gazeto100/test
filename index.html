@@ -1133,26 +1133,26 @@ function updateGameArea() {
 	
 	  SetCardsX(DealerCards.length);
 	  for (i = 0; i < DealerCards.length; i++){
-	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (35*i)-m_cardsX, 70, 73, 97);
+	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, 70, 317, 393);
 	  // console.log(DealerCards[i])
 	  }
 	  if (DealerCards.length == 1){
-	      DrawAllImg(BackCard, ((bWidth))/2 + (35*1)-m_cardsX, 70, 73, 97);
+	      DrawAllImg(BackCard, ((bWidth))/2 + (100*1)-m_cardsX, 70, 317, 393);
 	  }
 	  if (nPointDealer > 0)
-	  DrawText(nPointDealer, bWidth/2, 200, "25px arial", "center");
+	  DrawText(nPointDealer, bWidth/2, GetImageH(DealerCards[0])+100, "50px arial", "center");
 
 	  if (!isSplit){
 	    
 	    SetCardsX(PlayerCards.length);
 	    for (i = 0; i < PlayerCards.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (35*i)-m_cardsX, (bHeight/2)+50, 73, 97);
+	      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, (bHeight/2)+50, 317, 393);
 	    // console.log(PlayerCards[i]);
 	    }
 
 	    if (nPointPlayer > 0)
-	    DrawText(nPointPlayer, bWidth/2, (bHeight/2)+40, "25px arial", "center");
+	    DrawText(nPointPlayer, bWidth/2, (bHeight/2)+40, "50px arial", "center");
 	  }else{
 	  
   
@@ -1308,25 +1308,25 @@ function SetCardsX(cardsX){
 
   switch(cardsX){
      case 1:
-      m_cardsX = 50;
+      m_cardsX = 150;
     break;
     case 2:
-      m_cardsX = 50;
+      m_cardsX = 150;
     break;
     case 3:
-      m_cardsX = 70;
+      m_cardsX = 180;
     break;
     case 4:
-      m_cardsX = 80;
+      m_cardsX = 190;
     break;
     case 5:
-      m_cardsX = 90;
+      m_cardsX = 200;
     break; 
     case 6:
-      m_cardsX = 100;
+      m_cardsX = 210;
     break; 
     case 7:
-      m_cardsX = 110;
+      m_cardsX = 220;
     break; 
   }
 
@@ -1335,23 +1335,23 @@ function SetCardsX(cardsX){
 function changeBtnCoords(w, h){
 
   ArrayofButtons[4].x = w / 2 - GetImageW(ArrayofButtons[4].img)/2;
-  ArrayofButtons[4].y = h - 180;
+  ArrayofButtons[4].y = h - 150;
 
   ArrayofButtons[0].x = w / 2 + 150;
   ArrayofButtons[0].y = h - 160;
   
   ArrayofButtons[1].x = w - 180;
-  ArrayofButtons[1].y = h - 140;
+  ArrayofButtons[1].y = h - 180;
   
   ArrayofButtons[2].x = 40;
-  ArrayofButtons[2].y = h - 140;
+  ArrayofButtons[2].y = h - 180;
   
   
   ArrayofButtons[3].x = w / 2 - 150 - GetImageW(ArrayofButtons[3].img);
   ArrayofButtons[3].y = h - 160;
   
   ArrayofButtons[5].x = w / 2 - GetImageW(ArrayofButtons[5].img)/2;
-  ArrayofButtons[5].y = h - 180;
+  ArrayofButtons[5].y = h - 150;
   
 }
 
