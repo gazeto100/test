@@ -10,9 +10,8 @@ canvas {
 			-ms-transform: translateZ(0);
 			-o-transform: translateZ(0);
 			transform: translateZ(0);
-	
-			height: 100%;
-			width: 100%;
+			height: auto;
+			width: auto;
 			
 }
 
@@ -27,15 +26,15 @@ canvas {
 			-ms-touch-action: none;
 			 -webkit-transform: rotate(0deg);    
 			transform: rotate(0deg);  
-			height: 100%;
-			width: 100%;
+			height: auto;
+			width: auto;
 		}
 		
 
 </style>
 <html><head>
 
-<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=2.75, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 
 </head>
 <body onload="startGame()" scroll="no">
@@ -44,7 +43,7 @@ canvas {
 
 
 <script>
-			//height: 100%; transform: scale(1);
+			//height: 100%;
 			//width: 100%;
 PointsArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 
 	       2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10,]
@@ -245,6 +244,7 @@ var bWidth = window.innerWidth;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.context = canvas.getContext("2d");
+    
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
     CardsSound = document.getElementById("myAudioTagDeal");
@@ -415,7 +415,7 @@ function doMouseDown(event){
   }
   
     if (STATE == 'StandorHit'){
-      if ( c_x > parseInt(ArrayofButtons[0].x) && c_x < c_x+parseInt(ArrayofButtons[0].w) && 
+      if ( c_x > parseInt(ArrayofButtons[0].x) && c_x < parseInt(ArrayofButtons[0].x)+parseInt(ArrayofButtons[0].w) && 
 	c_y > parseInt(ArrayofButtons[0].y) && c_y < parseInt(ArrayofButtons[0].y)+parseInt(ArrayofButtons[4].h)  ){
     
 	Hit();
@@ -1080,8 +1080,8 @@ function GetImageH(img){
 
 function updateGameArea() {
 
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+   // bHeight = 1280;//window.innerHeight;
+   // bWidth = 800;//window.innerWidth;
        
 //    if (canvas.width != bWidth || canvas.height != bHeight){
 //    canvas.width = bWidth;
@@ -1100,8 +1100,8 @@ function updateGameArea() {
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
     DrawText(bWidth, 100, 250, "25px arial", "left", "red");
  
-    //if (STATE != 'bet'){
-    //    if (STATE == "StandorHit"){
+    if (STATE != 'bet'){
+        if (STATE == "StandorHit"){
             DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y);
             DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y);
             
@@ -1109,13 +1109,13 @@ function updateGameArea() {
 	      DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y);
 	      DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y);
             }
-            //if (split && !isSplit ){
+            if (split && !isSplit ){
 	      DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y);
-	    //}
-       // }else {
+	    }
+        }else {
             DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y);
-       // }
-   // }
+        }
+    }
     
      // DrawText("PAYS 3 TO 2", bWidth/2, 100, "20px arial", "center");
      // DrawText("DEALER MUST DRAW TO 16 AND STAND ON ALL 17S", bWidth/2, 120, "12px arial", "center");
@@ -1162,20 +1162,20 @@ function updateGameArea() {
   
 	    for (i = 0; i < PlayerCardsSplit1.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCardsSplit1[i], 10 + (20*i), (bHeight/2)+50, 73, 97);
+	      DrawAllImg(PlayerCardsSplit1[i], 10 + (100*i), (bHeight/2)+50, 317, 393);
 	    // console.log(PlayerCards[i]);
 	    }
 	    DrawText(nPointPlayerSplit1, 15, (bHeight/2)+40, "25px arial", "center");
 	    
 	    for (i = 0; i < PlayerCardsSplit2.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCardsSplit2[i], bWidth/2 + (20*i), (bHeight/2)+50, 73, 97);
+	      DrawAllImg(PlayerCardsSplit2[i], bWidth/2 + (100*i), (bHeight/2)+50, 317, 393);
 	    // console.log(PlayerCards[i]);
 	    }
 
 	    DrawText(nPointPlayerSplit2, bWidth/2, (bHeight/2)+40, "25px arial", "center");
 	    if (isFirst){
-	      DrawAllImg("img/alpha.png", bWidth/2, (bHeight/2)+50, 100, 100);
+	      DrawAllImg("img/alpha.png", bWidth/2, (bHeight/2)+50, 317, 393);
 	    }else {
 	      
 	      DrawAllImg("img/alpha.png", 8, (bHeight/2)+50, SetAlphaScale(PlayerCardsSplit1.length), 100);
