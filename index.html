@@ -43,6 +43,8 @@ canvas {
 
 
 <script>
+
+
 			//height: 100%;
 			//width: 100%;
 PointsArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 10, 10, 
@@ -244,7 +246,7 @@ var bWidth = window.innerWidth;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.context = canvas.getContext("2d");
-    
+    resizeGame();
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
     CardsSound = document.getElementById("myAudioTagDeal");
@@ -252,7 +254,30 @@ var bWidth = window.innerWidth;
     GameArea.start();
 }
 
-
+function resizeGame() {
+    var gameArea = document.getElementById('canvas');
+    var widthToHeight = 4 / 3;
+    var nWidth = window.innerWidth;
+    var nHeight = window.innerHeight;
+    var newWidthToHeight = nWidth / nHeight;
+    
+    if (newWidthToHeight > widthToHeight) {
+        newWidth = nHeight * widthToHeight;
+        canvas.height = nHeight + 'px';
+        canvas.width = nWidth + 'px';
+    } else {
+        nHeight = nWidth / widthToHeight;
+        canvas.width = nWidth + 'px';
+        canvas.height = nHeight + 'px';
+    }
+    
+    canvas.marginTop = (-nHeight / 2) + 'px';
+    canvas.marginLeft = (-nWidth / 2) + 'px';
+    
+    var gameCanvas = document.getElementById('canvas');
+    canvas.width = nWidth;
+    canvas.height = nHeight;
+}
 
 var GameArea = {
     
