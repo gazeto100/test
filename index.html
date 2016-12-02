@@ -37,7 +37,7 @@ canvas {
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 <script src="phaser.min.js"></script>
 </head>
-<body onload="startGame()" scroll="no">
+<body onload="startGame()" >
 <audio id="myAudioTagID" type="audio/mpeg" src="sounds/coins.wav"></audio>
 <audio id="myAudioTagDeal" type="audio/mpeg" src="sounds/distrib.wav"></audio>
 
@@ -236,15 +236,13 @@ var randum = 0;
 //CoinSound.pause();
 //CoinSound.stop();
 function startGame() {
-bHeight = window.innerHeight;
-var bWidth = window.innerWidth;
 
     STATE = state[0];
-    bHeight = window.innerHeight;
-    bWidth = window.innerWidth;
+    bHeight = 1920;
+    bWidth = 1080;
     canvas = document.createElement("canvas");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = bWidth;
+    canvas.height = bHeight;
     this.context = canvas.getContext("2d");
     Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'canvas');
     //resizeGame();
