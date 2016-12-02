@@ -241,10 +241,10 @@ function startGame() {
     bHeight = 1920;
     bWidth = 1080;
     canvas = document.createElement("canvas");
-    canvas.width = bWidth;
-    canvas.height = bHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     this.context = canvas.getContext("2d");
-    Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'canvas');
+    //Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'canvas');
     //resizeGame();
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
