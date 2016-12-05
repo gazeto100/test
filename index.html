@@ -12,7 +12,7 @@ canvas {
 			transform: translateZ(0);
 			height: 100%;
 			width: 100%;
-			display: none;
+			
 			z-index: 100;
 }
 
@@ -29,7 +29,7 @@ canvas {
 			transform: rotate(0deg);  
 			height: 100%;
 			width: 100%;
-			display: none;
+			
 			z-index: 100;
 		}
 		
@@ -38,7 +38,6 @@ canvas {
 <html><head>
 
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-<script src="phaser.min.js"></script>
 </head>
 <body onload="startGame()" >
 <audio id="myAudioTagID" type="audio/mpeg" src="sounds/coins.wav"></audio>
@@ -247,8 +246,6 @@ function startGame() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.context = canvas.getContext("2d");
-    Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'canvas');
-    //resizeGame();
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
     CardsSound = document.getElementById("myAudioTagDeal");
