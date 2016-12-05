@@ -1118,7 +1118,7 @@ function updateGameArea() {
     
     changeBtnCoords(bWidth, bHeight);
     
-    DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
+    DrawAllImg(Bgr, 0, 0, 0, 0);
    
     DrawToolBar();  
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
@@ -1383,14 +1383,14 @@ function changeBtnCoords(w, h){
   
 }
 
-function DrawBgr(img, x, y, h, w){
+function DrawBgr(img, x, y){
 
     this.image = new Image();
     this.image.src = img;   
     this.x = x;
     this.y = y;
     ctx = context;
-    ctx.drawImage(this.image, 0, 0, 1080, 1920,x,y,w,h);
+    ctx.drawImage(this.image, 0, 0, 1080, 1920,x,y);
 
 }
 
