@@ -12,7 +12,7 @@
   <preference name="StatusBarOverlaysWebView" value="true" />
   <plugin name="cordova-plugin-whitelist" spec="1" />
   <!--<preference name="fullscreen" value="true" /> -->
-  <preference name="HideKeyboardFormAccessoryBar" value="true"/>
+  <preference name="HideKeyboardFormAccessoryBar" value="false"/>
   
   
   <access origin="*" />
@@ -33,7 +33,8 @@
       <allow-intent href="itms-apps:*" />
   </platform>
   <platform name="android">
-	      <preference name="fullscreen" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+	      
               <icon src="icons/ldpi.png" density="ldpi" />
               <icon src="icons/mdpi.png" density="mdpi" />
               <icon src="icons/hdpi.png" density="hdpi" />
