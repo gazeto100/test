@@ -9,12 +9,12 @@
   </author>
   <content src="index.html" />
    <preference name="EnableViewportScale" value="true" />
-  <preference name="StatusBarOverlaysWebView" value="true" />
+   <!-- <preference name="StatusBarOverlaysWebView" value="true" /> -->
   <plugin name="cordova-plugin-whitelist" spec="1" />
   <preference name="fullscreen" value="true" />
-  <preference name="HideKeyboardFormAccessoryBar" value="true"/>
-  <preference name="WebViewBounce" value="true" />
-      <preference name="StatusBarOverlaysWebView" value="true" />
+  <!--<preference name="HideKeyboardFormAccessoryBar" value="true"/> -->
+  <!--<preference name="WebViewBounce" value="true" /> -->
+  <!-- <preference name="StatusBarOverlaysWebView" value="true" /> -->
   <access origin="*" />
      <preference name="Orientation" value="portrait" />
   <allow-intent href="http://*/*" />
