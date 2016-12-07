@@ -39,7 +39,7 @@ canvas {
 
 <meta name="viewport" content="user-scalable=no, initial-scale=0, maximum-scale=0, minimum-scale=0, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 </head>
-<body onload="startGame()" style="background:url(img/Blackjack1.png);">>
+<body onload="startGame()" >
 <audio id="myAudioTagID" type="audio/mpeg" src="sounds/coins.wav"></audio>
 <audio id="myAudioTagDeal" type="audio/mpeg" src="sounds/distrib.wav"></audio>
 
@@ -253,30 +253,6 @@ function startGame() {
     GameArea.start();
 }
 
-function resizeGame() {
-    var gameArea = document.getElementById('canvas');
-    var widthToHeight = 4 / 3;
-    var nWidth = window.innerWidth;
-    var nHeight = window.innerHeight;
-    var newWidthToHeight = nWidth / nHeight;
-    
-    if (newWidthToHeight > widthToHeight) {
-        newWidth = nHeight * widthToHeight;
-        canvas.height = nHeight + 'px';
-        canvas.width = nWidth + 'px';
-    } else {
-        nHeight = nWidth / widthToHeight;
-        canvas.width = nWidth + 'px';
-        canvas.height = nHeight + 'px';
-    }
-    
-    canvas.marginTop = (-nHeight / 2) + 'px';
-    canvas.marginLeft = (-nWidth / 2) + 'px';
-    
-    var gameCanvas = document.getElementById('canvas');
-    canvas.width = nWidth;
-    canvas.height = nHeight;
-}
 
 var GameArea = {
     
@@ -1118,9 +1094,9 @@ function updateGameArea() {
     
     changeBtnCoords(bWidth, bHeight);
     
-    //DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
+    DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
    
-    DrawToolBar();  
+    //DrawToolBar();  
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
     DrawText(bWidth, 100, 250, "25px arial", "left", "red");
  
