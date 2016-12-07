@@ -1088,9 +1088,9 @@ function updateGameArea() {
     
     changeBtnCoords(bWidth, bHeight);
     
-    DrawAllImg(Bgr, 0, 0, 150, 300);
+    DrawAllImg(Bgr, 0, 0, 1080, 1920);
    
-    //DrawToolBar();  
+    DrawToolBar();  
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
     DrawText(bWidth, 100, 250, "25px arial", "left", "red");
  
@@ -1496,8 +1496,6 @@ function Deal(){
 
 function DrawToolBar(){
 
-  ctx.beginPath();
-  ctx.lineWidth="2";
   DrawText(Credit, 280, 150, "70px arial", "center");
 
 }
