@@ -1,14 +1,31 @@
 <style>
 canvas {
-			background: #000;
-			color: #fff;
-			margin: -8; 
-			padding: 0;
-			overflow: hidden;
-			height: 100%;
-			width: 100%;
+
+   			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+			-webkit-transform: translateZ(0);
+			
+			-moz-transform: translateZ(0);
+			-ms-transform: translateZ(0);
+			-o-transform: translateZ(0);
+			transform: translateZ(0);
 }
 
+
+		html, body {
+			background: #000;
+			color: #fff;
+			margin: 0; 
+			padding: 0;
+			overflow: hidden;
+			touch-action: none;
+			-ms-touch-action: none;
+			 -webkit-transform: rotate(0deg);    
+			transform: rotate(0deg);  
+			height: 100%;
+			width: 100%;
+		}
 		
 
 </style>
@@ -220,8 +237,8 @@ function startGame() {
     bHeight = 1920;
     bWidth = 1080;
     canvas = document.createElement("canvas");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = bHeight;
+    canvas.height = bHeight;
     this.context = canvas.getContext("2d");
     loadAll52Cards();
     CoinSound = document.getElementById("myAudioTagID");
@@ -1071,7 +1088,7 @@ function updateGameArea() {
     
     changeBtnCoords(bWidth, bHeight);
     
-    DrawAllImg(Bgr, 0, 0, 0, 0);
+    DrawAllImg(Bgr, 0, 0, 150, 300);
    
     //DrawToolBar();  
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
