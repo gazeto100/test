@@ -1089,7 +1089,12 @@ function updateGameArea() {
     changeBtnCoords(bWidth, bHeight);
     
     DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
-   
+    DrawAllImg("img/masa.png", 0, bHeight-GetImageH("img/masa.png"), 0, 0);
+    DrawAllImg("img/credit.png", 50, 20, 0, 0);
+    DrawAllImg("img/bet.png", ((bWidth)-GetImageW("img/bet.png"))-50, 20, 0, 0);
+    DrawAllImg("img/nadpis.png", 0, (bHeight/2)-GetImageH("img/nadpis.png")/2, 0, 0);
+    
+    
     DrawToolBar();  
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
     DrawText(bWidth, 100, 250, "25px arial", "left", "red");
@@ -1145,12 +1150,12 @@ function updateGameArea() {
 	    SetCardsX(PlayerCards.length);
 	    for (i = 0; i < PlayerCards.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, (bHeight/2)+50, 317, 393);
+	      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, (bHeight)-GetImageH(PlayerCards[0])*2, 0, 0);
 	    // console.log(PlayerCards[i]);
 	    }
 
 	    if (nPointPlayer > 0)
-	    DrawText(nPointPlayer, bWidth/2, (bHeight/2)+40, "50px arial", "center");
+	    DrawText(nPointPlayer, bWidth/2, (bHeight/2), "50px arial", "center");
 	  }else{
 	  
   
@@ -1179,6 +1184,9 @@ function updateGameArea() {
 	  }
 
     
+    for (i = 0; i < BetCoins.length; i++){
+      DrawAllImg(BetCoins[i], GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 0, 0);
+    }
     
     if (STATE == "deal" || STATE == "StandorHit"){
       if (TotalBet == 1000){
@@ -1187,13 +1195,11 @@ function updateGameArea() {
 	DrawText("Bet: "+TotalBet, ((bWidth)/2), 25, "20px arial", "center");
       }
       if (STATE == "deal"){
-	DrawAllImg(canselBet,  ((bWidth)/2)-GetImageW(canselBet)/2, (bHeight)/3, 80, 80);
+	DrawAllImg(canselBet,  GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 80, 80);
       }
     }
     
-      for (i = 0; i < BetCoins.length; i++){
-	DrawAllImg(BetCoins[i], (bWidth)/2+GetImageW(BetCoins[i])/4*i , bHeight/3+50, 0, 0);
-      }
+
       
       if (!isSplit){
 	  if (dealerWin){
