@@ -1131,11 +1131,11 @@ function updateGameArea() {
 	
 	  SetCardsX(DealerCards.length);
 	  for (i = 0; i < DealerCards.length; i++){
-	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, bHeight/3, 317, 393);
+	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, bHeight/4, 317, 393);
 	  // console.log(DealerCards[i])
 	  }
 	  if (DealerCards.length == 1){
-	      DrawAllImg(BackCard, ((bWidth))/2 + (100*1)-m_cardsX, bHeight/3, 317, 393);
+	      DrawAllImg(BackCard, ((bWidth))/2 + (100*1)-m_cardsX, bHeight/4, 317, 393);
 	  }
 	  if (nPointDealer > 0)
 	  DrawText(nPointDealer, bWidth/2, GetImageH(DealerCards[0])+100, "50px arial", "center");
