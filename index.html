@@ -241,6 +241,7 @@ function startGame() {
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
     loadAll52Cards();
+    //this.context.scale(3/4,3/4);
     CoinSound = document.getElementById("myAudioTagID");
     CardsSound = document.getElementById("myAudioTagDeal");
  
@@ -1179,8 +1180,6 @@ function updateGameArea() {
 	      
 	      DrawAllImg("img/alpha.png", 8, (bHeight/2)+50, SetAlphaScale(PlayerCardsSplit1.length), 100);
 	    }
-	    DrawText("Bet: "+TotalBet/2, 50, (bHeight/2)+GetImageH(PlayerCardsSplit2[0]), "20px arial", "center");
-	    DrawText("Bet: "+TotalBet/2, bWidth/2, (bHeight/2)+GetImageH(PlayerCardsSplit2[0]), "20px arial", "left");
 	  }
 
     
@@ -1188,18 +1187,6 @@ function updateGameArea() {
       DrawAllImg(BetCoins[i], GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 0, 0);
     }
     
-    if (STATE == "deal" || STATE == "StandorHit"){
-      if (TotalBet == 1000){
-	DrawText("Max Bet: "+TotalBet, ((bWidth)/2), 25, "20px arial", "center");
-      }else{
-	DrawText("Bet: "+TotalBet, ((bWidth)/2), 25, "20px arial", "center");
-      }
-      if (STATE == "deal"){
-	DrawAllImg(canselBet,  GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 80, 80);
-      }
-    }
-    
-
       
       if (!isSplit){
 	  if (dealerWin){
@@ -1502,7 +1489,29 @@ function Deal(){
 
 function DrawToolBar(){
 
-  DrawText(Credit, 280, 150, "70px arial", "center");
+  var x, y;
+  var pixel;
+  
+  if (bHeight == 1920 && bWidth == 1080){
+    x = 280;
+    y = 140;
+    pixel = 70;
+    TotalBetX = 750;
+  }
+
+  DrawText(Credit, x, y, pixel+"px arial", "center");
+  
+  
+  if (STATE == "deal" || STATE == "StandorHit"){
+      if (TotalBet == 1000){
+	DrawText("Max Bet: "+TotalBet, TotalBetX, y, "20px arial", "center");
+      }else{
+	DrawText(TotalBet, TotalBetX, y, pixel+"px arial", "center");
+      }
+      if (STATE == "deal"){
+	DrawAllImg(canselBet,  GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 80, 80);
+      }
+  }
 
 }
 
