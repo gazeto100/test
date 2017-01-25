@@ -225,8 +225,6 @@ function startGame() {
     window.innerHeight = 1280;
     window.innerWidth = 720;
     if (window.innerHeight == 1920 && window.innerWidth == 1080){
-        bHeight = 1920;
-	bWidth = 1080;
 	
 	ArrayofCoins = [
 
@@ -249,8 +247,6 @@ function startGame() {
 	]
 	
     }else if (window.innerHeight == 1280 && window.innerWidth == 720){
-        bHeight = 1280;
-	bWidth = 720;
 	
 	
 	ArrayofCoins = [
@@ -547,8 +543,8 @@ function doMouseDown(event){
       }
     }
   
-    if (c_x > (bWidth/2)-GetImageH(canselBet)/2 && c_x < ((bWidth/2)+GetImageH(canselBet)) && 
-      c_y > bHeight/3 && c_y < (bHeight/3) + GetImageH(canselBet)+10 && SelectCoin != -1 )
+    if (c_x > 10+GetImageH(canselBet) && c_x < (10+GetImageH(canselBet)*2) && 
+      c_y > bHeight/2 && c_y < (bHeight/2) + GetImageH(canselBet)+10 && SelectCoin != -1 )
     {
       STATE = 'bet';
       Credit = Credit+TotalBet;
@@ -1386,7 +1382,7 @@ function Deal(){
   STATE = "StandorHit";
 }
 
-function DrawToolBar(){
+function DrawToolBar1920x1080(){
 
   var x, y;
   var pixel;
@@ -1398,6 +1394,29 @@ function DrawToolBar(){
     TotalBetX = 750;
   }
   
+  DrawText(Credit, x, y, pixel+"px arial", "center");
+  
+  
+  if (STATE == "deal" || STATE == "StandorHit"){
+      if (TotalBet == 1000){
+	DrawText("Max Bet: "+TotalBet, TotalBetX, y, "20px arial", "center");
+      }else{
+	DrawText(TotalBet, TotalBetX, y, pixel+"px arial", "center");
+      }
+      if (STATE == "deal"){
+	DrawAllImg(canselBet,  10+GetImageW(canselBet) , bHeight/2, 80, 80);
+      }
+  }
+
+}
+
+
+function DrawToolBar1280x720(){
+
+  var x, y;
+  var pixel;
+  
+ 
   if (bHeight == 1280 && bWidth == 720){
     x = 280;
     y = 140;
@@ -1415,7 +1434,7 @@ function DrawToolBar(){
 	DrawText(TotalBet, TotalBetX, y, pixel+"px arial", "center");
       }
       if (STATE == "deal"){
-	DrawAllImg(canselBet,  GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 80, 80);
+	DrawAllImg(canselBet,  10+GetImageW(canselBet) , bHeight/2, 60, 60);
       }
   }
 
@@ -1692,7 +1711,7 @@ function Draw1920x1080(){
     DrawAllImg("img/nadpis.png", 0, (bHeight/2)-GetImageH("img/nadpis.png")/2, 0, 0);
     
     
-    DrawToolBar();  
+    DrawToolBar1920x1080();  
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
     DrawText(bWidth, 100, 250, "25px arial", "left", "red");
  
@@ -1780,10 +1799,10 @@ function Draw1920x1080(){
 
     
     for (i = 0; i < BetCoins.length; i++){
-      DrawAllImg(BetCoins[i], GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 0, 0);
+      DrawAllImg(BetCoins[i], bWidth/2-GetImageW(BetCoins[0])/2 , bHeight/2-GetImageH(BetCoins[0])/2, 0, 0);
     }
     
-      
+      DrawToolBar1920x1080(); 
       if (!isSplit){
 	  if (dealerWin){
 	    DrawAllImg("text/lost.png",  ((bWidth)/2)-GetImageW("text/lost.png")/2, bHeight/2, 0, 0);
@@ -1876,7 +1895,7 @@ function Draw1280x720(){
     DrawAllImg("img/nadpis.png", 0, (bHeight/2)-GetImageH("img/nadpis.png")/2, 740, 176);
     
     
-    DrawToolBar();  
+     
     DrawText(bHeight, 100, 200, "25px arial", "left", "red");
     DrawText(bWidth, 100, 250, "25px arial", "left", "red");
  
@@ -1964,10 +1983,10 @@ function Draw1280x720(){
 
     
     for (i = 0; i < BetCoins.length; i++){
-      DrawAllImg(BetCoins[i], GetImageW(BetCoins[0]) , bHeight/2-GetImageW(BetCoins[0])/2, 0, 0);
+      DrawAllImg(BetCoins[i], bWidth/2-GetImageW(BetCoins[0])/2 , bHeight/2-GetImageW(BetCoins[0])/2, 160, 160);
     }
     
-      
+      DrawToolBar1280x720(); 
       if (!isSplit){
 	  if (dealerWin){
 	    DrawAllImg("text/lost.png",  ((bWidth)/2)-GetImageW("text/lost.png")/2, bHeight/2, 0, 0);
