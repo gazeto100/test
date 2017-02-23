@@ -265,7 +265,7 @@ function startGame() {
 	{ img: 'img/stand.png', w:'100', h: '80', x: '0', y: '0'},
 	{ img: 'img/surrender.png', w:'100', h: '80', x: '0', y: '0'},
 	{ img: 'img/double.png',  w:'100', h: '80', x: '0', y: '0'},
-	{ img: 'img/deal.png', img_of: 'img/deal_of.png', w:'144', h: '114', x: '0', y: '0'},
+	{ img: 'img/deal.png', img_of: 'img/deal_of.png', w:'100', h: '80', x: '0', y: '0'},
 	{ img: 'img/split.png', w:'100', h: '80', x: '0', y: '0'},
 
 	]
@@ -1160,7 +1160,7 @@ function SetAlphaScale(cards){
 }
 
 
-function SetCardsX(cardsX){
+function SetCardsX1920X1080(cardsX){
 
   switch(cardsX){
      case 1:
@@ -1168,6 +1168,34 @@ function SetCardsX(cardsX){
     break;
     case 2:
       m_cardsX = 200;
+    break;
+    case 3:
+      m_cardsX = 240;
+    break;
+    case 4:
+      m_cardsX = 270;
+    break;
+    case 5:
+      m_cardsX = 300;
+    break; 
+    case 6:
+      m_cardsX = 330;
+    break; 
+    case 7:
+      m_cardsX = 370;
+    break; 
+  }
+
+}
+
+function SetCardsX1280X720(cardsX){
+
+  switch(cardsX){
+     case 1:
+      m_cardsX = 180;
+    break;
+    case 2:
+      m_cardsX = 180;
     break;
     case 3:
       m_cardsX = 240;
@@ -1213,13 +1241,13 @@ function changeBtnCoords(w, h){
 
 function changeBtnCoords1280x720(w, h){
 
-  ArrayofButtons[4].x = w / 2 - 120/2;
+  ArrayofButtons[4].x = w / 2 - 80/2;
   ArrayofButtons[4].y = h - 100;
 
-  ArrayofButtons[0].x = w / 2 + 70;
+  ArrayofButtons[0].x = w / 2 + 80;
   ArrayofButtons[0].y = h - 110;
   
-  ArrayofButtons[1].x = w - 180;
+  ArrayofButtons[1].x = w - 130;
   ArrayofButtons[1].y = h - 130;
   
   ArrayofButtons[2].x = 40;
@@ -1229,8 +1257,8 @@ function changeBtnCoords1280x720(w, h){
   ArrayofButtons[3].x = w / 2 - 170;
   ArrayofButtons[3].y = h - 110;
   
-  ArrayofButtons[5].x = w / 2 - 120/2;
-  ArrayofButtons[5].y = h - 80;
+  ArrayofButtons[5].x = w / 2 - 80/2;
+  ArrayofButtons[5].y = h - 100;
   
 }
 
@@ -1750,7 +1778,7 @@ function Draw1920x1080(){
     
 
 	
-	  SetCardsX(DealerCards.length);
+	  SetCardsX1920X1080(DealerCards.length);
 	  for (i = 0; i < DealerCards.length; i++){
 	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, bHeight/4, 317, 393);
 	  // console.log(DealerCards[i])
@@ -1763,7 +1791,7 @@ function Draw1920x1080(){
 
 	  if (!isSplit){
 	    
-	    SetCardsX(PlayerCards.length);
+	    SetCardsX1920X1080(PlayerCards.length);
 	    for (i = 0; i < PlayerCards.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
 	      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, (bHeight)-GetImageH(PlayerCards[0])*2, 0, 0);
@@ -1901,18 +1929,18 @@ function Draw1280x720(){
  
     if (STATE != 'bet'){
         if (STATE == "StandorHit"){
-            DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y, 100, 80);
-            DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y, 100, 80);
+            DrawButton(ArrayofButtons[0].img, ArrayofButtons[0].x, ArrayofButtons[0].y, ArrayofButtons[0].w, ArrayofButtons[0].h);
+            DrawButton(ArrayofButtons[1].img, ArrayofButtons[1].x, ArrayofButtons[1].y, ArrayofButtons[1].w, ArrayofButtons[1].h);
             
 	    if (!isSplit){
-	      DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y, 100, 80);
-	      DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y, 100, 80);
+	      DrawButton(ArrayofButtons[2].img, ArrayofButtons[2].x, ArrayofButtons[2].y, ArrayofButtons[2].w, ArrayofButtons[2].h);
+	      DrawButton(ArrayofButtons[3].img, ArrayofButtons[3].x, ArrayofButtons[3].y, ArrayofButtons[3].w, ArrayofButtons[3].h);
             }
             if (split && !isSplit ){
-	      DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y, 100, 80);
+	      DrawButton(ArrayofButtons[5].img, ArrayofButtons[5].x, ArrayofButtons[5].y, ArrayofButtons[5].w, ArrayofButtons[5].h);
 	    }
         }else {
-            DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y, 100, 80);
+            DrawButton(ArrayofButtons[4].img, ArrayofButtons[4].x, ArrayofButtons[4].y, ArrayofButtons[4].w, ArrayofButtons[4].h);
         }
     }
     
@@ -1934,47 +1962,47 @@ function Draw1280x720(){
     
 
 	
-	  SetCardsX(DealerCards.length);
+	  SetCardsX1280X720(DealerCards.length);
 	  for (i = 0; i < DealerCards.length; i++){
-	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, bHeight/4, 317, 393);
+	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, bHeight/7, 250, 310);
 	  // console.log(DealerCards[i])
 	  }
 	  if (DealerCards.length == 1){
-	      DrawAllImg(BackCard, ((bWidth))/2 + (100*1)-m_cardsX, bHeight/4, 317, 393);
+	      DrawAllImg(BackCard, ((bWidth))/2 + (100*1)-m_cardsX, bHeight/7, 250, 310);
 	  }
 	  if (nPointDealer > 0)
-	  DrawText(nPointDealer, bWidth/2, GetImageH(DealerCards[0])+100, "50px arial", "center");
+	  DrawText(nPointDealer, bWidth/2, GetImageH(DealerCards[0])+120, "50px arial", "center");
 
 	  if (!isSplit){
 	    
-	    SetCardsX(PlayerCards.length);
+	    SetCardsX1280X720(PlayerCards.length);
 	    for (i = 0; i < PlayerCards.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, (bHeight)-GetImageH(PlayerCards[0])*2, 0, 0);
+	      DrawAllImg(PlayerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, (bHeight)-500, 250, 310);
 	    // console.log(PlayerCards[i]);
 	    }
 
 	    if (nPointPlayer > 0)
-	    DrawText(nPointPlayer, bWidth/2, (bHeight/2), "50px arial", "center");
+	    DrawText(nPointPlayer, bWidth/2, (bHeight)-500, "50px arial", "center");
 	  }else{
 	  
   
 	    for (i = 0; i < PlayerCardsSplit1.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCardsSplit1[i], 10 + (100*i), (bHeight/2)+50, 317, 393);
+	      DrawAllImg(PlayerCardsSplit1[i], 10 + (100*i), (bHeight/2)+50, 250, 310);
 	    // console.log(PlayerCards[i]);
 	    }
 	    DrawText(nPointPlayerSplit1, 15, (bHeight/2)+40, "25px arial", "center");
 	    
 	    for (i = 0; i < PlayerCardsSplit2.length; i++){
 	      //nPointPlayer += parseInt(PlayerCards[i].s);
-	      DrawAllImg(PlayerCardsSplit2[i], bWidth/2 + (100*i), (bHeight/2)+50, 317, 393);
+	      DrawAllImg(PlayerCardsSplit2[i], bWidth/2 + (100*i), (bHeight/2)+50, 250, 310);
 	    // console.log(PlayerCards[i]);
 	    }
 
 	    DrawText(nPointPlayerSplit2, bWidth/2, (bHeight/2)+40, "25px arial", "center");
 	    if (isFirst){
-	      DrawAllImg("img/alpha.png", bWidth/2, (bHeight/2)+50, 317, 393);
+	      DrawAllImg("img/alpha.png", bWidth/2, (bHeight/2)+50, 250, 310);
 	    }else {
 	      
 	      DrawAllImg("img/alpha.png", 8, (bHeight/2)+50, SetAlphaScale(PlayerCardsSplit1.length), 100);
@@ -2004,12 +2032,12 @@ function Draw1280x720(){
 	  
 	  
 	  if (newGame){
-	    DrawText("Touch for new game", bWidth/2, bHeight-300, "80px times new roman", "center");
+	    DrawText("Touch for new game", bWidth/2, bHeight-120, "80px times new roman", "center");
 	  }
       }else {
       
       	  if (newGame){
-	    DrawText("Touch for new game", bWidth/2, bHeight-300, "80px times new roman", "center");
+	    DrawText("Touch for new game", bWidth/2, bHeight-120, "80px times new roman", "center");
 	  }
 	  
       	  if (PleyarSplitWin1){
