@@ -398,18 +398,6 @@ function doMouseDown(event){
   }
   
   
-  function checkCoins(){
-  
-  var nNum = 0;
-  var NewArray = [];
-  for (i = 0; i < BetCoins.length; i++){
-    if (BetCoins[i] == ArrayofCoins[SelectCoin].img){
-      nNum++
-    }
-  }
-  
-  }
-  
   
   if (STATE == 'deal'){
     if ( c_x > parseInt(ArrayofButtons[4].x) && c_x < c_x+parseInt(ArrayofButtons[4].w) && 
@@ -640,7 +628,7 @@ function doMouseDown(event){
 		Credit -= TotalBet;
 		TotalBet += TotalBet;
 		isFirst = true;
-		CheckSplitPoints();
+		//CheckSplitPoints();
 	    }
 	}
     
@@ -648,6 +636,18 @@ function doMouseDown(event){
 
     }
 }
+
+function checkCoins(){
+  
+  var nNum = 0;
+  var NewArray = [];
+  for (i = 0; i < BetCoins.length; i++){
+    if (BetCoins[i] == ArrayofCoins[SelectCoin].img){
+      nNum++
+    }
+  }
+}
+  
 
 
 
@@ -1339,8 +1339,8 @@ function Deal(){
     if (PlayerCards.length < 2){
       for (j = 0; j < 2; j++){
 	  randum = randum = Math.floor((Math.random() * 52));      
-	  PlayerCards[j] = gameCards[randum];
-	  PlayerPoints[j] = cardsPoint[randum]
+	  PlayerCards[j] = gameCards[8];
+	  PlayerPoints[j] = cardsPoint[8]
 	  IndexDealCard++
 	  TableCards[j] = gameCards[randum];
       }
@@ -1935,14 +1935,14 @@ function Draw1280x720(){
 	
 	  SetCardsX1280X720(DealerCards.length);
 	  for (i = 0; i < DealerCards.length; i++){
-	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, bHeight/7, 250, 310);
+	    DrawAllImg(DealerCards[i], ((bWidth))/2 + (100*i)-m_cardsX, bHeight/8, 250, 310);
 	  // console.log(DealerCards[i])
 	  }
 	  if (DealerCards.length == 1){
-	      DrawAllImg(BackCard, ((bWidth))/2 + (100*1)-m_cardsX, bHeight/7, 250, 310);
+	      DrawAllImg(BackCard, ((bWidth))/2 + (100*1)-m_cardsX, bHeight/8, 250, 310);
 	  }
 	  if (nPointDealer > 0)
-	  DrawText(nPointDealer, bWidth/2, GetImageH(DealerCards[0])+120, "50px arial", "center");
+	  DrawText(nPointDealer, bWidth/2, GetImageH(DealerCards[0])+100, "50px arial", "center");
 
 	  if (!isSplit){
 	    
