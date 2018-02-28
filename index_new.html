@@ -1,6 +1,3 @@
-
-<!-- project Andrei and Ivan -->
-
 <style>
 canvas {
 
@@ -139,6 +136,11 @@ var topBar = "img/topBar.png";
 var bHeight = window.innerHeight;
 var bWidth = window.innerWidth;
 
+var selectedCoin = "";
+var imageOffset = 25;
+
+var totalBet = 0;
+var credits = 10000;
 
 function startGame() {
 
@@ -181,6 +183,8 @@ function doMouseDown(event){
   
   console.log(c_x);
   console.log(c_y);
+  
+  SelectCoin(c_x, c_y);
 }
 
 
@@ -195,24 +199,49 @@ function Draw(){
     DrawText(bHeight, 100, 200, "20px arial", "center", "red");
     DrawText(bWidth, 100, 300, "20px arial", "center", "red");
     
+    DrawText(credits, 300, 125, "80px arial", "center", "white");
+    DrawText(totalBet, 720, 125, "80px arial", "center", "white");
+    
     DrawAllImg("img/masa.png", 0, bHeight-GetImageH("img/masa.png"), 0, 0);
     DrawAllImg("img/credit.png", 50, 20, 0, 0);
     DrawAllImg("img/bet.png", ((bWidth)-GetImageW("img/bet.png"))-50, 20, 0, 0);
     DrawAllImg("img/nadpis.png", 0, (bHeight/2)-GetImageH("img/nadpis.png")/2, 0, 0);
     
     DrawCoins();
-    
+    DrawSelectedCoin();
 }
 
 
 function DrawCoins(){
     for (var i = 0; i < ArrayofCoins.length; i++){
-        DrawAllImg(ArrayofCoins[i].img, 0, 0, 0, 0);
+        DrawAllImg(ArrayofCoins[i].img, 215*i, 1470, 0, 0);
     }
 }
 
+function SelectCoin(x, y)
+{
+     var dimH = 1470;
+     for (var i = 0; i < ArrayofCoins.length; i++)
+     {
+        var dimW = 215*i;
+        
+        if(x > dimW+imageOffset && x < dimW + GetImageW(ArrayofCoins[i].img) - imageOffset 
+            && y > dimH + imageOffset && y < dimH + GetImageH(ArrayofCoins[i].img) - imageOffset)
+        {
+            selectedCoin = ArrayofCoins[i].img;
+            credits -= parseInt(ArrayofCoins[i].sum);
+            totalBet += parseInt(ArrayofCoins[i].sum);
+        }
+     }
+}
 
-
+function DrawSelectedCoin()
+{
+    if(selectedCoin != "")
+    {
+        DrawAllImg(selectedCoin, 425, 1178, 0, 0 );
+    }
+}
 function DrawAllImg(img, x, y, scale_x, scale_y) {
         
     this.image = new Image();
@@ -277,6 +306,7 @@ function GetImageH(img){
     
     return this.image.height;
 }
+
 
 
 
