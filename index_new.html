@@ -1,0 +1,282 @@
+<style>
+canvas {
+
+   			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+			-webkit-transform: translateZ(0);
+			
+			-moz-transform: translateZ(0);
+			-ms-transform: translateZ(0);
+			-o-transform: translateZ(0);
+			transform: translateZ(0);
+}
+
+
+		html, body {
+			background: #000;
+			color: #fff;
+			margin: 0; 
+			padding: 0;
+			#overflow: hidden;
+			touch-action: none;
+			-ms-touch-action: none;
+			 -webkit-transform: rotate(0deg);    
+			transform: rotate(0deg);  
+			height: 100%;
+			width: 100%;
+		}
+		
+
+</style>
+<html><head>
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+</head>
+<body onload="startGame()" >
+
+
+
+
+<script>
+
+ArrayofCards = [
+
+  { card: "cards/c2.png",  point: "2" },
+  { card: "cards/c3.png",  point: "3" },
+  { card: "cards/c4.png",  point: "4" },
+  { card: "cards/c5.png",  point: "5" },
+  { card: "cards/c6.png",  point: "6" },
+  { card: "cards/c7.png",  point: "7" },
+  { card: "cards/c8.png",  point: "8" },
+  { card: "cards/c9.png",  point: "9" },
+  { card: "cards/c10.png", point: "10" },
+  { card: "cards/c1.png",  point: "11" },
+  { card: "cards/c11.png", point: "10" },
+  { card: "cards/c12.png", point: "10" },
+  { card: "cards/c13.png", point: "10" },
+  
+  { card: "cards/d2.png", point: "2" },
+  { card: "cards/d3.png", point: "3" },
+  { card: "cards/d4.png", point: "4" },
+  { card: "cards/d5.png", point: "5" },
+  { card: "cards/d6.png", point: "6" },
+  { card: "cards/d7.png", point: "7" },
+  { card: "cards/d8.png", point: "8" },
+  { card: "cards/d9.png", point: "9" },
+  { card: "cards/d10.png", point: "10" },
+  { card: "cards/d1.png", point: "11" },
+  { card: "cards/d11.png", point: "10" },
+  { card: "cards/d12.png", point: "10" },
+  { card: "cards/d13.png", point: "10" },
+  
+  { card: "cards/h2.png", point: "2" },
+  { card: "cards/h3.png", point: "3" },
+  { card: "cards/h4.png", point: "4" },
+  { card: "cards/h5.png", point: "5" },
+  { card: "cards/h6.png", point: "6" },
+  { card: "cards/h7.png", point: "7" },
+  { card: "cards/h8.png", point: "8" },
+  { card: "cards/h9.png", point: "9" },
+  { card: "cards/h10.png", point: "10" },
+  { card: "cards/h1.png", point: "11" },
+  { card: "cards/h11.png", point: "10" },
+  { card: "cards/h12.png", point: "10" },
+  { card: "cards/h13.png", point: "10" },
+
+  
+  { card: "cards/s2.png", point: "2" },
+  { card: "cards/s3.png", point: "3" },
+  { card: "cards/s4.png", point: "4" },
+  { card: "cards/s5.png", point: "5" },
+  { card: "cards/s6.png", point: "6" },
+  { card: "cards/s7.png", point: "7" },
+  { card: "cards/s8.png", point: "8" },
+  { card: "cards/s9.png", point: "9" },
+  { card: "cards/s10.png", point: "10" },
+  { card: "cards/s1.png", point: "11" },
+  { card: "cards/s11.png", point: "10" },
+  { card: "cards/s12.png", point: "10" },
+  { card: "cards/s13.png", point: "10" },
+]
+
+
+	ArrayofCoins = [
+
+	{ img: 'coin/1.png', sum: '1'},
+	{ img: 'coin/5.png', sum: '5'},
+	{ img: 'coin/10.png', sum: '10'},
+	{ img: 'coin/25.png', sum: '25'},
+	{ img: 'coin/100.png', sum: '100'},
+	]
+	
+	ArrayofButtons = [
+
+	{ img: 'img/hit.png'},
+	{ img: 'img/stand.png'},
+	{ img: 'img/surrender.png'},
+	{ img: 'img/double.png'},
+	{ img: 'img/deal.png', img_of: 'img/deal_of.png'},
+	{ img: 'img/split.png'},
+
+	]
+
+var BackCard = "cards/back-card.png";
+var Bgr = "img/Blackjack1.png";
+var Frame = "img/Frame.png";
+var shoe = "img/shoe.png";
+var minMaxBet = "img/bet.png";
+var rules = "img/rules.png";
+var coins = "img/coins.png";
+var bar = "img/bar.png";
+var canselBet = "img/x.png";
+var topBar = "img/topBar.png";
+
+
+var bHeight = window.innerHeight;
+var bWidth = window.innerWidth;
+
+
+function startGame() {
+
+   
+    bHeight = 1920;
+    bWidth = 1080;
+
+          
+
+  
+    canvas = document.createElement("canvas");
+    canvas.width = bHeight;
+    canvas.height = bHeight;
+    this.context = canvas.getContext("2d");
+    //loadAll52Cards();
+  
+    GameArea.start();
+}
+
+
+
+
+var GameArea = {
+    
+    start : function() {
+	canvas.addEventListener("click", doMouseDown, false);
+        document.body.insertBefore(canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 1);
+    },
+    clear : function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    },
+}
+
+
+
+function doMouseDown(event){
+  c_x = event.pageX;
+  c_y = event.pageY;
+  
+  console.log(c_x);
+  console.log(c_y);
+}
+
+
+function updateGameArea() {
+    Draw();
+}
+
+
+function Draw(){
+
+    DrawAllImg(Bgr, 0, 0, bWidth, bHeight);
+    DrawText(bHeight, 100, 200, "20px arial", "center", "red");
+    DrawText(bWidth, 100, 300, "20px arial", "center", "red");
+    
+    DrawAllImg("img/masa.png", 0, bHeight-GetImageH("img/masa.png"), 0, 0);
+    DrawAllImg("img/credit.png", 50, 20, 0, 0);
+    DrawAllImg("img/bet.png", ((bWidth)-GetImageW("img/bet.png"))-50, 20, 0, 0);
+    DrawAllImg("img/nadpis.png", 0, (bHeight/2)-GetImageH("img/nadpis.png")/2, 0, 0);
+    
+    DrawCoins();
+    
+}
+
+
+function DrawCoins(){
+    for (var i = 0; i < ArrayofCoins.length; i++){
+        DrawAllImg(ArrayofCoins[i].img, 0, 0, 0, 0);
+    }
+}
+
+
+
+function DrawAllImg(img, x, y, scale_x, scale_y) {
+        
+    this.image = new Image();
+    this.image.src = img;   
+    this.x = x;
+    this.y = y;
+    if (scale_x == 0 && scale_y == 0){
+      scale_x = this.image.width;
+      scale_y = this.image.height;
+    }
+
+    ctx = context;
+    ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height,x,y,scale_x,scale_y);
+        
+}
+
+
+function DrawText(s_Text, n_x, n_y, font, align, color){
+    
+    var Text = s_Text;
+
+    ctx = context;
+    ctx.font = font;
+    var getSizeInPixel = ctx.measureText(Text).width;
+    var X = n_x;
+    var Y = n_y;
+    
+    switch (align){
+      case 'left':
+	
+      break;
+      
+      case 'center':
+	X -= (getSizeInPixel/2);
+      break;
+      
+      case 'right':
+	X -= getSizeInPixel;
+      break;
+    
+    }
+    if (color){
+      ctx.fillStyle = color;
+    }else{
+      ctx.fillStyle = 'white';
+    }
+    return ctx.fillText(Text, X, Y);
+}
+
+function GetImageW(img){
+
+    this.image = new Image();
+    this.image.src = img;   
+    
+    return this.image.width;
+}
+
+function GetImageH(img){
+
+    this.image = new Image();
+    this.image.src = img;   
+    
+    return this.image.height;
+}
+
+
+
+</script>
+
+</body></html>
