@@ -112,11 +112,11 @@ ArrayofCards = [
 	
 	ArrayofButtons = [
 
+    { img: 'img/deal.png'},
 	{ img: 'img/hit.png'},
 	{ img: 'img/stand.png'},
 	{ img: 'img/surrender.png'},
 	{ img: 'img/double.png'},
-	{ img: 'img/deal.png'},
 	{ img: 'img/split.png'},
 
 	]
@@ -142,13 +142,28 @@ var imageOffset = 25;
 var totalBet = 0;
 var credits = 10000;
 
+
+var state = [
+'bet', 
+'deal', 
+'stand', 
+'StandorHit',
+'win', 
+'lost',
+'hit',
+'double',
+];
+var STATE;
+
+
+
 function startGame() {
 
    
     bHeight = 1920;
     bWidth = 1080;
 
-          
+    STATE = "bet";
 
   
     canvas = document.createElement("canvas");
@@ -209,6 +224,7 @@ function Draw(){
     
     DrawCoins();
     DrawSelectedCoin();
+    DrawButtons();
 }
 
 
@@ -236,6 +252,7 @@ function SelectCoin(x, y)
             selectedCoin = ArrayofCoins[i].img;
             credits -= parseInt(ArrayofCoins[i].sum);
             totalBet += parseInt(ArrayofCoins[i].sum);
+            STATE = "deal";
         }
      }
 }
@@ -247,6 +264,18 @@ function DrawSelectedCoin()
         DrawAllImg(selectedCoin, (bWidth/2)-GetImageW(selectedCoin)/2, (bHeight/2)-GetImageH(selectedCoin)/2, 0, 0 );
     }
 }
+
+
+function DrawButtons(){
+
+    if (STATE == "deal"){
+    
+            DrawAllImg(ArrayofButtons[0].img, (bWidth/2)-GetImageW(ArrayofButtons[0].img)/2, (bHeight)-GetImageH(ArrayofButtons[0].img), 0, 0);
+    
+    }
+
+}
+
 function DrawAllImg(img, x, y, scale_x, scale_y) {
         
     this.image = new Image();
