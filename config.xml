@@ -8,7 +8,7 @@
       Andrei Terziev
   </author>
   <content src="index.html" />
-   <preference name="EnableViewportScale" value="true" />
+   <preference name="EnableViewportScale" value="false" />
    <!-- <preference name="StatusBarOverlaysWebView" value="true" /> -->
   <plugin name="cordova-plugin-whitelist" spec="1" />
   <preference name="fullscreen" value="true" />
