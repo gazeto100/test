@@ -27,7 +27,6 @@ canvas {
 			width: 100%;
 		}
 		
-
 </style>
 <html><head>
 
@@ -160,19 +159,24 @@ var STATE;
 function startGame() {
 
    
-    bHeight = 1920;
-    bWidth = 1080;
+
 
     STATE = "bet";
 
   
     canvas = document.createElement("canvas");
-    canvas.width = bHeight;
+    
+    bHeight = 1920;
+    bWidth = 1080;
+    canvas.width = bWidth;
     canvas.height = bHeight;
     this.context = canvas.getContext("2d");
+    
     //loadAll52Cards();
-  
+
+   
     GameArea.start();
+    
 }
 
 
@@ -184,6 +188,10 @@ var GameArea = {
 	canvas.addEventListener("click", doMouseDown, false);
         document.body.insertBefore(canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 1);
+        window.addEventListener("resize", OnResizeCalled, false);
+
+
+        
     },
     clear : function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -191,14 +199,37 @@ var GameArea = {
 }
 
 
+function OnResizeCalled() {
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    
+    var gameWidth = window.innerWidth;
+    var gameHeight = window.innerHeight;
+    
+
+    var scaleToFitX = gameWidth / 1920;
+    var scaleToFitY = gameHeight / 1080;
+
+    var currentScreenRatio = gameWidth / gameHeight;
+    var optimalRatio = Math.min(scaleToFitX, scaleToFitY);
+    
+   
+}
+
 
 function doMouseDown(event){
   c_x = event.pageX;
   c_y = event.pageY;
   
+  
+  
   console.log(c_x);
   console.log(c_y);
   
+
+  
+    console.log(c_x);
+  console.log(c_y);
   SelectCoin(c_x, c_y);
 }
 
@@ -241,10 +272,17 @@ function DrawCoins(){
 
 function SelectCoin(x, y)
 {
-     var dimH = 1470;
+    var gameWidth = window.innerWidth;
+    var gameHeight = window.innerHeight;
+
+
+    var scaleToFitX = gameWidth / 1920;
+    var scaleToFitY = gameHeight / 1080;
+    
+     var dimH = 1470/1080;
      for (var i = 0; i < ArrayofCoins.length; i++)
      {
-        var dimW = 215*i;
+        var dimW = 215*i*scaleToFitX;
         
         if(x > dimW+imageOffset && x < dimW + GetImageW(ArrayofCoins[i].img) - imageOffset 
             && y > dimH + imageOffset && y < dimH + GetImageH(ArrayofCoins[i].img) - imageOffset)
@@ -292,6 +330,22 @@ function DrawAllImg(img, x, y, scale_x, scale_y) {
         
 }
 
+function drawImageScaled(img) {
+
+    this.image = new Image();
+    this.image.src = img; 
+       ctx = context;
+
+   var canvas = context.canvas ;
+   var hRatio = canvas.width  / this.image.width    ;
+   var vRatio =  canvas.height / this.image.height  ;
+   var ratio  = Math.min ( hRatio, vRatio );
+   var centerShift_x = ( canvas.width - this.image.width*ratio ) / 2;
+   var centerShift_y = ( canvas.height - this.image.height*ratio ) / 2;  
+   ctx.clearRect(0,0,canvas.width, canvas.height);
+   ctx.drawImage(this.image, 0,0, this.image.width, this.image.height,
+                      centerShift_x,centerShift_y,this.image.width*ratio, this.image.height*ratio);  
+}
 
 function DrawText(s_Text, n_x, n_y, font, align, color){
     
