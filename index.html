@@ -279,10 +279,11 @@ function SelectCoin(x, y)
     var scaleToFitX = gameWidth / 1920;
     var scaleToFitY = gameHeight / 1080;
     
-     var dimH = 1470/1080;
+    imageOffset *= scaleToFitX;
+     var dimH = gameHeight - (GetScaledImageH(ArrayofCoins[0].img)*1.5);
      for (var i = 0; i < ArrayofCoins.length; i++)
      {
-        var dimW = 215*i*scaleToFitX;
+        var dimW = ((GetScaledImageW(ArrayofCoins[i].img)*2))*i + imageOffset;
         
         if(x > dimW+imageOffset && x < dimW + GetImageW(ArrayofCoins[i].img) - imageOffset 
             && y > dimH + imageOffset && y < dimH + GetImageH(ArrayofCoins[i].img) - imageOffset)
@@ -395,8 +396,35 @@ function GetImageH(img){
     return this.image.height;
 }
 
+function GetScaledImageH(img){
+
+    var gameWidth = window.innerWidth;
+    var gameHeight = window.innerHeight;
 
 
+    var scaleToFitX = gameWidth / 1920;
+    var scaleToFitY = gameHeight / 1080;
+    
+    this.image = new Image();
+    this.image.src = img;   
+    
+    return this.image.height*scaleToFitY;
+}
+
+function GetScaledImageW(img){
+
+    var gameWidth = window.innerWidth;
+    var gameHeight = window.innerHeight;
+
+
+    var scaleToFitX = gameWidth / 1920;
+    var scaleToFitY = gameHeight / 1080;
+    
+    this.image = new Image();
+    this.image.src = img;   
+    
+    return this.image.width*scaleToFitX;
+}
 
 </script>
 
