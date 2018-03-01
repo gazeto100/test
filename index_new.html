@@ -116,7 +116,7 @@ ArrayofCards = [
 	{ img: 'img/stand.png'},
 	{ img: 'img/surrender.png'},
 	{ img: 'img/double.png'},
-	{ img: 'img/deal.png', img_of: 'img/deal_of.png'},
+	{ img: 'img/deal.png'},
 	{ img: 'img/split.png'},
 
 	]
@@ -244,7 +244,7 @@ function DrawSelectedCoin()
 {
     if(selectedCoin != "")
     {
-        DrawAllImg(selectedCoin, 425, 1178, 0, 0 );
+        DrawAllImg(selectedCoin, (bWidth/2)-GetImageW(selectedCoin)/2, (bHeight/2)-GetImageH(selectedCoin)/2, 0, 0 );
     }
 }
 function DrawAllImg(img, x, y, scale_x, scale_y) {
