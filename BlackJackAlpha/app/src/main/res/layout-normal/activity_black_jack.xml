@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blackjack">
+    <!--<com.google.android.flexbox.flexboxlayout-->
+    <!--android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="16dp">-->
+    <ImageButton
+        android:id="@+id/ib_split"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ib_double"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/split"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_hit"
+        app:layout_constraintEnd_toStartOf="@+id/ib_hit"
+        app:layout_constraintTop_toTopOf="@+id/ib_hit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ib_hit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ib_split"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/hit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_stand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ib_double"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/ib_deal"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/stand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ib_double" />
+
+    <ImageButton
+        android:id="@+id/ib_deal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ib_double"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/deal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ib_split" />
+
+    <ImageButton
+        android:id="@+id/ib_double"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_toStartOf="@+id/ib_deal"
+        android:background="@android:color/transparent"
+        android:src="@drawable/doubl"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_hit"
+        app:layout_constraintStart_toEndOf="@+id/ib_hit"
+        app:layout_constraintTop_toTopOf="@+id/ib_hit"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_coin1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:src="@drawable/c1" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_coin5"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignTop="@+id/ib_coin1"-->
+    <!--android:layout_toEndOf="@+id/ib_coin1"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/c5" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_coin10"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignTop="@+id/ib_coin5"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/c10" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_coin25"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignTop="@+id/ib_coin10"-->
+    <!--android:layout_toEndOf="@+id/ib_coin10"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/c25" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/ib_coin100"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_alignTop="@+id/ib_coin25"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/c100" />-->
+    <!--</com.google.android.flexbox.flexboxlayout>-->
+</android.support.constraint.ConstraintLayout>
+
