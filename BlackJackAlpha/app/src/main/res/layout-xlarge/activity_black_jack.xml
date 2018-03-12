@@ -92,54 +92,73 @@
         app:layout_constraintTop_toTopOf="@+id/ib_hit"
         app:layout_constraintVertical_bias="1.0" />
 
-    <!--<ImageButton-->
-    <!--android:id="@+id/ib_coin1"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_alignParentStart="true"-->
-    <!--android:background="@android:color/transparent"-->
-    <!--android:src="@drawable/c1" />-->
+    <ImageButton
+        android:id="@+id/ib_coin1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="30dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/c1"
+        app:layout_constraintBottom_toTopOf="@+id/ib_deal"
+        app:layout_constraintEnd_toStartOf="@+id/ib_coin5" />
 
-    <!--<ImageButton-->
-    <!--android:id="@+id/ib_coin5"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignTop="@+id/ib_coin1"-->
-    <!--android:layout_toEndOf="@+id/ib_coin1"-->
-    <!--android:background="@android:color/transparent"-->
-    <!--android:scaleType="fitXY"-->
-    <!--android:src="@drawable/c5" />-->
+    <ImageButton
+        android:id="@+id/ib_coin5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ib_coin1"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="32dp"
+        android:layout_toEndOf="@+id/ib_coin1"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/c5"
+        app:layout_constraintBottom_toTopOf="@+id/ib_split"
+        app:layout_constraintEnd_toStartOf="@+id/ib_coin10" />
 
-    <!--<ImageButton-->
-    <!--android:id="@+id/ib_coin10"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignTop="@+id/ib_coin5"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:background="@android:color/transparent"-->
-    <!--android:scaleType="fitXY"-->
-    <!--android:src="@drawable/c10" />-->
+    <ImageButton
+        android:id="@+id/ib_coin10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ib_coin5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/c10"
+        app:layout_constraintBottom_toTopOf="@+id/ib_hit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
-    <!--<ImageButton-->
-    <!--android:id="@+id/ib_coin25"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignTop="@+id/ib_coin10"-->
-    <!--android:layout_toEndOf="@+id/ib_coin10"-->
-    <!--android:background="@android:color/transparent"-->
-    <!--android:scaleType="fitXY"-->
-    <!--android:src="@drawable/c25" />-->
+    <ImageButton
+        android:id="@+id/ib_coin25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ib_coin10"
+        android:layout_marginBottom="19dp"
+        android:layout_marginStart="32dp"
+        android:layout_toEndOf="@+id/ib_coin10"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/c25"
+        app:layout_constraintBottom_toTopOf="@+id/ib_double"
+        app:layout_constraintStart_toEndOf="@+id/ib_coin10" />
 
-    <!--<ImageButton-->
-    <!--android:id="@+id/ib_coin100"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentEnd="true"-->
-    <!--android:layout_alignTop="@+id/ib_coin25"-->
-    <!--android:background="@android:color/transparent"-->
-    <!--android:scaleType="fitXY"-->
-    <!--android:src="@drawable/c100" />-->
-    <!--</com.google.android.flexbox.flexboxlayout>-->
+    <ImageButton
+        android:id="@+id/ib_coin100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ib_coin25"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="32dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/c100"
+        app:layout_constraintBottom_toTopOf="@+id/ib_stand"
+        app:layout_constraintStart_toEndOf="@+id/ib_coin25" />
 </android.support.constraint.ConstraintLayout>
 
