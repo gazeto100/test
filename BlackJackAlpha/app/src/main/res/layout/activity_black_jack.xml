@@ -6,157 +6,214 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/blackjack">
-    <!--<com.google.android.flexbox.flexboxlayout-->
-    <!--android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_margin="16dp">-->
-    <ImageButton
-        android:id="@+id/ib_split"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ib_double"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="32dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/split"
-        app:layout_constraintBottom_toBottomOf="@+id/ib_hit"
-        app:layout_constraintEnd_toStartOf="@+id/ib_hit"
-        app:layout_constraintTop_toTopOf="@+id/ib_hit"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/ib_hit"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="102dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="113dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_coin_btns"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_action_btns"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/coin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="32dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/coin5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/c1" />
+
+        <ImageButton
+            android:id="@+id/coin5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="26dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="2dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/coin10"
+            app:layout_constraintStart_toEndOf="@+id/coin1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/c5" />
+
+        <ImageButton
+            android:id="@+id/coin10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/c10" />
+
+        <ImageButton
+            android:id="@+id/coin25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="2dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/coin10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/c25" />
+
+        <ImageButton
+            android:id="@+id/coin100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/coin25"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/c100" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_action_btns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/ib_split"
-        android:layout_marginBottom="6dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/hit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
-        android:id="@+id/ib_stand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ib_double"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_toEndOf="@+id/ib_deal"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/stand"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ib_double" />
+        <ImageButton
+            android:id="@+id/ib_deal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/deal"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-    <ImageButton
-        android:id="@+id/ib_deal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ib_double"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginLeft="16dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/deal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ib_split"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <ImageButton
+            android:id="@+id/ib_split"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/split"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/ib_double"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_toStartOf="@+id/ib_deal"
-        android:background="@android:color/transparent"
-        android:src="@drawable/doubl"
-        app:layout_constraintBottom_toBottomOf="@+id/ib_hit"
-        app:layout_constraintStart_toEndOf="@+id/ib_hit"
-        app:layout_constraintTop_toTopOf="@+id/ib_hit"
-        app:layout_constraintVertical_bias="1.0" />
+        <ImageButton
+            android:id="@+id/ib_hit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="32dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/hit"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ib_deal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75" />
 
-    <ImageButton
-        android:id="@+id/ib_coin1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="32dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/c1"
-        app:layout_constraintBottom_toTopOf="@+id/ib_deal"
-        app:layout_constraintEnd_toStartOf="@+id/ib_coin5" />
+        <ImageButton
+            android:id="@+id/ib_stand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="28dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/stand"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ib_deal" />
 
-    <ImageButton
-        android:id="@+id/ib_coin5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ib_coin1"
-        android:layout_marginBottom="21dp"
-        android:layout_marginEnd="32dp"
-        android:layout_toEndOf="@+id/ib_coin1"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/c5"
-        app:layout_constraintBottom_toTopOf="@+id/ib_split"
-        app:layout_constraintEnd_toStartOf="@+id/ib_coin10" />
 
-    <ImageButton
-        android:id="@+id/ib_coin10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ib_coin5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/c10"
-        app:layout_constraintBottom_toTopOf="@+id/ib_hit"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <ImageButton
+            android:id="@+id/ib_double"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_toStartOf="@+id/ib_hit"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/doubl"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ib_hit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-    <ImageButton
-        android:id="@+id/ib_coin25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ib_coin10"
-        android:layout_marginBottom="21dp"
-        android:layout_marginStart="32dp"
-        android:layout_toEndOf="@+id/ib_coin10"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/c25"
-        app:layout_constraintBottom_toTopOf="@+id/ib_double"
-        app:layout_constraintStart_toEndOf="@+id/ib_coin10" />
-
-    <ImageButton
-        android:id="@+id/ib_coin100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/ib_coin25"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="32dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/c100"
-        app:layout_constraintBottom_toTopOf="@+id/ib_stand"
-        app:layout_constraintStart_toEndOf="@+id/ib_coin25" />
+        <ImageButton
+            android:id="@+id/ib_surrender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/surrender"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ib_stand" />
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
 
