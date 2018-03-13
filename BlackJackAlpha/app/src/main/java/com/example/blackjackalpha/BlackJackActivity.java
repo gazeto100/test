@@ -15,7 +15,7 @@ public class BlackJackActivity extends AppCompatActivity implements IBetButtons,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_black_jack);
-
+        setCoinBtnsVisibility(View.VISIBLE);
         CreateCoinBtnsOnClickListener();
         createActnBtnOnClickListener();
 
@@ -152,6 +152,17 @@ public class BlackJackActivity extends AppCompatActivity implements IBetButtons,
         {
             ImageButton btn = (ImageButton) cl.getChildAt(i);
                 btn.setVisibility(View.VISIBLE);
+        }
+        setCoinBtnsVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void setCoinBtnsVisibility(int visibility) {
+        ConstraintLayout cl = this.findViewById(R.id.cl_coin_btns);
+        for(int i = 0; i < cl.getChildCount(); i++)
+        {
+            ImageButton btn = (ImageButton) cl.getChildAt(i);
+            btn.setVisibility(visibility);
         }
     }
 }

@@ -11,4 +11,5 @@ public interface IBetButtons {
     public void setCoinBtnActivity(int crBet);
     public void CreateCoinBtnsOnClickListener();
     public void SelectCoinBtnActivity(int index);
+    public void setCoinBtnsVisibility(int visibility);
 }
