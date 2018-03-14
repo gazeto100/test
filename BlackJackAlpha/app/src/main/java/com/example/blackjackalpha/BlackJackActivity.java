@@ -16,6 +16,7 @@ public class BlackJackActivity extends AppCompatActivity {
     BetButtons bet_btns;
     ActionButtons act_btns;
 
+    MainButtonAbility main_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,8 @@ public class BlackJackActivity extends AppCompatActivity {
         bet_btns.setVisibility(View.VISIBLE);
 
         act_btns = new ActionButtons(this);
+
+//        main_btn = new MainButtonAbility(this);
 
         CreateCoinBtnsOnClickListener();
         createActnBtnOnClickListener();
@@ -44,6 +47,7 @@ public class BlackJackActivity extends AppCompatActivity {
             final int idx = i;
             btn.setOnClickListener(view -> {
                 bet_btns.selectAbility(idx);
+//                main_btn.selectBetAbility(idx);
             });
         }
     }

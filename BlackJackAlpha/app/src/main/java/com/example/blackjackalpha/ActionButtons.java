@@ -12,14 +12,12 @@ import com.example.blackjackalpha.BetButtons;
  * Created by default on 3/14/18.
  */
 
-public class ActionButtons implements IButtonsAbility {
+public class ActionButtons extends FieldsProperties implements IButtonsAbility {
 
     private Context context;
     public ActionButtons (Context context) {
         this.context = context;
     }
-
-    BlackJackActivity bj = new BlackJackActivity();
 
     private void setBetBtnsVisibility(){
         AppCompatActivity yourActivity = (AppCompatActivity) context;
@@ -58,10 +56,10 @@ public class ActionButtons implements IButtonsAbility {
         {
             case 0:{
                 createDealBtnAbility();
-                bj.nBet = 0;
+                nBet = 0;
                 AppCompatActivity yourActivity = (AppCompatActivity) context;
                 TextView tvBet = yourActivity.findViewById(R.id.tv_bet);
-                tvBet.setText(Integer.toString(bj.nBet));
+                tvBet.setText(Integer.toString(nBet));
             }
             break;
             case 1:
@@ -88,7 +86,7 @@ public class ActionButtons implements IButtonsAbility {
         for(int i = 1; i < cl.getChildCount(); i++)
         {
             ImageButton btn = (ImageButton) cl.getChildAt(i);
-            if(bj.nBet != 0)
+            if(nBet != 0)
                 btn.setVisibility(View.VISIBLE);
             else
                 btn.setVisibility(View.INVISIBLE);

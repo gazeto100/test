@@ -10,16 +10,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.blackjackalpha.R;
 
-public class BetButtons  implements IButtonsAbility {
+public class BetButtons extends FieldsProperties implements IButtonsAbility {
     private Context context;
     public BetButtons (Context context) {
         this.context = context;
     }
-    BlackJackActivity bj = new BlackJackActivity();
-
 
     public void setHitActnBtnVisibility() {
-        if(bj.nBet > 0)
+        if(nBet > 0)
         {
             AppCompatActivity yourActivity = (AppCompatActivity) context;
             ConstraintLayout cl = yourActivity.findViewById(R.id.cl_action_btns);
@@ -67,13 +65,13 @@ public class BetButtons  implements IButtonsAbility {
 
     @Override
     public void setAbility(int crBet) {
-        bj.nCredit -= crBet;
-        bj.nBet += crBet;
+        nCredit -= crBet;
+        nBet += crBet;
         AppCompatActivity yourActivity = (AppCompatActivity) context;
         TextView tvCredit = yourActivity.findViewById(R.id.tv_credit);
-        tvCredit.setText(Integer.toString(bj.nCredit));
+        tvCredit.setText(Integer.toString(nCredit));
 
         TextView tvBet = yourActivity.findViewById(R.id.tv_bet);
-        tvBet.setText(Integer.toString(bj.nBet));
+        tvBet.setText(Integer.toString(nBet));
     }
 }
