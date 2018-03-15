@@ -3,12 +3,16 @@ package com.example.blackjackalpha;
 
 import android.app.PendingIntent;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.blackjackalpha.R;
+
 
 public class BetButtons extends FieldsProperties implements IButtonsAbility {
     private Context context;
@@ -73,5 +77,9 @@ public class BetButtons extends FieldsProperties implements IButtonsAbility {
 
         TextView tvBet = yourActivity.findViewById(R.id.tv_bet);
         tvBet.setText(Integer.toString(nBet));
+
+        ImageView iv = yourActivity.findViewById(R.id.iv_dealer_first);
+        Drawable img = yourActivity.getDrawable(R.drawable.card1);
+        iv.setImageDrawable(img);
     }
 }

@@ -1,11 +1,14 @@
 package com.example.blackjackalpha;
 
+import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 
 public class BlackJackActivity extends AppCompatActivity {
 
@@ -48,10 +51,11 @@ public class BlackJackActivity extends AppCompatActivity {
             btn.setOnClickListener(view -> {
                 bet_btns.selectAbility(idx);
 //                main_btn.selectBetAbility(idx);
+
+
             });
         }
     }
-
 
     public void createActnBtnOnClickListener() {
         ConstraintLayout cl_actn_btns = this.findViewById(R.id.cl_action_btns);
@@ -64,7 +68,6 @@ public class BlackJackActivity extends AppCompatActivity {
             });
         }
     }
-
 
 
 }
