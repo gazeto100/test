@@ -119,7 +119,7 @@ var state = {
 var Current_Sate;
 var Old_Sate;
 
-var Credit = 10000;
+var Credit = 1000;
 
 var credit_x = 0, credit_y = 0;
 
@@ -131,6 +131,10 @@ var selectCoin = -1;
 
 var coinCordsCenterX = 0;
 var coinCordsCenterY = 0;
+
+
+var playerCards = [];
+var dealerCards = [];
 
 function GetReSizeImg(h, w){
 
@@ -242,14 +246,13 @@ function GetReSizeImg(h, w){
 
 function startGame() {
     
-    bHeight = 1920;
-    bWidth = 1080;
+   
     
-    
-    
-    window.innerHeight = bHeight;
-    window.innerWidth = bWidth;
-    
+    bHeight = window.innerHeight;
+    bWidth = window.innerWidth;
+
+    //bHeight = 1920;
+    //bWidth = 1080;
     
     coinCordsCenterX = bWidth/2;
     coinCordsCenterY = bHeight/2;
@@ -306,10 +309,17 @@ function doMouseDown(event){
 
 
 function Deal(){
-
     
-
-
+    
+    randum = Math.floor((Math.random() * ArrayofCards.length));   
+    
+    ArrayofCards.splice(randum, 0);
+    console.log(randum);
+    
+    for (i = 0; i < ArrayofCards.length; i++){
+    
+        console.log(ArrayofCards[i]);
+    }
 }
 
 function Draw(){
@@ -351,12 +361,17 @@ function Draw(){
     
         for (i = 0; i < ArrayofCoins.length; i++){
     
-        if (selectCoin == i){
-            DrawAllImg(ArrayofCoins[i].img, ArrayofCoins[i].x, ArrayofCoins[i].y-50, ArrayofCoins[i].w, ArrayofCoins[i].h);
-        }else{
-            DrawAllImg(ArrayofCoins[i].img, ArrayofCoins[i].x, ArrayofCoins[i].y, ArrayofCoins[i].w, ArrayofCoins[i].h);
+            if (selectCoin == i){
+                DrawAllImg(ArrayofCoins[i].img, ArrayofCoins[i].x, ArrayofCoins[i].y-50, ArrayofCoins[i].w, ArrayofCoins[i].h);
+            }else{
+                DrawAllImg(ArrayofCoins[i].img, ArrayofCoins[i].x, ArrayofCoins[i].y, ArrayofCoins[i].w, ArrayofCoins[i].h);
+            }
         }
-    }
+        
+        for (i = 0; i < choiseCoin.length; i++){
+            DrawAllImg(ArrayofCoins[choiseCoin[i]].img, coinCordsCenterX-GetImageW(ArrayofCoins[choiseCoin[i]].img)/2, coinCordsCenterY, ArrayofCoins[choiseCoin[i]].w, ArrayofCoins[choiseCoin[i]].h);
+        }
+        
     
     DrawText(Credit, credit_x, credit_y, sriftSize+"px arial", "left");
  
