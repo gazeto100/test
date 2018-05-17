@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -21,24 +22,33 @@ public class addSuma extends AppCompatActivity {
 
     ListView listView;
     Button open;
-    TextView cost;
+    Button btnAddData;
+    Databasehepler myDb;
+
+    String strDate;
+    String Data;
+    String getItem;
+    EditText editSuma, editOther;
+    TextView editWhat;
+    TextView textData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_suma);
-
-        String[] values = new String[] { "Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
+        myDb = new Databasehepler(this);
 
         open = (Button) findViewById(R.id.open);
-        cost = (TextView) findViewById(R.id.etCost);
+        btnAddData = (Button) findViewById(R.id.add);
+
+        editSuma = (EditText) findViewById(R.id.suma);
+        editWhat = (TextView) findViewById(R.id.etCost);
+        editOther = (EditText) findViewById(R.id.opisanie);
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
+        strDate = mdformat.format(calendar.getTime());
+        textData = (TextView) findViewById(R.id.dataview);
+        textData.setText(strDate);
 
         open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +60,8 @@ public class addSuma extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         Toast.makeText(getApplicationContext(), "" + item.getTitle(), Toast.LENGTH_LONG).show();
-                        cost.setText("Разход за " + item.getTitle());
+                        editWhat.setText("Разход за " + item.getTitle());
+                        getItem = item.getTitle().toString();
                         return true;
                     }
                 });
@@ -58,12 +69,23 @@ public class addSuma extends AppCompatActivity {
             }
         });
 
+        AddData();
+    }
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("dd / MM / yyyy ");
-        String strDate = mdformat.format(calendar.getTime());
-        TextView textView = (TextView) findViewById(R.id.dataview);
-        textView.setText(strDate);
+    public void AddData(){
+        btnAddData.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean isInserted = myDb.insertData(textData.getText().toString(), editSuma.getText().toString(), getItem, editOther.getText().toString());
 
+                        if(isInserted == true){
+                            Toast.makeText(addSuma.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                        }else {
+                            Toast.makeText(addSuma.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
     }
 }

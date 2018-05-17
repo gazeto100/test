@@ -7,7 +7,7 @@
     tools:context="com.example.adefault.table.addSuma">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/records"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
@@ -51,20 +51,21 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
-        android:layout_height="172dp"
+        android:layout_height="227dp"
         android:layout_marginTop="104dp"
-        android:background="#f5f4f4"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="85dp">
 
             <TextView
                 android:id="@+id/etCost"
-                android:layout_width="215dp"
+                android:layout_width="218dp"
+                android:layout_height="48dp"
                 android:text="Разход за"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="18sp" />
@@ -80,14 +81,12 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="82dp">
 
             <EditText
-                android:id="@+id/editText4"
-                android:layout_width="137dp"
-                android:layout_height="62dp"
-                android:drawableBottom="@android:color/holo_blue_bright"
-                android:drawableLeft="@android:color/holo_blue_bright"
+                android:id="@+id/suma"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:selectAllOnFocus="false"
@@ -107,10 +106,25 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </TableLayout>
+
+    <EditText
+        android:id="@+id/opisanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:drawableLeft="@drawable/paint"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Друго описание"
+        app:layout_constraintBottom_toTopOf="@+id/opisanie"
+        tools:layout_editor_absoluteX="16dp" />
 
 </android.support.constraint.ConstraintLayout>

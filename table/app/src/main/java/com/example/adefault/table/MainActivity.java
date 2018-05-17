@@ -16,22 +16,29 @@ public class MainActivity extends AppCompatActivity {
 
     TableLayout table;
     TableRow tr;
-
-    Button addCost;
+    Databasehepler myDb;
+    Button addCost, accounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        myDb = new Databasehepler(this);
 
         addCost = (Button)findViewById(R.id.cost);
-
+        accounts = (Button) findViewById(R.id.accounts);
 
         addCost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity();
+            }
+        });
+
+        accounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAccountsActivity();;
             }
         });
 
@@ -55,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openActivity(){
         Intent intent = new Intent(this, addSuma.class);
+        startActivity(intent);
+    }
+
+    public void openAccountsActivity(){
+        Intent intent = new Intent(this, accounts.class);
         startActivity(intent);
     }
 }
