@@ -118,7 +118,8 @@ public class accounts extends AppCompatActivity {
                 v.setBackgroundColor(Color.GRAY);
                 String testString = Integer.toString(id);
                 Integer deleteRow = myDb.deleteData(testString);
-                myDb.onUpgrade(myDb, 1, 1);
+                //myDb.onUpgrade(myDb, 1, 1);
+
                 Toast.makeText(accounts.this, "Row clicked: " + v.getId(), Toast.LENGTH_LONG).show();
             }
         });
