@@ -39,9 +39,9 @@ public class accounts extends AppCompatActivity {
 
         for (String c : headerText) {
             TextView tv = new TextView(this);
-            tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                    TableRow.LayoutParams.WRAP_CONTENT));
-            tv.setGravity(Gravity.CENTER);
+//            tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+//                    TableRow.LayoutParams.WRAP_CONTENT));
+//            tv.setGravity(Gravity.CENTER);
             tv.setTextSize(18);
             tv.setPadding(20, 5, 20, 5);
             tv.setText(c);
@@ -59,28 +59,39 @@ public class accounts extends AppCompatActivity {
 
         if(cursor.getCount() >0)
         {
+            int count = 0;
             while (cursor.moveToNext()) {
+
+                int id = cursor.getInt(cursor.getColumnIndex("ID"));
                 String data= cursor.getString(cursor.getColumnIndex("DATA"));
                 String suma= cursor.getString(cursor.getColumnIndex("SUMA"));
                 String what= cursor.getString(cursor.getColumnIndex("WHAT"));
                 //String other= cursor.getString(cursor.getColumnIndex("OTHER"));
 
                 row = new TableRow(this);
-                row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT));
-                String[] colText={data+"",suma,what};
+
+                if (count %2 == 0){
+                    row.setBackgroundColor(Color.WHITE);
+                }else {
+
+                }
+
+//                row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+//                        TableLayout.LayoutParams.MATCH_PARENT));
+                String[] colText={data,suma,what};
                 for(String text:colText) {
                     TextView tv = new TextView(this);
-                    tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                            TableRow.LayoutParams.WRAP_CONTENT));
-                    tv.setGravity(Gravity.CENTER);
-                    tv.setTextSize(16);
-                    tv.setPadding(5, 5, 5, 5);
+//                    tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+//                            TableRow.LayoutParams.MATCH_PARENT));
+//                    tv.setGravity(Gravity.CENTER);
+                    tv.setTextSize(14);
+                    tv.setPadding(5, 10, 5, 5);
                     tv.setText(text);
                     row.addView(tv);
                 }
                 showTable.addView(row);
-                GetRow();
+                GetRow(id);
+                count++;
             }
         }
         db.setTransactionSuccessful();
@@ -100,11 +111,14 @@ public class accounts extends AppCompatActivity {
     }
 
 
-    public void GetRow(){
+    public void GetRow(final int id){
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.setBackgroundColor(Color.GRAY);
+                String testString = Integer.toString(id);
+                Integer deleteRow = myDb.deleteData(testString);
+                myDb.onUpgrade(myDb, 1, 1);
                 Toast.makeText(accounts.this, "Row clicked: " + v.getId(), Toast.LENGTH_LONG).show();
             }
         });

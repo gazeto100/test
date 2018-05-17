@@ -58,4 +58,9 @@ public class Databasehepler extends SQLiteOpenHelper{
         Cursor cu = db.rawQuery("select from" + TABLE_NAME, null);
         return cu;
     }
+
+    public Integer deleteData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, " ID= ?", new String[]{id});
+    }
 }
