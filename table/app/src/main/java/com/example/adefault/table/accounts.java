@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,7 +17,8 @@ public class accounts extends AppCompatActivity {
 
     TableLayout showTable;
     Databasehepler myDb;
-
+    TableRow row;
+    Cursor cursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,7 @@ public class accounts extends AppCompatActivity {
         try
         {
         String selectQuery = "SELECT * FROM "+ myDb.TABLE_NAME;
-        Cursor cursor = db.rawQuery(selectQuery,null);
+        cursor = db.rawQuery(selectQuery,null);
 
         if(cursor.getCount() >0)
         {
@@ -63,7 +65,7 @@ public class accounts extends AppCompatActivity {
                 String what= cursor.getString(cursor.getColumnIndex("WHAT"));
                 //String other= cursor.getString(cursor.getColumnIndex("OTHER"));
 
-                TableRow row = new TableRow(this);
+                row = new TableRow(this);
                 row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
                 String[] colText={data+"",suma,what};
@@ -78,6 +80,7 @@ public class accounts extends AppCompatActivity {
                     row.addView(tv);
                 }
                 showTable.addView(row);
+                GetRow();
             }
         }
         db.setTransactionSuccessful();
@@ -94,5 +97,16 @@ public class accounts extends AppCompatActivity {
             db.close();
             // Close database
         }
+    }
+
+
+    public void GetRow(){
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setBackgroundColor(Color.GRAY);
+                Toast.makeText(accounts.this, "Row clicked: " + v.getId(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
