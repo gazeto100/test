@@ -2,4 +2,5 @@
     <string name="app_name">table</string>
     <string name="raz">Разход</string>
     <string name="za">Запис</string>
+    <string name="edit">EDIT</string>
 </resources>
