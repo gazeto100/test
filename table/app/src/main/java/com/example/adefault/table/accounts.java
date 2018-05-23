@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,10 +25,20 @@ public class accounts extends AppCompatActivity {
     Databasehepler myDb;
     TableRow row;
     Cursor cursor;
+    TableRow rowHeader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accounts);
+
+        myDb = new Databasehepler(this);
+        showTable = (TableLayout) findViewById(R.id.showTable);
+
+
+        rowHeader = new TableRow(this);
+        rowHeader.setBackgroundColor(Color.parseColor("#c0c0c0"));
+
+        showTable();
     }
 
 
@@ -53,12 +64,9 @@ public class accounts extends AppCompatActivity {
                             case 1:
                                 String testString = Integer.toString(id);
                                 Integer deleteRow = myDb.deleteData(testString);
-
-                                Intent intent = getIntent();
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                finish();
-                                startActivity(intent);
-
+                                showTable.removeAllViews();
+                                rowHeader.removeAllViews();
+                                showTable();
 
                                 break;
                             default:
@@ -76,17 +84,6 @@ public class accounts extends AppCompatActivity {
 
 
     public void showTable() {
-        myDb = new Databasehepler(this);
-
-
-        showTable = (TableLayout) findViewById(R.id.showTable);
-
-
-        TableRow rowHeader = new TableRow(this);
-        rowHeader.setBackgroundColor(Color.parseColor("#c0c0c0"));
-
-//        rowHeader.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
-//                TableLayout.LayoutParams.WRAP_CONTENT));
 
         String[] headerText = {"Дата", "За какво", "Сума"};
 

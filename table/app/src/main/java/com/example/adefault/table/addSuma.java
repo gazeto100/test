@@ -1,5 +1,6 @@
 package com.example.adefault.table;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,12 +18,13 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 
 public class addSuma extends AppCompatActivity {
 
     ListView listView;
     Button open;
-    Button btnAddData;
+    Button btnAddData, btnCansel;
     Databasehepler myDb;
 
     String strDate;
@@ -39,6 +41,7 @@ public class addSuma extends AppCompatActivity {
 
         open = (Button) findViewById(R.id.open);
         btnAddData = (Button) findViewById(R.id.add);
+        btnCansel = (Button) findViewById(R.id.cansel);
 
         editSuma = (EditText) findViewById(R.id.suma);
         editWhat = (TextView) findViewById(R.id.etCost);
@@ -55,7 +58,6 @@ public class addSuma extends AppCompatActivity {
             public void onClick(View v) {
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(), open);
                 popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -70,6 +72,12 @@ public class addSuma extends AppCompatActivity {
         });
 
         AddData();
+        btnCansel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cansel();
+            }
+        });
     }
 
     public void AddData(){
@@ -77,15 +85,28 @@ public class addSuma extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (isEmpty(editSuma) || isEmpty(editSuma)){
+                            Toast.makeText(addSuma.this, "Попълнете всички полетата", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                         boolean isInserted = myDb.insertData(textData.getText().toString(), editSuma.getText().toString(), getItem, editOther.getText().toString());
 
                         if(isInserted == true){
-                            Toast.makeText(addSuma.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                            Toast.makeText(addSuma.this, "Записа е добавен", Toast.LENGTH_LONG).show();
                         }else {
-                            Toast.makeText(addSuma.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+                            Toast.makeText(addSuma.this, "Записа не е добавен", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
         );
     }
+    public void Cansel(){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+    }
+
+    private boolean isEmpty(EditText etText) {
+        return etText.getText().toString().trim().length() == 0;
+    }
+
 }
