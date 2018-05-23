@@ -85,11 +85,11 @@ public class addSuma extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (isEmpty(editSuma) || isEmpty(editSuma)){
+                        if (isEmpty(textData) || isEmpty(editSuma)){
                             Toast.makeText(addSuma.this, "Попълнете всички полетата", Toast.LENGTH_LONG).show();
                             return;
                         }
-                        boolean isInserted = myDb.insertData(textData.getText().toString(), editSuma.getText().toString(), getItem, editOther.getText().toString());
+                        boolean isInserted = myDb.insertData(""+textData.getText().toString(), ""+getItem, "-"+editSuma.getText().toString(), ""+editOther.getText().toString());
 
                         if(isInserted == true){
                             Toast.makeText(addSuma.this, "Записа е добавен", Toast.LENGTH_LONG).show();
@@ -106,6 +106,10 @@ public class addSuma extends AppCompatActivity {
     }
 
     private boolean isEmpty(EditText etText) {
+        return etText.getText().toString().trim().length() == 0;
+    }
+
+    private boolean isEmpty(TextView etText) {
         return etText.getText().toString().trim().length() == 0;
     }
 

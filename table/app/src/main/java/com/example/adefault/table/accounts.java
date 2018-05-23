@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -26,6 +27,11 @@ public class accounts extends AppCompatActivity {
     TableRow row;
     Cursor cursor;
     TableRow rowHeader;
+    TextView currentSum;
+
+    int m_CurrentSum = 0;
+    int plusSum = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,7 @@ public class accounts extends AppCompatActivity {
         myDb = new Databasehepler(this);
         showTable = (TableLayout) findViewById(R.id.showTable);
 
+        currentSum = (TextView) findViewById(R.id.currentSum);
 
         rowHeader = new TableRow(this);
         rowHeader.setBackgroundColor(Color.parseColor("#c0c0c0"));
@@ -62,10 +69,11 @@ public class accounts extends AppCompatActivity {
                                 break;
 
                             case 1:
-                                String testString = Integer.toString(id);
-                                Integer deleteRow = myDb.deleteData(testString);
+                                String idRecord = Integer.toString(id);
+                                Integer deleteRow = myDb.deleteData(idRecord);
                                 showTable.removeAllViews();
                                 rowHeader.removeAllViews();
+                                m_CurrentSum = 0;
                                 showTable();
 
                                 break;
@@ -85,7 +93,7 @@ public class accounts extends AppCompatActivity {
 
     public void showTable() {
 
-        String[] headerText = {"Дата", "За какво", "Сума"};
+        String[] headerText = {"Дата", "Сума", "За какво"};
 
         for (String c : headerText) {
             TextView tv = new TextView(this);
@@ -107,6 +115,7 @@ public class accounts extends AppCompatActivity {
             String selectQuery = "SELECT * FROM "+ myDb.TABLE_NAME;
             cursor = db.rawQuery(selectQuery,null);
 
+
             if(cursor.getCount() >0)
             {
                 int count = 0;
@@ -118,6 +127,9 @@ public class accounts extends AppCompatActivity {
                     String what= cursor.getString(cursor.getColumnIndex("WHAT"));
                     //String other= cursor.getString(cursor.getColumnIndex("OTHER"));
 
+                    plusSum = Integer.parseInt(suma);
+                    m_CurrentSum = m_CurrentSum + plusSum;
+
                     row = new TableRow(this);
 
                     if (count %2 == 0){
@@ -126,24 +138,28 @@ public class accounts extends AppCompatActivity {
 
                     }
 
-//                row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
-//                        TableLayout.LayoutParams.MATCH_PARENT));
                     String[] colText={data,suma,what};
                     for(String text:colText) {
                         TextView tv = new TextView(this);
-//                    tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-//                            TableRow.LayoutParams.MATCH_PARENT));
-//                    tv.setGravity(Gravity.CENTER);
                         tv.setTextSize(14);
                         tv.setPadding(5, 10, 5, 5);
                         tv.setText(text);
                         row.addView(tv);
                     }
+
                     showTable.addView(row);
                     GetRow(id, data, suma, what);
                     count++;
                 }
             }
+
+            if (m_CurrentSum < 0){
+                currentSum.setTextColor(Color.RED);
+            }else {
+                currentSum.setTextColor(Color.BLACK);
+            }
+            currentSum.setText("Разполагаема сума: "+Integer.toString(m_CurrentSum)+" лв.");
+
             db.setTransactionSuccessful();
         }
         catch (SQLiteException e)
@@ -159,6 +175,10 @@ public class accounts extends AppCompatActivity {
             // Close database
         }
 
+
+    }
+
+    public void currentSum(){
 
     }
 }

@@ -40,8 +40,8 @@ public class Databasehepler extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DATA, data);
-        contentValues.put(SUMA, suma);
         contentValues.put(WHAT, what);
+        contentValues.put(SUMA, suma);
         contentValues.put(OTHER, other);
 
         long result = db.insert(TABLE_NAME, null, contentValues);

@@ -28,4 +28,5 @@
     <item android:title="Кола" />
     <item android:title="Дарения" />
     <item android:title="Подараци" />
+    <item android:title="Друго" />
 </menu>

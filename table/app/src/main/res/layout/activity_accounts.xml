@@ -8,10 +8,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="562dp"
         android:scrollbarStyle="outsideInset"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,6 +26,18 @@
                 android:stretchColumns="*">
 
             </TableLayout>
+
+            <TextView
+                android:id="@+id/currentSum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:paddingTop="20dp"
+                android:text="Разполагаема сума: "
+                android:textSize="18dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="178dp" />
         </LinearLayout>
     </ScrollView>
 
