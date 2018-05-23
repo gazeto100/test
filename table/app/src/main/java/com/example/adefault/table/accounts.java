@@ -29,8 +29,8 @@ public class accounts extends AppCompatActivity {
     TableRow rowHeader;
     TextView currentSum;
 
-    int m_CurrentSum = 0;
-    int plusSum = 0;
+    float m_CurrentSum = 0;
+    float plusSum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class accounts extends AppCompatActivity {
         db.beginTransaction();
         try
         {
-            String selectQuery = "SELECT * FROM "+ myDb.TABLE_NAME;
+            String selectQuery = "SELECT * FROM "+ myDb.TABLE_NAME +" ORDER BY "+ myDb.ID +" DESC";
             cursor = db.rawQuery(selectQuery,null);
 
 
@@ -127,7 +127,7 @@ public class accounts extends AppCompatActivity {
                     String what= cursor.getString(cursor.getColumnIndex("WHAT"));
                     //String other= cursor.getString(cursor.getColumnIndex("OTHER"));
 
-                    plusSum = Integer.parseInt(suma);
+                    plusSum = Float.parseFloat(suma);
                     m_CurrentSum = m_CurrentSum + plusSum;
 
                     row = new TableRow(this);
@@ -158,7 +158,7 @@ public class accounts extends AppCompatActivity {
             }else {
                 currentSum.setTextColor(Color.BLACK);
             }
-            currentSum.setText("Разполагаема сума: "+Integer.toString(m_CurrentSum)+" лв.");
+            currentSum.setText("Разполагаема сума: "+Float.toString(m_CurrentSum)+" лв.");
 
             db.setTransactionSuccessful();
         }
